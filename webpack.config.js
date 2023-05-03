@@ -1,12 +1,16 @@
 // require path for join, require HTML plugin
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  // set mode for bundle
+  mode: 'development',
   // define entry point
-  entry: path.join(__dirname, '/client/src/index.js'),
-  // define output location
-  output: path.join(__dirname, '/client/dist'),
+  entry: path.join(__dirname, '/client/src/index.html'),
+  // define output location and file name
+  output: {
+    path: path.join(__dirname, '/client/dist'),
+    filename: 'bundle.js',
+  },
   // define rules for webpack to use with babel
   module: {
     rules: [
@@ -17,18 +21,8 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          // transpile to browser recognizable versions of code
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
         },
       },
     ],
   },
-  // use the following plugins
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html'),
-    }),
-  ],
 };
