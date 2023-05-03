@@ -1,2 +1,4 @@
 # add files to be ignored in commits
 config.js
+node_modules
+.env
