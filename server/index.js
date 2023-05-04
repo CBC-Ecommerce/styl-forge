@@ -12,7 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/products', routes.getProductByID);
 
-
 // listen on port from .env
 const port = 3000;
 app.listen(port);
