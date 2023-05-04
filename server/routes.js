@@ -2,18 +2,16 @@ const axios = require('axios');
 
 const authHeader = {
   headers: {
-    Authorization: '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',
+    Authorization: //FIX THIS,
   },
 };
 const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
 
 // '/product?id=5' {id: 5}
 
-
 exports.getProductByID = function (req, res) {
   const url = `${apiURL}products/${req.query.product_id}`;
   console.log(req.query.product_id, 'this is req.query*******');
-
 
   axios.get(url, authHeader)
 
