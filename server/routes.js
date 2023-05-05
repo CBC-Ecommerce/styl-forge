@@ -109,7 +109,6 @@ exports.markReviewHelpful = function (req, res) {
 
 exports.reportReview = function (req, res) {
   const urlPut = `${apiURL}reviews/${req.query.review_id}/report`;
-  console.log(urlPut);
 
   axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
     .then((results) => {
