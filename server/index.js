@@ -10,7 +10,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/products', routes.getProductByID);
+app.get('/products/styles', routes.getProductStyles);
+app.get('/products/related', routes.getRelatedProducts);
 
+app.get('/reviews', routes.getReviews);
 
 // listen on port from .env
 const port = 3000;
