@@ -16,7 +16,37 @@
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nconst App = function App() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Hello world!\");\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/App.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RelatedItems/RelatedProducts.jsx */ \"./client/src/RelatedItems/RelatedProducts.jsx\");\n\n\nfunction App() {\n  const [id, setId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Hello world!\", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    id: id\n  }));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/App.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RelatedItems/RelatedProList.jsx":
+/*!****************************************************!*\
+  !*** ./client/src/RelatedItems/RelatedProList.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction RelatedProList() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"related product list here\");\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RelatedProList);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/RelatedItems/RelatedProList.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RelatedItems/RelatedProducts.jsx":
+/*!*****************************************************!*\
+  !*** ./client/src/RelatedItems/RelatedProducts.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _RelatedProList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RelatedProList.jsx */ \"./client/src/RelatedItems/RelatedProList.jsx\");\n/* harmony import */ var _YourOutfitList_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./YourOutfitList.jsx */ \"./client/src/RelatedItems/YourOutfitList.jsx\");\n\n\n\nfunction RelatedProducts({\n  id\n}) {\n  const [relatedIdList, setRelatedIdList] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"section\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"h4\", null, \"RELATED PRODUCTS\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RelatedProList_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"h4\", null, \"YOUR OUTFITS\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_YourOutfitList_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RelatedProducts);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/RelatedItems/RelatedProducts.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RelatedItems/YourOutfitList.jsx":
+/*!****************************************************!*\
+  !*** ./client/src/RelatedItems/YourOutfitList.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction YourOutfitList() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Your Outfit list here\");\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (YourOutfitList);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/RelatedItems/YourOutfitList.jsx?");
 
 /***/ }),
 
