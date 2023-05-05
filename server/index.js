@@ -17,7 +17,12 @@ app.get('/products/styles', controllers.getProductStyles);
 app.get('/products/related', controllers.getRelatedProducts);
 
 // Routes for Reviews
+
 app.get('/reviews', controllers.getReviews);
+app.get('/reviews/meta', controllers.getReviewMetaData);
+app.post('/reviews', controllers.addReviews);
+app.put('/reviews/helpful', controllers.markReviewHelpful);
+app.put('/reviews/report', controllers.reportReview);
 
 // Establish connection to port
 const port = process.env.PORT;
