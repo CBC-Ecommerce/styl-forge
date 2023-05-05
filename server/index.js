@@ -1,25 +1,32 @@
-// server to query API
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const routes = require('./routes');
+const controllers = require('./controllers');
 
+// Create server and serve up client side folders to view in browser
 const app = express();
 app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/products', routes.getProductByID);
-app.get('/products/styles', routes.getProductStyles);
-app.get('/products/related', routes.getRelatedProducts);
+// Routes for Products
+app.get('/products', controllers.getProductByID);
+app.get('/products/styles', controllers.getProductStyles);
+app.get('/products/related', controllers.getRelatedProducts);
 
-app.get('/reviews', routes.getReviews);
-app.get('/reviews/meta', routes.getReviewMetaData);
-app.post('/reviews', routes.addReviews);
-app.put('/reviews/helpful', routes.markReviewHelpful);
-app.put('/reviews/report', routes.reportReview);
+// Routes for Reviews
 
-// listen on port from .env
-const port = 3000;
+app.get('/reviews', controllers.getReviews);
+app.get('/reviews/meta', controllers.getReviewMetaData);
+app.post('/reviews', controllers.addReviews);
+app.put('/reviews/helpful', controllers.markReviewHelpful);
+app.put('/reviews/report', controllers.reportReview);
+
+// Establish connection to port
+const port = process.env.PORT;
 app.listen(port);
+// Airbnb linter does not like console logs, only because it's a reminder
+// to remove all your development console logs before deployment
 console.log(`Listening at http://localhost:${port}`);
