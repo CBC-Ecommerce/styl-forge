@@ -1,3 +1,11 @@
-// App will contain all modules to be rendered
+import React from 'react';
 
-// Here's a new comment for everyone to see!
+const App = function App() {
+  return (
+    <div>
+      Hello world!
+    </div>
+  );
+};
+
+export default App;
