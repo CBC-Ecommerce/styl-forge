@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import RelatedProducts from './RelatedItems/RelatedProducts.jsx';
 
-const App = function App() {
+function App() {
+  const [id, setId] = useState(1);
   return (
     <div>
       Hello world!
+      <RelatedProducts id={id} />
     </div>
   );
-};
+}
 
 export default App;
