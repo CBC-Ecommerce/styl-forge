@@ -24,6 +24,18 @@ app.post('/reviews', controllers.addReviews);
 app.put('/reviews/helpful', controllers.markReviewHelpful);
 app.put('/reviews/report', controllers.reportReview);
 
+app.get('/qa/questions', controllers.getQuestions);
+app.get('/qa/questions/answers', controllers.getAnswers);
+app.post('/qa/questions', controllers.addAQuestion);
+app.post('/qa/questions/answers', controllers.addAnswer);
+app.put('/qa/questions/helpful', controllers.markQuestionHelpful);
+app.put('/qa/questions/report', controllers.reportQuestion);
+app.put('/qa/answers/helpful', controllers.markAnswerHelpful);
+app.put('/qa/answers/report', controllers.reportAnswer);
+
+app.get('/cart', controllers.getCart);
+app.post('/cart', controllers.addCart);
+
 // Establish connection to port
 const port = process.env.PORT;
 app.listen(port);

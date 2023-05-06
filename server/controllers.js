@@ -117,3 +117,137 @@ exports.reportReview = (req, res) => {
       res.sendStatus(500);
     });
 };
+
+exports.getQuestions = (req, res) => {
+  const url = `${process.env.API_URL}/qa/questions`;
+
+  const config = {
+    headers: authHeader.headers,
+    params: {
+      product_id: req.query.product_id,
+      page: req.query.page,
+      count: req.query.count,
+    },
+  };
+  axios.get(url, config)
+    .then((results) => {
+      res.status(200).send(results.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
+
+exports.getAnswers = function (req, res) {
+  const urlGetAnswers = `${process.env.API_URL}/qa/questions/${req.query.question_id}/answers`;
+
+  axios({
+    url: urlGetAnswers, method: 'GET', params: { page: req.query.page, count: req.query.count }, headers: authHeader.headers,
+  })
+    .then((results) => {
+      res.status(201).send(results.data);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};
+
+exports.addAQuestion = function (req, res) {
+  const urlAddQ = `${process.env.API_URL}/qa/questions`;
+  axios.post(urlAddQ, req.body, authHeader)
+    .then((results) => {
+      res.status(201).send(results.data);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};
+
+exports.addAnswer = function (req, res) {
+  const urlAddAnswers = `${process.env.API_URL}/qa/questions/${req.body.question_id}/answers`;
+  const body = {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+    photos: req.body.photos,
+  };
+
+  axios.post(urlAddAnswers, body, authHeader)
+    .then((results) => {
+      res.status(201).send(results.data);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};
+
+exports.markQuestionHelpful = function (req, res) {
+  const urlPut = `${process.env.API_URL}/qa/questions/${req.query.question_id}/helpful`;
+
+  axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
+    .then((results) => {
+      res.status(201).send(results.data);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};
+
+exports.reportQuestion = function (req, res) {
+  const urlPut = `${process.env.API_URL}/qa/questions/${req.query.question_id}/report`;
+
+  axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
+    .then((results) => {
+      res.status(201).send(results.data);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};
+
+exports.markAnswerHelpful = function (req, res) {
+  const urlPut = `${process.env.API_URL}/qa/answers/${req.query.answer_id}/helpful`;
+
+  axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
+    .then((results) => {
+      res.status(201).send(results.data);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};
+
+exports.reportAnswer = function (req, res) {
+  const urlPut = `${process.env.API_URL}/qa/answers/${req.query.answer_id}/report`;
+
+  axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
+    .then((results) => {
+      res.status(201).send(results.data);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};
+
+exports.getCart = (req, res) => {
+  const url = `${process.env.API_URL}/cart`;
+  axios.get(url, authHeader)
+    .then((results) => {
+      res.status(200).send(results.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
+
+exports.addCart = function (req, res) {
+  const url = `${process.env.API_URL}/cart`;
+
+  axios.post(url, req.body, authHeader)
+    .then((results) => {
+      res.status(201).send(results.data);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};
