@@ -229,3 +229,26 @@ exports.reportAnswer = function (req, res) {
       res.sendStatus(500);
     });
 };
+
+exports.getCart = (req, res) => {
+  const url = `${process.env.API_URL}/cart`;
+  axios.get(url, authHeader)
+    .then((results) => {
+      res.status(200).send(results.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
+
+exports.addCart = function (req, res) {
+  const url = `${process.env.API_URL}/cart`;
+
+  axios.post(url, req.body, authHeader)
+    .then((results) => {
+      res.status(201).send(results.data);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};

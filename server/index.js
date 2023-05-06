@@ -33,6 +33,9 @@ app.put('/qa/questions/report', controllers.reportQuestion);
 app.put('/qa/answers/helpful', controllers.markAnswerHelpful);
 app.put('/qa/answers/report', controllers.reportAnswer);
 
+app.get('/cart', controllers.getCart);
+app.post('/cart', controllers.addCart);
+
 // Establish connection to port
 const port = process.env.PORT;
 app.listen(port);
