@@ -10,7 +10,7 @@ function App() {
     <div data-testid="app">
       Hello world!
       <RelatedProducts id={id} />
-      <StaticStarList ratingInt={2.7} />
+      <StaticStarList ratingInt={2.5} />
     </div>
   );
 }
