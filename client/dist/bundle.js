@@ -16,7 +16,37 @@
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RelatedItems/RelatedProducts.jsx */ \"./client/src/RelatedItems/RelatedProducts.jsx\");\n\n\nfunction App() {\n  const [id, setId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Hello world!\", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    id: id\n  }));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/App.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RelatedItems/RelatedProducts.jsx */ \"./client/src/RelatedItems/RelatedProducts.jsx\");\n/* harmony import */ var _QnA_QnA_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QnA/QnA.jsx */ \"./client/src/QnA/QnA.jsx\");\n\n\n\nfunction App() {\n  const [id, setId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Hello world!\", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QnA_QnA_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    id: id\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    id: id\n  }));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/App.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/QnA/QnA.jsx":
+/*!********************************!*\
+  !*** ./client/src/QnA/QnA.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _QnAList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QnAList.jsx */ \"./client/src/QnA/QnAList.jsx\");\n\n\nconst {\n  useState,\n  useEffect\n} = (react__WEBPACK_IMPORTED_MODULE_0___default());\nfunction QnA({\n  id\n}) {\n  // useEffect(() => {\n  //   axios('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/')\n  // }, []);\n  const [quests, setQuests] = useState([]);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QnAList_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    quests: quests\n  }));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QnA);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/QnA/QnA.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/QnA/QnAList.jsx":
+/*!************************************!*\
+  !*** ./client/src/QnA/QnAList.jsx ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _QnAListEntry_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QnAListEntry.jsx */ \"./client/src/QnA/QnAListEntry.jsx\");\n\n\nfunction QnAList({\n  quests\n}) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, quests.map(quest => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QnAListEntry_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    quest: quest,\n    key: quest.question_id\n  })));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QnAList);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/QnA/QnAList.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/QnA/QnAListEntry.jsx":
+/*!*****************************************!*\
+  !*** ./client/src/QnA/QnAListEntry.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction QnAListEntry() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Question #1\");\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QnAListEntry);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/QnA/QnAListEntry.jsx?");
 
 /***/ }),
 
