@@ -24,6 +24,8 @@ app.post('/reviews', controllers.addReviews);
 app.put('/reviews/helpful', controllers.markReviewHelpful);
 app.put('/reviews/report', controllers.reportReview);
 
+// Routes for QnAs
+
 app.get('/qa/questions', controllers.getQuestions);
 app.get('/qa/questions/answers', controllers.getAnswers);
 app.post('/qa/questions', controllers.addAQuestion);
