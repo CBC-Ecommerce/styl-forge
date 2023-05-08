@@ -135,6 +135,7 @@ exports.getQuestions = (req, res) => {
       res.status(200).send(results.data);
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).send(err);
     });
 };
