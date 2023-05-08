@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --env=jsdom",
     "server-dev": "npx nodemon --watch server server/index.js",
-    "client-dev": "npx webpack",
+    "client-dev": "npx webpack --watch",
     "build": "webpack"
   },
   "repository": {
