@@ -5,7 +5,7 @@ import QnA from './QnA/QnA.jsx';
 function App() {
   const [id, setId] = useState(1);
   return (
-    <div>
+    <div data-testid="app">
       Hello world!
       <QnA id={id} />
       <RelatedProducts id={id} />

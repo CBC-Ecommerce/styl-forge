@@ -64,7 +64,7 @@ exports.getReviews = (req, res) => {
     });
 };
 
-exports.getReviewMetaData = function (req, res) {
+exports.getReviewMetaData = (req, res) => {
   const urlReviewMeta = `${process.env.API_URL}/reviews/meta`;
   const config = {
     headers: authHeader.headers,
@@ -82,7 +82,7 @@ exports.getReviewMetaData = function (req, res) {
     });
 };
 
-exports.addReviews = function (req, res) {
+exports.addReviews = (req, res) => {
   const urlPostReviews = `${process.env.API_URL}/reviews`;
 
   axios.post(urlPostReviews, req.body, authHeader)
@@ -90,12 +90,11 @@ exports.addReviews = function (req, res) {
       res.status(201).send(results.data);
     })
     .catch((err) => {
-      console.log(err, 'failed to post a review');
-      res.sendStatus(500);
+      res.status(500).send(err);
     });
 };
 
-exports.markReviewHelpful = function (req, res) {
+exports.markReviewHelpful = (req, res) => {
   const urlPut = `${process.env.API_URL}/reviews/${req.query.review_id}/helpful`;
 
   axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
@@ -107,7 +106,7 @@ exports.markReviewHelpful = function (req, res) {
     });
 };
 
-exports.reportReview = function (req, res) {
+exports.reportReview = (req, res) => {
   const urlPut = `${process.env.API_URL}/reviews/${req.query.review_id}/report`;
 
   axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
@@ -223,6 +222,29 @@ exports.reportAnswer = function (req, res) {
   const urlPut = `${process.env.API_URL}/qa/answers/${req.query.answer_id}/report`;
 
   axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
+    .then((results) => {
+      res.status(201).send(results.data);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};
+
+exports.getCart = (req, res) => {
+  const url = `${process.env.API_URL}/cart`;
+  axios.get(url, authHeader)
+    .then((results) => {
+      res.status(200).send(results.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
+
+exports.addCart = function (req, res) {
+  const url = `${process.env.API_URL}/cart`;
+
+  axios.post(url, req.body, authHeader)
     .then((results) => {
       res.status(201).send(results.data);
     })
