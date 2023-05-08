@@ -140,7 +140,7 @@ exports.getQuestions = (req, res) => {
 };
 
 exports.getAnswers = function (req, res) {
-  const urlGetAnswers = `${process.env.API_URL}/qa/questions/${req.query.question_id}/answers`;
+  const urlGetAnswers = `${process.env.API_URL}/qa/questions/${req.params.question_id}/answers`;
 
   axios({
     url: urlGetAnswers, method: 'GET', params: { page: req.query.page, count: req.query.count }, headers: authHeader.headers,
