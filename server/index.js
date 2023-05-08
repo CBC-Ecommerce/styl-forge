@@ -27,7 +27,7 @@ app.put('/reviews/report', controllers.reportReview);
 // Routes for QnAs
 
 app.get('/qa/questions', controllers.getQuestions);
-app.get('/qa/questions/answers', controllers.getAnswers);
+app.get('/qa/questions/:question_id/answers', controllers.getAnswers);
 app.post('/qa/questions', controllers.addAQuestion);
 app.post('/qa/questions/answers', controllers.addAnswer);
 app.put('/qa/questions/helpful', controllers.markQuestionHelpful);
