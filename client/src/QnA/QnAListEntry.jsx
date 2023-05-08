@@ -1,9 +1,13 @@
 import React from 'react';
 
-function QnAListEntry() {
+function QnAListEntry({ quest }) {
   return (
 
-    <div>Question #1</div>
+    <div>
+      Question:
+      {' '}
+      {quest.question_body}
+    </div>
   );
 }
 
