@@ -19,7 +19,7 @@ export default function Overview({ product, id }) {
         setStyles(result.data);
       })
       .catch((err) => { throw err; });
-  }, styles);
+  }, []);
 
   return (
     <div id="Overview">
