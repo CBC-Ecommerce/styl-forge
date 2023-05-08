@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --env=jsdom",
     "server-dev": "npx nodemon --watch server server/index.js",
-    "client-dev": "npx webpack --watch",
+    "client-dev": "npx webpack",
     "build": "webpack"
   },
   "repository": {
@@ -44,8 +44,12 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "path": "^0.12.7",
+    "postcss-loader": "^7.3.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
@@ -55,6 +59,7 @@
     "@testing-library/react": "^14.0.0",
     "babel-jest": "^29.5.0",
     "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
     "eslint": "^8.39.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.27.5",
