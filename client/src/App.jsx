@@ -5,7 +5,7 @@ import QnA from './QnA/QnA.jsx';
 import StaticStarList from './RatingsAndReviews/StaticStarList.jsx';
 
 function App() {
-  const [id, setId] = useState(1);
+  const [id, setId] = useState(40347);
 
   return (
     <div data-testid="app">
