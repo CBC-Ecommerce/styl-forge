@@ -13,8 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes for Products
 app.get('/products', controllers.getProductByID);
-app.get('/products/styles', controllers.getProductStyles);
-app.get('/products/related', controllers.getRelatedProducts);
+app.get('/products/:product_id/styles', controllers.getProductStyles);
+app.get('/products/:product_id/related', controllers.getRelatedProducts);
 
 // Routes for Reviews
 
