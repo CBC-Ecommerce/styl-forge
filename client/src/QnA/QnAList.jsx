@@ -13,13 +13,13 @@ function QnAList({ quests }) {
   };
   return (
     <div>
+      {quests.slice(0, numEntry)
+        .map((quest) => <QnAListEntry quest={quest} key={quest.question_id} />)}
       {questButton ? null : (
         <form onSubmit={submitHandler}>
           <input type="submit" value="Show More Answered Questions" />
         </form>
       )}
-      {quests.slice(0, numEntry)
-        .map((quest) => <QnAListEntry quest={quest} key={quest.question_id} />)}
     </div>
 
   );
