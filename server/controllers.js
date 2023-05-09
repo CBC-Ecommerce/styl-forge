@@ -119,7 +119,9 @@ exports.reportReview = (req, res) => {
 };
 
 exports.getQuestions = (req, res) => {
-  const url = `${process.env.API_URL}/qa/questions`;
+  const url = `${process.env.API_URL}/qa/questions/`;
+  // console.log('req.query.product_id:', req.query.product_id);
+  // console.log('req.query.page:', req.query.page);
 
   const config = {
     headers: authHeader.headers,
