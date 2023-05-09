@@ -29,7 +29,7 @@ export default function Overview({ product, id }) {
       <Title name={product.name} />
       <Price price={product.default_price}/>
       {styles && <StyleSelector styles={styles} />}
-      {product.description && <ProductOverview description={product.description} /> }
+      {product.description && <ProductOverview description={product.description} />}
       <Social />
     </div>
   );
