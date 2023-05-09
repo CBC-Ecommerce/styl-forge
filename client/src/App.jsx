@@ -8,6 +8,7 @@ import Overview from './Overview/Overview.jsx';
 function App() {
   const [id, setId] = useState(40344);
   const [currentProduct, setCurrentProduct] = useState({});
+  const [reviewList, setReviewList] = useState([]);
 
   // useEffect gets new product information when id changes
   useEffect(() => {
@@ -24,7 +25,6 @@ function App() {
   return (
     <div data-testid="app">
       <Overview product={currentProduct} id={id} /* rating={avgRating} */ />
-      <RelatedProducts id={id} />
       <RelatedProducts id={id} setId={setId} />
       <ReviewList reviewList={reviewList} />
     </div>

@@ -8,7 +8,7 @@ function Card({ id, setId }) {
   const [stylesInfo, setStylesInfo] = useState({});
 
   function getProductInfo(productId) {
-    axios.get('/products', { params: { product_id: productId } })
+    axios.get(`products/?product_id=${productId}`)
       .then((res) => {
         setproductInfo({ name: res.data.name, category: res.data.category });
       })
@@ -18,7 +18,7 @@ function Card({ id, setId }) {
   }
 
   function getPriceImage(productId) {
-    axios.get('/products/styles', { params: { product_id: productId } })
+    axios.get(`products/?product_id=${productId}/styles`)
       .then((res) => {
         let index = 0;
         res.data.results.forEach((el, i) => {
@@ -39,6 +39,7 @@ function Card({ id, setId }) {
   }
 
   function cardClickHandler() {
+    // console.log(id);
     setId(id);
   }
 
