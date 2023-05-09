@@ -1,0 +1,30 @@
+.review-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin-left: auto;
+  border: 2px solid pink;
+}
+
+.review-card {
+  width: 100%;
+  margin: 5px;
+  border: 2px solid blue;
+}
+
+.review-date {
+  font-size: 12px;
+}
+
+.summary-title {
+  font-size: 14px;
+}
+
+.review-body {
+  font-size: 12px;
+}
+
+.review-thumbnail-container {
+  display: flex;
+}

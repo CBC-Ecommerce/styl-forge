@@ -5,12 +5,12 @@ import StaticStarList from './RatingsAndReviews/StaticStarList.jsx';
 import ReviewList from './RatingsAndReviews/ReviewList.jsx';
 
 function App() {
-  const [id, setId] = useState(40346);
+  const [id, setId] = useState(40347);
   const [reviewList, setReviewList] = useState([]);
 
   useEffect(() => {
     // Every time main product id changes, reset the reviews list
-    axios.get(`/reviews?product_id=${id}`)
+    axios.get(`/reviews?product_id=${id}&page=11`)
       .then((results) => { setReviewList(results.data.results); })
       .catch((err) => { throw err; });
   }, [id]);
@@ -19,7 +19,6 @@ function App() {
     <div data-testid="app">
       Hello world!
       <RelatedProducts id={id} />
-      <StaticStarList ratingInt={2.3} />
       <ReviewList reviewList={reviewList} />
     </div>
   );
