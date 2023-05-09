@@ -18,8 +18,7 @@ function App() {
   return (
     <div data-testid="app">
       Hello world!
-      <RelatedProducts id={id} />
-      <StaticStarList ratingInt={2.3} />
+      <RelatedProducts id={id} setId={setId} />
       <ReviewList reviewList={reviewList} />
     </div>
   );
