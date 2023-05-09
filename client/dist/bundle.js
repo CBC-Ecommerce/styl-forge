@@ -16,7 +16,147 @@
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RelatedItems/RelatedProducts.jsx */ \"./client/src/RelatedItems/RelatedProducts.jsx\");\n/* harmony import */ var _RatingsAndReviews_StaticStarList_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RatingsAndReviews/StaticStarList.jsx */ \"./client/src/RatingsAndReviews/StaticStarList.jsx\");\n\n\n\n\nfunction App() {\n  const [id, setId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(40345);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {}, [id]);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    \"data-testid\": \"app\"\n  }, \"Hello world!\", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    id: id,\n    setId: setId\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RatingsAndReviews_StaticStarList_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    ratingInt: 2.5\n  }));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/App.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ \"./node_modules/axios/lib/axios.js\");\n/* harmony import */ var _RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RelatedItems/RelatedProducts.jsx */ \"./client/src/RelatedItems/RelatedProducts.jsx\");\n/* harmony import */ var _QnA_QnA_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QnA/QnA.jsx */ \"./client/src/QnA/QnA.jsx\");\n/* harmony import */ var _RatingsAndReviews_StaticStarList_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingsAndReviews/StaticStarList.jsx */ \"./client/src/RatingsAndReviews/StaticStarList.jsx\");\n/* harmony import */ var _RatingsAndReviews_ReviewList_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RatingsAndReviews/ReviewList.jsx */ \"./client/src/RatingsAndReviews/ReviewList.jsx\");\n/* harmony import */ var _Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Overview/Overview.jsx */ \"./client/src/Overview/Overview.jsx\");\n\n\n\n\n\n\n\nfunction App() {\n  const [id, setId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(40347); // Better product id for testing QnA.\n  const [currentProduct, setCurrentProduct] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});\n\n  // useEffect gets new product information when id changes\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    // get product information\n    axios__WEBPACK_IMPORTED_MODULE_6__[\"default\"].get(`/products/?product_id=${id}`).then(results => {\n      setCurrentProduct(results.data);\n    }).catch(err => {\n      throw err;\n    });\n    // Every time main product id changes, reset the reviews list\n    axios__WEBPACK_IMPORTED_MODULE_6__[\"default\"].get(`/reviews?product_id=${id}`).then(results => {\n      setReviewList(results.data.results);\n    }).catch(err => {\n      throw err;\n    });\n  }, [id]);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    \"data-testid\": \"app\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_5__[\"default\"], {\n    product: currentProduct,\n    id: id /* rating={avgRating} */\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QnA_QnA_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    id: id\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    id: id\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RelatedItems_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    id: id,\n    setId: setId\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RatingsAndReviews_ReviewList_jsx__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n    reviewList: reviewList\n  }));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/App.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Overview/Category.jsx":
+/*!******************************************!*\
+  !*** ./client/src/Overview/Category.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Category)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction Category({\n  name\n}) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", null, name));\n}\n\n//# sourceURL=webpack://front-end-capstone/./client/src/Overview/Category.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Overview/Overview.jsx":
+/*!******************************************!*\
+  !*** ./client/src/Overview/Overview.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Overview)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ \"./node_modules/axios/lib/axios.js\");\n/* harmony import */ var _Title_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Title.jsx */ \"./client/src/Overview/Title.jsx\");\n/* harmony import */ var _Price_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Price.jsx */ \"./client/src/Overview/Price.jsx\");\n/* harmony import */ var _Category_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Category.jsx */ \"./client/src/Overview/Category.jsx\");\n/* harmony import */ var _ProductOverview_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductOverview.jsx */ \"./client/src/Overview/ProductOverview.jsx\");\n/* harmony import */ var _Social_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Social.jsx */ \"./client/src/Overview/Social.jsx\");\n/* harmony import */ var _RatingsAndReviews_StaticStarList_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../RatingsAndReviews/StaticStarList.jsx */ \"./client/src/RatingsAndReviews/StaticStarList.jsx\");\n/* harmony import */ var _StyleSelector_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./StyleSelector.jsx */ \"./client/src/Overview/StyleSelector.jsx\");\n\n\n\n\n\n\n\n\n\nfunction Overview({\n  product,\n  id\n}) {\n  const [styles, setStyles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);\n\n  // get style information for selector\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    axios__WEBPACK_IMPORTED_MODULE_8__[\"default\"].get(`products/?product_id=${id}/styles`).then(result => {\n      console.log('style data', result.data);\n      setStyles(result.data);\n    }).catch(err => {\n      throw err;\n    });\n  }, []);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    id: \"Overview\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RatingsAndReviews_StaticStarList_jsx__WEBPACK_IMPORTED_MODULE_6__[\"default\"], {\n    ratingInt: 2.5\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Category_jsx__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    name: product.category\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Title_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    name: product.name\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Price_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    price: product.default_price\n  }), styles && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_StyleSelector_jsx__WEBPACK_IMPORTED_MODULE_7__[\"default\"], {\n    styles: styles\n  }), product.description && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductOverview_jsx__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n    description: product.description\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Social_jsx__WEBPACK_IMPORTED_MODULE_5__[\"default\"], null));\n}\n\n//# sourceURL=webpack://front-end-capstone/./client/src/Overview/Overview.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Overview/Price.jsx":
+/*!***************************************!*\
+  !*** ./client/src/Overview/Price.jsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Price)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction Price({\n  price\n}) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", null, \"$\", price));\n}\n\n//# sourceURL=webpack://front-end-capstone/./client/src/Overview/Price.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Overview/ProductOverview.jsx":
+/*!*************************************************!*\
+  !*** ./client/src/Overview/ProductOverview.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ ProductOverview)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction ProductOverview({\n  description\n}) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"p\", null, description));\n}\n\n//# sourceURL=webpack://front-end-capstone/./client/src/Overview/ProductOverview.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Overview/RenderStyle.jsx":
+/*!*********************************************!*\
+  !*** ./client/src/Overview/RenderStyle.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ RenderStyle)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction RenderStyle({\n  style\n}) {\n  console.log('style number ' + style.style_id, style);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"img\", {\n    className: \"style-selector-thumbnails\",\n    src: style.photos[0].thumbnail_url,\n    alt: \"style-thumbnail\"\n  }));\n}\n\n//# sourceURL=webpack://front-end-capstone/./client/src/Overview/RenderStyle.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Overview/Social.jsx":
+/*!****************************************!*\
+  !*** ./client/src/Overview/Social.jsx ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Social)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction Social() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", null, \"Socials\"));\n}\n\n//# sourceURL=webpack://front-end-capstone/./client/src/Overview/Social.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Overview/StyleSelector.jsx":
+/*!***********************************************!*\
+  !*** ./client/src/Overview/StyleSelector.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ StyleSelector)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _RenderStyle_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RenderStyle.jsx */ \"./client/src/Overview/RenderStyle.jsx\");\n\n\nfunction StyleSelector({\n  styles\n}) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"style-selector\"\n  }, styles.results.map(style => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RenderStyle_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    style: style,\n    key: style.id\n  })));\n}\n\n//# sourceURL=webpack://front-end-capstone/./client/src/Overview/StyleSelector.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/Overview/Title.jsx":
+/*!***************************************!*\
+  !*** ./client/src/Overview/Title.jsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Title)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction Title({\n  name\n}) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"h1\", null, name));\n}\n\n//# sourceURL=webpack://front-end-capstone/./client/src/Overview/Title.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/QnA/AnswerListEntry.jsx":
+/*!********************************************!*\
+  !*** ./client/src/QnA/AnswerListEntry.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction AnswerListEntry({\n  answer\n}) {\n  const date = new Date(answer.date);\n  const options = {\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric'\n  };\n  const formattedDate = date.toLocaleDateString('en-US', options);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, answer.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", null, \"by\", ' ', answer.answerer_name, ' ', formattedDate, ' ', \"Helpful?\", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"button\", {\n    type: \"button\"\n  }, \"Yes\", ' ', \"(\", answer.helpfulness, \")\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"button\", {\n    type: \"button\"\n  }, ' ', \"Report\")));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerListEntry);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/QnA/AnswerListEntry.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/QnA/QnA.jsx":
+/*!********************************!*\
+  !*** ./client/src/QnA/QnA.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ \"./node_modules/axios/lib/axios.js\");\n/* harmony import */ var _QnAList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QnAList.jsx */ \"./client/src/QnA/QnAList.jsx\");\n\n\n\nconst {\n  useState,\n  useEffect\n} = (react__WEBPACK_IMPORTED_MODULE_0___default());\nfunction QnA({\n  id\n}) {\n  const [quests, setQuests] = useState([]);\n  const grabQuestions = () => {\n    const config = {\n      params: {\n        product_id: id,\n        page: 1,\n        count: 99999\n      }\n    };\n    (0,axios__WEBPACK_IMPORTED_MODULE_2__[\"default\"])('/qa/questions', config).then(response => {\n      setQuests(response.data.results);\n    }).catch(error => {\n      console.log(error);\n    });\n  };\n  useEffect(() => {\n    grabQuestions();\n  }, []);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QnAList_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    quests: quests\n  }));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QnA);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/QnA/QnA.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/QnA/QnAList.jsx":
+/*!************************************!*\
+  !*** ./client/src/QnA/QnAList.jsx ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _QnAListEntry_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QnAListEntry.jsx */ \"./client/src/QnA/QnAListEntry.jsx\");\n\n\nfunction QnAList({\n  quests\n}) {\n  const [numEntry, setNumEntry] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2);\n  const [questButton, setQuestButton] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n  const submitHandler = e => {\n    e.preventDefault();\n    setNumEntry(numEntry + 2);\n    if (numEntry >= quests.length - 1) {\n      setQuestButton(true);\n    }\n  };\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, quests.slice(0, numEntry).map(quest => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_QnAListEntry_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    quest: quest,\n    key: quest.question_id\n  })), questButton ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"form\", {\n    onSubmit: submitHandler\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"submit\",\n    value: \"Show More Answered Questions\"\n  })));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QnAList);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/QnA/QnAList.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/QnA/QnAListEntry.jsx":
+/*!*****************************************!*\
+  !*** ./client/src/QnA/QnAListEntry.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ \"./node_modules/axios/lib/axios.js\");\n/* harmony import */ var _AnswerListEntry_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AnswerListEntry.jsx */ \"./client/src/QnA/AnswerListEntry.jsx\");\n\n\n\nfunction QnAListEntry({\n  quest\n}) {\n  // console.log('This is quest:', quest);\n  const [answers, setAnswers] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);\n  const [ansEntry, setAnsEntry] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2);\n  const [anyMore, setAnyMore] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n  const grabAnswers = () => {\n    const config = {\n      params: {\n        page: 1,\n        count: 9999\n      }\n    };\n    (0,axios__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(`/qa/questions/${quest.question_id}/answers`, config).then(info => {\n      setAnswers(info.data.results);\n      // This also works instead of the useEffect for answers.length\n      // if (info.data.results.length <= 2) {\n      //   setAnyMore(false);\n      // }\n    }).catch(error => {\n      console.log(error);\n    });\n  };\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    console.log(quest);\n    grabAnswers();\n  }, []);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    // console.log(answers);\n    if (answers.length > 2) {\n      setAnyMore(true);\n    }\n  }, [answers]);\n  const submitHandler = e => {\n    e.preventDefault();\n    setAnsEntry(answers.length);\n    setAnyMore(false);\n  };\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Q:\", ' ', quest.question_body, ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", null, \"Helpful?\", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"button\", {\n    type: \"button\"\n  }, \"Yes\", ' ', \"(\", quest.question_helpfulness, \")\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"button\", {\n    type: \"button\"\n  }, ' ', \"Add Answer\"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"A:\", ' ', answers.slice(0, ansEntry).map(answer => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AnswerListEntry_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    answer: answer,\n    key: answer.answer_id\n  }))), anyMore ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"form\", {\n    onSubmit: submitHandler\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"input\", {\n    type: \"submit\",\n    value: \"See More Answers\"\n  })) : null);\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QnAListEntry);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/QnA/QnAListEntry.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RatingsAndReviews/ReviewList.jsx":
+/*!*****************************************************!*\
+  !*** ./client/src/RatingsAndReviews/ReviewList.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ ReviewList)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ReviewListCard_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReviewListCard.jsx */ \"./client/src/RatingsAndReviews/ReviewListCard.jsx\");\n\n\n\n// reviewList prop is an array of objects\nfunction ReviewList({\n  reviewList\n}) {\n  console.log('These are how many reviews we have: ', reviewList.length);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"review-list\"\n  }, reviewList.map(review => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ReviewListCard_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    review: review,\n    key: review.review_id\n  })));\n}\n\n//# sourceURL=webpack://front-end-capstone/./client/src/RatingsAndReviews/ReviewList.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RatingsAndReviews/ReviewListCard.jsx":
+/*!*********************************************************!*\
+  !*** ./client/src/RatingsAndReviews/ReviewListCard.jsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ ReviewListCard)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\n// Each review has the following properties to access:\n// review_id, rating, summary, recommended, response, body, date, reviewer_name,\n// helpfullness, and photos (array)\nfunction ReviewListCard({\n  review\n}) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Star Rating\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, review.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Review Summary\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Review Body\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"REcommended\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Reviewer Name\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"REsponse to Review\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Rating Helpfullness\"));\n}\n\n//# sourceURL=webpack://front-end-capstone/./client/src/RatingsAndReviews/ReviewListCard.jsx?");
 
 /***/ }),
 
@@ -684,7 +824,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -698,17 +838,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -721,7 +861,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -733,7 +873,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -745,12 +885,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -761,7 +901,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -770,18 +910,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/nonce */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nc = undefined;
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./client/src/index.jsx");
-/******/
+/******/ 	
 /******/ })()
 ;
