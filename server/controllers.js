@@ -120,7 +120,9 @@ exports.reportReview = (req, res) => {
 };
 
 exports.getQuestions = (req, res) => {
-  const url = `${process.env.API_URL}/qa/questions`;
+  const url = `${process.env.API_URL}/qa/questions/`;
+  // console.log('req.query.product_id:', req.query.product_id);
+  // console.log('req.query.page:', req.query.page);
 
   const config = {
     headers: authHeader.headers,
@@ -135,12 +137,13 @@ exports.getQuestions = (req, res) => {
       res.status(200).send(results.data);
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).send(err);
     });
 };
 
 exports.getAnswers = function (req, res) {
-  const urlGetAnswers = `${process.env.API_URL}/qa/questions/${req.query.question_id}/answers`;
+  const urlGetAnswers = `${process.env.API_URL}/qa/questions/${req.params.question_id}/answers`;
 
   axios({
     url: urlGetAnswers, method: 'GET', params: { page: req.query.page, count: req.query.count }, headers: authHeader.headers,

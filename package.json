@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --env=jsdom",
     "server-dev": "npx nodemon --watch server server/index.js",
-    "client-dev": "npx webpack",
+    "client-dev": "npx webpack --watch",
     "build": "webpack"
   },
   "repository": {
@@ -29,6 +29,7 @@
   "dependencies": {
     "axios": "^1.4.0",
     "babel": "^6.23.0",
+    "dateformat": "^5.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "identity-obj-proxy": "^3.0.0",
