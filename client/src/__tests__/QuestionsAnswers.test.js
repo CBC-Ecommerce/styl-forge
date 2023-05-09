@@ -7,6 +7,7 @@ import QnA from '../QnA/QnA.jsx';
 
 describe('Questions GET Request', () => {
   test('it should fetch data from API', async () => {
+    // Creates a mock function that simulates the behavior of a real function in a controlled manner
     const mockValue = {
       data: {
         product_id: '5',
@@ -23,3 +24,4 @@ describe('Questions GET Request', () => {
     expect(response.data).toEqual({ product_id: '5', results: [] });
   });
 });
+
