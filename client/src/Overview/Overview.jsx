@@ -15,7 +15,7 @@ export default function Overview({ product, id }) {
   useEffect(() => {
     axios.get(`products/?product_id=${id}/styles`)
       .then((result) => {
-        console.log('style data', result.data);
+        // console.log('style data', result.data);
         setStyles(result.data);
       })
       .catch((err) => { throw err; });
