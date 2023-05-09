@@ -13,8 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes for Products
 app.get('/products', controllers.getProductByID);
-app.get('/products/styles', controllers.getProductStyles);
-app.get('/products/related', controllers.getRelatedProducts);
+app.get('/products/:product_id/styles', controllers.getProductStyles);
+app.get('/products/:product_id/related', controllers.getRelatedProducts);
 
 // Routes for Reviews
 
@@ -24,8 +24,10 @@ app.post('/reviews', controllers.addReviews);
 app.put('/reviews/helpful', controllers.markReviewHelpful);
 app.put('/reviews/report', controllers.reportReview);
 
+// Routes for QnAs
+
 app.get('/qa/questions', controllers.getQuestions);
-app.get('/qa/questions/answers', controllers.getAnswers);
+app.get('/qa/questions/:question_id/answers', controllers.getAnswers);
 app.post('/qa/questions', controllers.addAQuestion);
 app.post('/qa/questions/answers', controllers.addAnswer);
 app.put('/qa/questions/helpful', controllers.markQuestionHelpful);

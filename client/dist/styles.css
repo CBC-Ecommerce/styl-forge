@@ -1,1 +1,55 @@
 /* add styling here */
+.card {
+  width: 260px;
+  border-radius: 8px;
+  box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.cardImg {
+  width: 260px;
+  height: 280px;
+
+}
+
+.cardContainer {
+  display: flex;
+  gap: 50px;
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.cardName {
+  font-size: 20px;
+}
+
+.style-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: space-evenly;
+  justify-items: end;
+}
+
+.style-thumbnail-buttons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+  cursor: pointer;
+  border-style: hidden;
+  border-radius: 60px;
+  height: 110px;
+  width: 110px;
+}
+
+.style-selector-thumbnails {
+  height: 96px;
+  width: 96px;
+  object-fit: cover;
+  border-style: hidden;
+  border-radius: 56px;
+}
