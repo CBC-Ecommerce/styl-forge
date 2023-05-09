@@ -3,12 +3,13 @@ import axios from 'axios';
 import AnswerListEntry from './AnswerListEntry.jsx';
 
 function QnAListEntry({ quest }) {
-  console.log('This is quest:', quest);
+  // console.log('This is quest:', quest);
   const [answers, setAnswers] = useState([]);
   const [ansEntry, setAnsEntry] = useState(2);
   const [anyMore, setAnyMore] = useState(false);
   const grabAnswers = () => {
-    axios(`/qa/questions/${quest.question_id}/answers?page=1&count=9999`)
+    const config = { params: { page: 1, count: 9999 } };
+    axios(`/qa/questions/${quest.question_id}/answers`, config)
       .then((info) => {
         setAnswers(info.data.results);
         // This also works instead of the useEffect for answers.length
@@ -22,11 +23,12 @@ function QnAListEntry({ quest }) {
   };
 
   useEffect(() => {
+    console.log(quest);
     grabAnswers();
   }, []);
 
   useEffect(() => {
-    console.log(answers);
+    // console.log(answers);
     if (answers.length > 2) {
       setAnyMore(true);
     }
@@ -45,6 +47,22 @@ function QnAListEntry({ quest }) {
         Q:
         {' '}
         {quest.question_body}
+        {' '}
+        <span>
+          Helpful?
+          {' '}
+          <button type="button">
+            Yes
+            {' '}
+            (
+            {quest.question_helpfulness}
+            )
+          </button>
+          <button type="button">
+            {' '}
+            Add Answer
+          </button>
+        </span>
       </div>
       <div>
         A:
