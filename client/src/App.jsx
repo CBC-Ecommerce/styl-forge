@@ -6,8 +6,9 @@ import ReviewList from './RatingsAndReviews/ReviewList.jsx';
 import Overview from './Overview/Overview.jsx';
 
 function App() {
-  const [id, setId] = useState(40344);
+  const [id, setId] = useState(40346);
   const [currentProduct, setCurrentProduct] = useState({});
+  const [reviewList, setReviewList] = useState([]);
 
   // useEffect gets new product information when id changes
   useEffect(() => {
