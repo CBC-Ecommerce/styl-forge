@@ -1,5 +1,5 @@
 import React from 'react';
-import './StaticStar.css';
+import './css/StaticStar.css';
 
 export default function StaticStar({ value }) {
   let style;

@@ -18,7 +18,7 @@ function App() {
       .then((results) => { setCurrentProduct(results.data); })
       .catch((err) => { throw err; });
     // Every time main product id changes, reset the reviews list
-    axios.get(`/reviews?product_id=${id}`)
+    axios.get(`/reviews?product_id=${id}&page=11`)
       .then((results) => { setReviewList(results.data.results); })
       .catch((err) => { throw err; });
   }, [id]);
@@ -26,8 +26,8 @@ function App() {
   return (
     <div data-testid="app">
       <Overview product={currentProduct} id={id} /* rating={avgRating} */ />
-      <QnA id={id} />
       <RelatedProducts id={id} setId={setId} />
+      <QnA id={id} />
       <ReviewList reviewList={reviewList} />
     </div>
   );
