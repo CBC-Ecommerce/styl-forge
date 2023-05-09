@@ -8,7 +8,8 @@ function QnA({ id }) {
   const [quests, setQuests] = useState([]);
 
   const grabQuestions = () => {
-    axios(`/qa/questions?product_id=${id}&page=1&count=9999`)
+    const config = { params: { product_id: id, page: 1, count: 99999 } };
+    axios('/qa/questions', config)
       .then((response) => {
         setQuests(response.data.results);
       })
