@@ -3,7 +3,7 @@ import Stars from '../RatingsAndReviews/StaticStarList.jsx';
 
 const axios = require('axios');
 
-function Card({ id }) {
+function Card({ id, setId }) {
   const [productInfo, setproductInfo] = useState({});
   const [stylesInfo, setStylesInfo] = useState({});
 
@@ -38,20 +38,25 @@ function Card({ id }) {
       });
   }
 
+  function cardClickHandler() {
+    setId(id);
+  }
+
   useEffect(() => {
     getProductInfo(id);
     getPriceImage(id);
   }, []);
 
   return (
-    <div>
+    <div onClick={cardClickHandler}>
       <img src={stylesInfo.photoURL ? stylesInfo.photoURL : 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'} alt="related product" />
       <span>{productInfo.category}</span>
+      <p>{productInfo.name}</p>
       <span>
         {stylesInfo.salePrice === null
           ? stylesInfo.originalPrice : stylesInfo.salePrice + stylesInfo.originalPrice}
       </span>
-      <Stars id={id} />
+      <Stars productId={id} />
     </div>
   );
 }

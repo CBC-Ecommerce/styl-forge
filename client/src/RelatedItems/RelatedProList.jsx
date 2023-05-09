@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Card from './Card.jsx';
 
-function RelatedProList({ relatedIdList }) {
+function RelatedProList({ relatedIdList, setId }) {
   return (
     <div>
-      {relatedIdList.map((id) => <Card id={id} key={id} />)}
+      {relatedIdList.map((id) => <Card id={id} key={id} setId={setId} />)}
     </div>
   );
 }

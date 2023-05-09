@@ -4,7 +4,7 @@ import YourOutfitList from './YourOutfitList.jsx';
 
 const axios = require('axios');
 
-function RelatedProducts({ id }) {
+function RelatedProducts({ id, setId }) {
   const [relatedIdList, setRelatedIdList] = useState([]);
 
   function getRelatedList(currentId) {
@@ -22,9 +22,9 @@ function RelatedProducts({ id }) {
   return (
     <section>
       <h4>RELATED PRODUCTS</h4>
-      <RelatedProList relatedIdList={relatedIdList} />
+      <RelatedProList relatedIdList={relatedIdList} setId={setId} />
       <h4>YOUR OUTFITS</h4>
-      <YourOutfitList />
+      <YourOutfitList id={id} />
     </section>
   );
 }
