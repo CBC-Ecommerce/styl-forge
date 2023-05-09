@@ -9,6 +9,7 @@ import Overview from './Overview/Overview.jsx';
 function App() {
   const [id, setId] = useState(40347); // Better product id for testing QnA.
   const [currentProduct, setCurrentProduct] = useState({});
+  const [reviewList, setReviewList] = useState([]);
 
   // useEffect gets new product information when id changes
   useEffect(() => {
@@ -26,7 +27,6 @@ function App() {
     <div data-testid="app">
       <Overview product={currentProduct} id={id} /* rating={avgRating} */ />
       <QnA id={id} />
-      <RelatedProducts id={id} />
       <RelatedProducts id={id} setId={setId} />
       <ReviewList reviewList={reviewList} />
     </div>

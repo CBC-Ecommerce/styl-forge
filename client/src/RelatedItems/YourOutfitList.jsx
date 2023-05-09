@@ -9,7 +9,7 @@ function YourOutfitList({ id, setId }) {
   const [outfits, setOutfits] = useState(JSON.parse(localStorage.getItem('outfits')));
 
   function addClickHandler() {
-    console.log('add to outfits is clicked');
+    // console.log('add to outfits is clicked');
     const currentList = JSON.parse(localStorage.getItem('outfits'));
     if (currentList.indexOf(id) > -1) return;
     setOutfits([...outfits, id]);
