@@ -24,7 +24,7 @@ function RelatedProducts({ id, setId }) {
       <h4>RELATED PRODUCTS</h4>
       <RelatedProList relatedIdList={relatedIdList} setId={setId} />
       <h4>YOUR OUTFITS</h4>
-      <YourOutfitList id={id} />
+      <YourOutfitList id={id} setId={setId} />
     </section>
   );
 }
