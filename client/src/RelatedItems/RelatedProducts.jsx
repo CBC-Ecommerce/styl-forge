@@ -8,7 +8,7 @@ function RelatedProducts({ id, setId }) {
   const [relatedIdList, setRelatedIdList] = useState([]);
 
   function getRelatedList(currentId) {
-    axios.get('/products/related', { params: { product_id: currentId } })
+    axios.get(`products/?product_id=${currentId}/related`)
       .then((res) => setRelatedIdList(res.data))
       .catch((err) => {
         throw new Error(err, 'Failed to get related product list');

@@ -4,7 +4,6 @@ export default function RenderStyle({ style }) {
   const handleClick = (e) => {
     console.log(e.target.id);
   };
-
   return (
     <div>
       <button className="style-thumbnail-buttons" id={style.style_id} type="button" onClick={handleClick}>
