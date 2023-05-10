@@ -18,7 +18,7 @@ function RelatedProducts({ id, setId }) {
 
   useEffect(() => {
     getRelatedList(id);
-  }, []);
+  }, [id]);
 
   return (
     <section>
