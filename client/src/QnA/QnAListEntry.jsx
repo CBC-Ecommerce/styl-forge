@@ -8,6 +8,7 @@ function QnAListEntry({ quest }) {
   const [answers, setAnswers] = useState([]);
   const [ansEntry, setAnsEntry] = useState(2);
   const [anyMore, setAnyMore] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
   const grabAnswers = () => {
     const config = { params: { page: 1, count: 9999 } };
     axios(`/qa/questions/${quest.question_id}/answers`, config)
@@ -41,6 +42,10 @@ function QnAListEntry({ quest }) {
     setAnyMore(false);
   };
 
+  const addAnswerClicker = () => {
+    setShowAdd(!showAdd);
+  };
+
   return (
 
     <div>
@@ -59,8 +64,8 @@ function QnAListEntry({ quest }) {
             {quest.question_helpfulness}
             )
           </button>
-          <button type="button">Show Modal</button>
-          <AddAnswer />
+          <button type="button" onClick={addAnswerClicker}>Add Answer</button>
+          <AddAnswer showAdd={showAdd} addAnswerClicker={addAnswerClicker} quest={quest} />
         </span>
       </div>
       <div>
