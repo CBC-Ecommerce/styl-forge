@@ -168,7 +168,7 @@ exports.addAQuestion = function (req, res) {
 };
 
 exports.addAnswer = function (req, res) {
-  const urlAddAnswers = `${process.env.API_URL}/qa/questions/${req.body.question_id}/answers`;
+  const urlAddAnswers = `${process.env.API_URL}/qa/questions/${req.params.question_id}/answers`;
   const body = {
     body: req.body.body,
     name: req.body.name,
