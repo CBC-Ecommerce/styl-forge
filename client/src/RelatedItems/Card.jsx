@@ -51,7 +51,7 @@ function Card({ id, setId }) {
     <div className="card" onClick={cardClickHandler}>
       <img className="cardImg" src={stylesInfo.photoURL ? stylesInfo.photoURL : 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'} alt="related product" />
       <span className="category">{productInfo.category}</span>
-      <p className="cardName">{productInfo.name}</p>
+      <p className="cardName" data-testid="cardName">{productInfo.name}</p>
       <span>
         {stylesInfo.salePrice === null
           ? stylesInfo.originalPrice : stylesInfo.salePrice + stylesInfo.originalPrice}
