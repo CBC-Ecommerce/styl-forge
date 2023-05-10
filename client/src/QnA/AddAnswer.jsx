@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function AddAnswer({ showAdd, addAnswerClicker, quest }) {
+function AddAnswer({ showAdd, addAnswerClicker, quest, product}) {
   const [answer, setAnswer] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -26,7 +26,12 @@ function AddAnswer({ showAdd, addAnswerClicker, quest }) {
       <div className="qna-modal-content">
         <div className="qna-modal-header">
           <h4 className="qna-modal-title">Submit Your Answer</h4>
-          <h5 className="qna-modal-subtitle">Product Name: Question Body</h5>
+          <h5 className="qna-modal-subtitle">
+            {product.name}
+            :
+            {' '}
+            {quest.question_body}
+          </h5>
         </div>
         <div className="qna-modal-body">
           <form>
