@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QnAListEntry from './QnAListEntry.jsx';
 
-function QnAList({ quests }) {
+function QnAList({ quests, product }) {
   const [numEntry, setNumEntry] = useState(2);
   const [questButton, setQuestButton] = useState(false);
   const submitHandler = (e) => {
@@ -14,7 +14,7 @@ function QnAList({ quests }) {
   return (
     <div>
       {quests.slice(0, numEntry)
-        .map((quest) => <QnAListEntry quest={quest} key={quest.question_id} />)}
+        .map((quest) => <QnAListEntry quest={quest} key={quest.question_id} product={product} />)}
       {questButton ? null : (
         <form onSubmit={submitHandler}>
           <input type="submit" value="Show More Answered Questions" />
