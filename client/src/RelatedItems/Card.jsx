@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Stars from '../RatingsAndReviews/StaticStarList.jsx';
-
-const axios = require('axios');
 
 function Card({ id, setId }) {
   const [productInfo, setproductInfo] = useState({});
