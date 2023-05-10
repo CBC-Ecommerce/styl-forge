@@ -3,7 +3,7 @@ import axios from 'axios';
 import AnswerListEntry from './AnswerListEntry.jsx';
 import AddAnswer from './AddAnswer.jsx';
 
-function QnAListEntry({ quest }) {
+function QnAListEntry({ quest, product }) {
   // console.log('This is quest:', quest);
   const [answers, setAnswers] = useState([]);
   const [ansEntry, setAnsEntry] = useState(2);
@@ -25,7 +25,7 @@ function QnAListEntry({ quest }) {
   };
 
   useEffect(() => {
-    console.log(quest);
+    // console.log(quest);
     grabAnswers();
   }, []);
 
@@ -65,7 +65,12 @@ function QnAListEntry({ quest }) {
             )
           </button>
           <button type="button" onClick={addAnswerClicker}>Add Answer</button>
-          <AddAnswer showAdd={showAdd} addAnswerClicker={addAnswerClicker} quest={quest} />
+          <AddAnswer
+            showAdd={showAdd}
+            addAnswerClicker={addAnswerClicker}
+            quest={quest}
+            product={product}
+          />
         </span>
       </div>
       <div>
