@@ -3,7 +3,7 @@ import axios from 'axios';
 import RelatedProducts from './RelatedItems/RelatedProducts.jsx';
 import QnA from './QnA/QnA.jsx';
 import StaticStarList from './RatingsAndReviews/StaticStarList.jsx';
-// import ReviewList from './RatingsAndReviews/ReviewList.jsx';
+import ReviewList from './RatingsAndReviews/ReviewList.jsx';
 import Overview from './Overview/Overview.jsx';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
       <Overview product={currentProduct} id={id} /* rating={avgRating} */ />
       <RelatedProducts id={id} setId={setId} />
       <QnA id={id} product={currentProduct} />
-      {/* <ReviewList reviewList={reviewList} /> */}
+      <ReviewList reviewList={reviewList} />
     </div>
   );
 }
