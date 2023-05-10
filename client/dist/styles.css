@@ -29,14 +29,13 @@
 
 .style-selector {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  justify-content: space-evenly;
+  grid-template-columns: 0fr 0fr 0fr 0fr;
+  justify-content: end;
   justify-items: end;
 }
 
 .style-thumbnail-buttons {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
   background-color: inherit;
   cursor: pointer;
@@ -52,4 +51,98 @@
   object-fit: cover;
   border-style: hidden;
   border-radius: 56px;
+}
+
+.chackmark-circle {
+  position: relative;
+  background: #36ca25;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.fa-check {
+  position: relative;
+  top: 10px;
+  left: 16px;
+}
+
+.empty-circle {
+  position: relative;
+  display: flex;
+  top: -10px;
+  left: 13px;
+  height: 16px;
+  width: 16px;
+  border-style: solid;
+  border-radius: 50%;
+  border-color: #36ca25;
+}
+
+.price {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 24px;
+}
+
+.title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.category {
+  display: flex;
+  justify-content: center;
+}
+
+.checkmark {
+  transform: rotate(0deg);
+  left: -18%;
+  top: -36%;
+  height: 10px;
+  width: 5px;
+  position: relative;
+}
+
+.style-name {
+  margin: auto;
+  padding-left: 12px;
+  padding-top: 24px;
+  white-space: nowrap;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+}
+
+.sale-price {
+  color: red;
+  padding-right: 16px;
+}
+
+.original-price {
+  text-decoration: line-through;
+}
+
+.image-gallery-box {
+  height: 100%;
+  width: 100%;
+}
+.Image-Gallery-div {
+  height: 100%;
+}
+
+.Image-Gallery {
+  object-fit: contain;
+  height: 100%;
+  width: 75%;
+  margin: auto;
+  display: block;
+}
+
+#Overview {
+  display: flex;
+  height: 75vh;
 }

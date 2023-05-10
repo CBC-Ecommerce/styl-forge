@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Category({ name }) {
   return (
-    <div>
+    <div className="category">
       <span>{name}</span>
     </div>
   );
