@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AnswerListEntry from './AnswerListEntry.jsx';
+import AddAnswer from './AddAnswer.jsx';
 
 function QnAListEntry({ quest }) {
   // console.log('This is quest:', quest);
@@ -58,10 +59,8 @@ function QnAListEntry({ quest }) {
             {quest.question_helpfulness}
             )
           </button>
-          <button type="button">
-            {' '}
-            Add Answer
-          </button>
+          <button type="button">Show Modal</button>
+          <AddAnswer />
         </span>
       </div>
       <div>
