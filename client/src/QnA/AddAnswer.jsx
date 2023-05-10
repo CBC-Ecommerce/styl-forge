@@ -20,6 +20,10 @@ function AddAnswer({ showAdd, addAnswerClicker, quest, product}) {
   const emailChanger = (e) => {
     setEmail(e.target.value);
   };
+  // const submitAnswer = (e) => {
+  //   e.preventDefault();
+  //   axios.post('/qa/questions/', {body: quest.question_body, name: username, email: email, photos: [url]});
+  // };
 
   return (
     <div className="qna-modal">
