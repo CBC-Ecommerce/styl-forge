@@ -3,12 +3,13 @@ import axios from 'axios';
 import AnswerListEntry from './AnswerListEntry.jsx';
 import AddAnswer from './AddAnswer.jsx';
 
-function QnAListEntry({ quest, product }) {
+function QnAListEntry({ quest, product, grabQuestions }) {
   // console.log('This is quest:', quest);
   const [answers, setAnswers] = useState([]);
   const [ansEntry, setAnsEntry] = useState(2);
   const [anyMore, setAnyMore] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
+  const [helpButton, setHelpButton] = useState(false);
   const grabAnswers = () => {
     const config = { params: { page: 1, count: 9999 } };
     axios(`/qa/questions/${quest.question_id}/answers`, config)
@@ -45,6 +46,21 @@ function QnAListEntry({ quest, product }) {
   const addAnswerClicker = () => {
     setShowAdd(!showAdd);
   };
+  console.log(typeof quest.question_id);
+
+  const questionHelpful = (e) => {
+    e.preventDefault();
+    axios.put('/qa/questions/helpful', { question_id: quest.question_id })
+      .then((result) => {
+        console.log(result.data);
+        setHelpButton(!helpButton);
+        grabQuestions();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // setHelpButton(!helpButton);
+  };
 
   return (
 
@@ -57,7 +73,7 @@ function QnAListEntry({ quest, product }) {
         <span>
           Helpful?
           {' '}
-          <button type="button">
+          <button onClick={questionHelpful} type="button" disabled={helpButton}>
             Yes
             {' '}
             (

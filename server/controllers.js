@@ -186,7 +186,7 @@ exports.addAnswer = function (req, res) {
 };
 
 exports.markQuestionHelpful = function (req, res) {
-  const urlPut = `${process.env.API_URL}/qa/questions/${req.query.question_id}/helpful`;
+  const urlPut = `${process.env.API_URL}/qa/questions/${req.body.question_id}/helpful`;
 
   axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
     .then((results) => {

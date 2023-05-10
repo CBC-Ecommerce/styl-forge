@@ -25,7 +25,7 @@ function QnA({ id, product }) {
   return (
 
     <div>
-      <QnAList quests={quests} product={product} />
+      <QnAList quests={quests} product={product} grabQuestions={grabQuestions} />
     </div>
 
   );
