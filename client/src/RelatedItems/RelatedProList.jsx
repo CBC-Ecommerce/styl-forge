@@ -6,8 +6,15 @@ function RelatedProList({ relatedIdList, setId, id }) {
   return (
     <div className="cardContainer">
       {relatedIdList.map(
-        (relatedId) =>
-          <Card compareId={relatedId} key={relatedId} setId={setId} related={related} id={id} />,
+        (relatedId) => (
+          <Card
+            compareId={relatedId}
+            key={relatedId}
+            setId={setId}
+            related={related}
+            id={id}
+          />
+        ),
       )}
     </div>
   );
