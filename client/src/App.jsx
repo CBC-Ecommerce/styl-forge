@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedProducts from './RelatedItems/RelatedProducts.jsx';
 import QnA from './QnA/QnA.jsx';
-import StaticStarList from './RatingsAndReviews/StaticStarList.jsx';
 import ReviewList from './RatingsAndReviews/ReviewList.jsx';
 import Overview from './Overview/Overview.jsx';
+import ProductOverview from './Overview/ProductOverview.jsx';
+import Social from './Overview/Social.jsx';
 
 function App() {
-  const [id, setId] = useState(40347); // Better product id for testing QnA.
+  const [id, setId] = useState(40355); // Better product id for testing QnA.
   const [currentProduct, setCurrentProduct] = useState({});
   const [reviewList, setReviewList] = useState([]);
 
@@ -18,14 +19,18 @@ function App() {
       .then((results) => { setCurrentProduct(results.data); })
       .catch((err) => { throw err; });
     // Every time main product id changes, reset the reviews list
-    axios.get(`/reviews?product_id=${id}&page=11`)
+    axios.get(`/reviews?product_id=${id}&count=100`)
       .then((results) => { setReviewList(results.data.results); })
       .catch((err) => { throw err; });
   }, [id]);
 
   return (
     <div data-testid="app">
-      <Overview product={currentProduct} id={id} /* rating={avgRating} */ />
+      <Overview product={currentProduct} id={id} />
+      <div className="product-overview-box">
+        {currentProduct.description && <ProductOverview description={currentProduct.description} />}
+        <Social />
+      </div>
       <RelatedProducts id={id} setId={setId} />
       <QnA id={id} product={currentProduct} />
       <ReviewList reviewList={reviewList} />

@@ -21,14 +21,14 @@ export default function ReviewPicture({src}) {
   if (src) {
     return (
       <>
-      <div className="thumbnail" style={style} onClick={toggleModal}></div>
+        <div className="thumbnail" style={style} onClick={toggleModal}></div>
         {modal ? (
-          <div className="modal">
+          <div className="screen-overlay">
             <div
-              className="screen-overlay"
+              className="modal"
               onClick={toggleModal}
             />
-            <img src={src} alt="Customer Review  404" />
+            <img className="modal-img" src={src} alt="Customer Review  404" />
             <button type="button" className="close-modal" onClick={toggleModal}>X</button>
           </div>
         ) : <div />}
