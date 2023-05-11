@@ -21,7 +21,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
         // }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 
