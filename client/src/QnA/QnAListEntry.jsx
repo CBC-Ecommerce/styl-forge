@@ -18,12 +18,12 @@ function QnAListEntry({ quest }) {
         // }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 
   useEffect(() => {
-    console.log(quest);
+    // console.log(quest);
     grabAnswers();
   }, []);
 

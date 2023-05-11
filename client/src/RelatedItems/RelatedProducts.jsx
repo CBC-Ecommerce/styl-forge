@@ -22,7 +22,7 @@ function RelatedProducts({ id, setId }) {
   return (
     <section>
       <h4>RELATED PRODUCTS</h4>
-      <RelatedProList relatedIdList={relatedIdList} setId={setId} />
+      <RelatedProList relatedIdList={relatedIdList} setId={setId} id={id} />
       <h4>YOUR OUTFITS</h4>
       <YourOutfitList id={id} setId={setId} />
     </section>

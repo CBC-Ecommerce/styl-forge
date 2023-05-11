@@ -6,7 +6,7 @@ import ReviewCardBody from './ReviewCardBody.jsx';
 // review_id, rating, summary, recommended, response, body, date, reviewer_name,
 // helpfullness, and photos (array)
 export default function ReviewListCard({ review }) {
-  console.log(review.photos);
+  // console.log(review.photos);
   return (
     <div className="review-card" data-testid="card">
       <StaticStarList ratingInt={review.rating} />
