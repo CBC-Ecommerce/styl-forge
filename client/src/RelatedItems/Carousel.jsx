@@ -5,12 +5,14 @@ import Card from './Card.jsx';
 function Carousel({
   idList, setId, related, id,
 }) {
+  console.log(idList)
   const [productInfo, setproductInfo] = useState([]);
   const [stylesInfo, setStylesInfo] = useState([]);
   const [current, setCurrent] = useState(0);
   const length = idList.length;
 
   function getProductInfo(list) {
+    console.log('getProductInfo is invoked')
     const data = list.map((productId) => axios.get(`products/?product_id=${productId}`)
       .then((res) => ({
         name: res.data.name,
@@ -29,6 +31,7 @@ function Carousel({
   }
 
   function getPriceImage(list) {
+    console.log('getPriceImage is invoked')
     const data = list.map((productId) => axios.get(`products/?product_id=${productId}/styles`)
       .then((res) => {
         let index = 0;
@@ -58,18 +61,20 @@ function Carousel({
   useEffect(() => {
     getProductInfo(idList);
     getPriceImage(idList);
-  }, []);
+  }, [idList]);
 
   return (
     <div>
       <span className="leftArrow">&#60;</span>
       <span className="rightArrow">&#62;</span>
       {productInfo?.map((info, i) => {
-        const allInfo = {...info, ...stylesInfo[i]};
+        const allInfo = {...info, ...stylesInfo[i], id: idList[i]};
         console.log(allInfo);
         return (
-          <div></div>
-        );
+          <div>
+            {i <= current + 2 && <Card productInfo={allInfo} setId={setId} id={id} related={related}/>}
+          </div>
+        )
       })}
     </div>
   );

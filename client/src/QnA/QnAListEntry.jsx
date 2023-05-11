@@ -46,7 +46,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
   const addAnswerClicker = () => {
     setShowAdd(!showAdd);
   };
-  console.log(typeof quest.question_id);
+  // console.log(typeof quest.question_id);
 
   const questionHelpful = (e) => {
     e.preventDefault();

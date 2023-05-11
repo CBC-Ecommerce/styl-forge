@@ -18,15 +18,12 @@ function YourOutfitList({id, setId }) {
 
   return (
     <div className="cardContainer">
-      <div className="card"><span onClick={addClickHandler}>+ Add to Outfits</span></div>
+      <div className="card">
+        <span onClick={addClickHandler}>+ Add to Outfits</span>
+      </div>
       <Carousel id={id} setId={setId} idList={outfits} />
     </div>
   );
 }
 
 export default YourOutfitList;
-
-/*
-      {outfits.map(
-        (productId) => <Card compareId={productId} key={productId} setId={setId} />,
-      )} */

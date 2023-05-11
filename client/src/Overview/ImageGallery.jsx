@@ -2,7 +2,7 @@ import React from 'react';
 
 // image gallery renders image carousel from styles of selected product
 export default function ImageGallery({ selectedStyle }) {
-  console.log('current style', selectedStyle);
+  // console.log('current style', selectedStyle);
   let stylePhotos = [];
   stylePhotos = selectedStyle.photos;
   return (
