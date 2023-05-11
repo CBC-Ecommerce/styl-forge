@@ -26,3 +26,154 @@
 .cardName {
   font-size: 20px;
 }
+
+.qna-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  align-items: center;
+}
+
+.qna-modal-content {
+  width: 40%;
+  background-color: #fff;
+}
+
+.qna-modal-header, .qna-modal-footer {
+  padding: 10px;
+}
+
+.qna-modal-title, .qna-modal-subtitle {
+  margin: 0;
+}
+
+.qna-modal-body {
+  padding: 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.style-selector {
+  display: grid;
+  grid-template-columns: 0fr 0fr 0fr 0fr;
+  justify-content: end;
+  justify-items: end;
+}
+
+.style-thumbnail-buttons {
+  display: inline-flex;
+  justify-content: center;
+  background-color: inherit;
+  cursor: pointer;
+  border-style: hidden;
+  border-radius: 60px;
+  height: 110px;
+  width: 110px;
+}
+
+.style-selector-thumbnails {
+  height: 96px;
+  width: 96px;
+  object-fit: cover;
+  border-style: hidden;
+  border-radius: 56px;
+}
+
+.chackmark-circle {
+  position: relative;
+  background: #36ca25;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.fa-check {
+  position: relative;
+  top: 10px;
+  left: 16px;
+}
+
+.empty-circle {
+  position: relative;
+  display: flex;
+  top: -10px;
+  left: 13px;
+  height: 16px;
+  width: 16px;
+  border-style: solid;
+  border-radius: 50%;
+  border-color: #36ca25;
+}
+
+.price {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 24px;
+}
+
+.title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.category {
+  display: flex;
+  justify-content: center;
+}
+
+.checkmark {
+  transform: rotate(0deg);
+  left: -18%;
+  top: -36%;
+  height: 10px;
+  width: 5px;
+  position: relative;
+}
+
+.style-name {
+  margin: auto;
+  padding-left: 12px;
+  padding-top: 24px;
+  white-space: nowrap;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+}
+
+.sale-price {
+  color: red;
+  padding-right: 16px;
+}
+
+.original-price {
+  text-decoration: line-through;
+}
+
+.image-gallery-box {
+  height: 100%;
+  width: 100%;
+}
+.Image-Gallery-div {
+  height: 100%;
+}
+
+.Image-Gallery {
+  object-fit: contain;
+  height: 100%;
+  width: 75%;
+  margin: auto;
+  display: block;
+}
+
+#Overview {
+  display: flex;
+  height: 75vh;
+}
