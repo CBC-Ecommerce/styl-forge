@@ -4,7 +4,7 @@ import QnAList from './QnAList.jsx';
 
 const { useState, useEffect } = React;
 
-function QnA({ id }) {
+function QnA({ id, product }) {
   const [quests, setQuests] = useState([]);
 
   const grabQuestions = () => {
@@ -25,7 +25,7 @@ function QnA({ id }) {
   return (
 
     <div>
-      <QnAList quests={quests} />
+      <QnAList quests={quests} product={product} grabQuestions={grabQuestions} />
     </div>
 
   );
