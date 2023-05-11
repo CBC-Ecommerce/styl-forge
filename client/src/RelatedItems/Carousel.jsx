@@ -2,24 +2,34 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card.jsx';
 
-function Carousel() {
-  const [productInfo, setproductInfo] = useState({});
-  const [stylesInfo, setStylesInfo] = useState({});
+function Carousel({
+  idList, setId, related, id,
+}) {
+  const [productInfo, setproductInfo] = useState([]);
+  const [stylesInfo, setStylesInfo] = useState([]);
+  const [current, setCurrent] = useState(0);
+  const length = idList.length;
 
-  function getProductInfo(productId) {
-    axios.get(`products/?product_id=${productId}`)
+  function getProductInfo(list) {
+    const data = list.map((productId) => axios.get(`products/?product_id=${productId}`)
+      .then((res) => ({
+        name: res.data.name,
+        category: res.data.category,
+        features: res.data.features,
+      })));
+
+    Promise.all(data)
       .then((res) => {
-        setproductInfo(
-          { name: res.data.name, category: res.data.category, features: res.data.features },
-        );
+        console.log(res);
+        setproductInfo(res);
       })
       .catch((err) => {
         throw new Error(err, 'Failed to get product information');
       });
   }
 
-  function getPriceImage(productId) {
-    axios.get(`products/?product_id=${productId}/styles`)
+  function getPriceImage(list) {
+    const data = list.map((productId) => axios.get(`products/?product_id=${productId}/styles`)
       .then((res) => {
         let index = 0;
         res.data.results.forEach((el, i) => {
@@ -32,15 +42,36 @@ function Carousel() {
           salePrice: res.data.results[index].sale_price,
           photoURL: res.data.results[index].photos[0].url,
         };
-        setStylesInfo(updates);
+        return updates;
+      }));
+
+    Promise.all(data)
+      .then((res) => {
+        console.log(res);
+        setStylesInfo(res);
       })
       .catch((err) => {
-        throw new Error(err, 'Failed to get product information');
+        throw new Error(err, 'Failed to get product style information');
       });
   }
 
   useEffect(() => {
-    getProductInfo(compareId);
-    getPriceImage(compareId);
+    getProductInfo(idList);
+    getPriceImage(idList);
   }, []);
+
+  return (
+    <div>
+      <span className="leftArrow">&#60;</span>
+      <span className="rightArrow">&#62;</span>
+      {productInfo?.map((info, i) => {
+        const allInfo = {...info, ...stylesInfo[i]};
+        console.log(allInfo);
+        return (
+          <div></div>
+        );
+      })}
+    </div>
+  );
 }
+export default Carousel;

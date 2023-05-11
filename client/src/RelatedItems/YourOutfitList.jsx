@@ -1,6 +1,6 @@
 /* global localStorage */
 import React, { useState, useEffect } from 'react';
-import Card from './Card.jsx';
+import Carousel from './Carousel.jsx';
 
 function YourOutfitList({id, setId }) {
   if (JSON.parse(localStorage.getItem('outfits')) === null) {
@@ -19,11 +19,14 @@ function YourOutfitList({id, setId }) {
   return (
     <div className="cardContainer">
       <div className="card"><span onClick={addClickHandler}>+ Add to Outfits</span></div>
-      {outfits.map(
-        (productId) => <Card compareId={productId} key={productId} setId={setId} />,
-      )}
+      <Carousel id={id} setId={setId} idList={outfits} />
     </div>
   );
 }
 
 export default YourOutfitList;
+
+/*
+      {outfits.map(
+        (productId) => <Card compareId={productId} key={productId} setId={setId} />,
+      )} */
