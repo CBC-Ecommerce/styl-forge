@@ -32,7 +32,7 @@ function App() {
         <Social />
       </div>
       <RelatedProducts id={id} setId={setId} />
-      <QnA id={id} />
+      <QnA id={id} product={currentProduct} />
       <ReviewList reviewList={reviewList} />
     </div>
   );
