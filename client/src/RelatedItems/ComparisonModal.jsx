@@ -3,7 +3,7 @@ import axios from 'axios';
 import CharacteristicsList from './CharacteristicsList.jsx';
 import './css/modalStyle.css';
 
-function ComparisonModal({ productInfo, id }) {
+function ComparisonModal({ productInfo, id, setShowModal }) {
   const [currentProInfo, setCurrentProInfo] = useState({});
 
   function getProductInfo(productId) {
@@ -18,6 +18,10 @@ function ComparisonModal({ productInfo, id }) {
       });
   }
 
+  function closeClickHandler(e) {
+    setShowModal(false);
+  }
+
   useEffect(() => {
     getProductInfo(id);
   }, []);
@@ -26,6 +30,7 @@ function ComparisonModal({ productInfo, id }) {
     <div className="modalBox">
       <div className="compModal">
         <h4>COMPARING</h4>
+        <span onClick={closeClickHandler}>&#10005;</span>
         <table>
           <thead>
             <tr>

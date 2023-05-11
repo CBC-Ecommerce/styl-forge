@@ -38,7 +38,7 @@ function CharacteristicsList({ currentProInfo, productInfo }) {
 
   return (
     <tbody>
-      {features.map((feature) => <CharacteristicEntry feature={feature} />)}
+      {features.map((feature) => <CharacteristicEntry feature={feature} key={Object.keys(feature)[0]}/>)}
     </tbody>
   );
 }

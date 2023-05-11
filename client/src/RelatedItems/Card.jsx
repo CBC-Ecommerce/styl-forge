@@ -78,8 +78,9 @@ function Card({
             ? stylesInfo.originalPrice : stylesInfo.salePrice + stylesInfo.originalPrice}
         </span>
         <Stars productId={compareId} />
-        {showModal && <ComparisonModal productInfo={productInfo} id={id} />}
       </div>
+      {showModal &&
+        <ComparisonModal productInfo={productInfo} id={id} setShowModal={setShowModal} />}
     </div>
 
   );
