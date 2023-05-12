@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import ReviewPicture from './ReviewPicture.jsx';
 
-export default function ReviewCardBody({short, body, pics }) {
+export default function ReviewCardBody({short, body}) {
   const [showingMore, setShowingMore] = useState(false);
   if (short) {
     return (
       <div className="review-body">
         {body}
-        <div className="review-thumbnail-container">
-          {pics.map((pic) => (<ReviewPicture src={pic.url} key={pic.id} />))}
-        </div>
       </div>
     );
   }
@@ -23,9 +19,6 @@ export default function ReviewCardBody({short, body, pics }) {
       >
         {showingMore ? 'Show Less' : 'Show More'}
       </button>
-      <div className="review-thumbnail-container">
-        {pics.map((pic) => (<ReviewPicture src={pic.url} key={pic.id} />))}
-      </div>
     </div>
   );
 }

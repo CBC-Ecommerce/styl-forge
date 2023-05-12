@@ -2,6 +2,7 @@ import React from 'react';
 import dateFormat from 'dateformat';
 import StaticStarList from './StaticStarList.jsx';
 import ReviewCardBody from './ReviewCardBody.jsx';
+import ReviewPicture from './ReviewPicture.jsx';
 import Helpfullness from './Helpfullness.jsx';
 
 export default function ReviewListCard({ review }) {
@@ -33,8 +34,12 @@ export default function ReviewListCard({ review }) {
         <ReviewCardBody short={true} body={review.body} pics={review.photos} />
       )}
       {review.body.length > 250 && (
-        <ReviewCardBody short={false} body={review.body} pics={review.photos} />
+        <ReviewCardBody short={false} body={review.body} />
       )}
+
+      <div className="review-thumbnail-container">
+        {review.photos.map((pic) => (<ReviewPicture src={pic.url} key={pic.id} />))}
+      </div>
 
       {review.recommend && (
         <div className="recommended">

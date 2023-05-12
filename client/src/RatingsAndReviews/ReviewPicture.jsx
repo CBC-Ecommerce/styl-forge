@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReviewModal from './ReviewModal.jsx';
 
 export default function ReviewPicture({src}) {
   const [modal, setModal] = useState(false);
@@ -11,7 +12,7 @@ export default function ReviewPicture({src}) {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    marginRight: '10px',
+    marginRight: '5px',
   };
 
   function toggleModal() {
@@ -22,16 +23,9 @@ export default function ReviewPicture({src}) {
     return (
       <>
         <div className="thumbnail" style={style} onClick={toggleModal}></div>
-        {modal ? (
-          <div className="screen-overlay">
-            <div
-              className="modal"
-              onClick={toggleModal}
-            />
-            <img className="modal-img" src={src} alt="Customer Review  404" />
-            <button type="button" className="close-modal" onClick={toggleModal}>X</button>
-          </div>
-        ) : <div />}
+        {modal && (
+          <ReviewModal toggleModal={toggleModal} img={src} />
+        )}
       </>
     );
   }
