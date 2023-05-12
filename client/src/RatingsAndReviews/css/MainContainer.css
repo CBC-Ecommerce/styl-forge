@@ -1,0 +1,49 @@
+.main-container {
+  box-sizing: border-box;
+  height: 100vh;
+  margin: 50px;
+  /* margin: 50px 200px; SAVE THIS FOR END PRODUCT*/
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  min-height: 100px;
+}
+
+.green-col,
+.blue-col {
+    height: 100%;
+    padding: 10px;
+  }
+
+  .column1 {
+    flex-basis: 35%;
+    margin-right: 2%;
+  }
+
+  .green-col {
+    border: 2px solid green;
+  }
+
+  .column2 {
+    flex-basis: 63%;
+  }
+
+  .blue-col {
+    border: 2px solid blue;
+  }
+
+  .review-list-buttons {
+    display: flex;
+    justify-content: flex-start;
+    margin-right: 10px;
+  }
+
+  .more-reviews,
+  .add-review {
+    background: transparent;
+    font-size: 16px;
+    padding: 10px;
+    margin: 15px 0 0 10px;
+  }
