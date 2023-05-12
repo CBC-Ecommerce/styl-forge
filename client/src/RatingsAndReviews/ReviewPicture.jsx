@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+/* eslint-disable import/extensions */
+import React from 'react';
 import ReviewModal from './ReviewModal.jsx';
 
 export default function ReviewPicture({src}) {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = React.useState(false);
 
   const style = {
     backgroundImage: `url(${src})`,
@@ -22,7 +23,7 @@ export default function ReviewPicture({src}) {
   if (src) {
     return (
       <>
-        <div className="thumbnail" style={style} onClick={toggleModal}></div>
+        <div className="thumbnail" style={style} onClick={toggleModal} data-testid="thumbnail"></div>
         {modal && (
           <ReviewModal toggleModal={toggleModal} img={src} />
         )}

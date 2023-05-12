@@ -5,14 +5,15 @@ import './css/MainContainer.css';
 
 export default function RatingsAndReviews({id, reviewList}) {
   // Pass to Review List, which will render 2 reviews at a time
-  const [listCount, setListCount] = useState(2);
+  // Need to use React.useState for testing purposes so that Jest can spyon this state
+  const [listCount, setListCount] = React.useState(2);
 
   function increaseReviewsSeen() {
     setListCount(listCount + 2);
   }
 
   return (
-    <div className="main-container">
+    <div className="main-container" data-testid="rr-main">
       <h4>Ratings & Reviews</h4>
       <div className="row">
         <div className="column1">

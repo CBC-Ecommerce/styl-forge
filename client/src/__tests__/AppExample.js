@@ -117,3 +117,22 @@
 //     expect(appElement2).toHaveTextContent('Hello world!');
 //   });
 // });
+
+// import React from 'react';
+// import { render, screen } from '@testing-library/react';
+// import '@testing-library/jest-dom';
+
+// import App from '../App';
+
+// afterEach(cleanup);
+
+// describe('Main Page: App component', () => {
+//   test('Should render all 4 widgets', () => {
+//     render(<App />);
+//     const elementCount = screen.getAllByTestId('app-elem');
+//     expect(elementCount.length).toBe(4);
+//   });
+//   // test('Should make axios requests whenever product in focus changes', () => {
+
+//   // });
+// });

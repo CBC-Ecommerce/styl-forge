@@ -8,7 +8,7 @@ export default function ReviewModal({img, toggleModal}) {
   }
   return (
     <div className="screen-overlay" onClick={closeModal}>
-      <div className="modal">
+      <div className="modal" data-testid="modal">
         <img src={img} alt="User Visual for Product" />
         <button type="button" onClick={closeModal}>X</button>
       </div>
