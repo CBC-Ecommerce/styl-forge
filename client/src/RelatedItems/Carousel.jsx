@@ -5,14 +5,13 @@ import Card from './Card.jsx';
 function Carousel({
   idList, setId, related, id,
 }) {
-  console.log(idList)
+
   const [productInfo, setproductInfo] = useState([]);
   const [stylesInfo, setStylesInfo] = useState([]);
   const [current, setCurrent] = useState(0);
   const length = idList.length;
 
   function getProductInfo(list) {
-    console.log('getProductInfo is invoked')
     const data = list.map((productId) => axios.get(`products/?product_id=${productId}`)
       .then((res) => ({
         name: res.data.name,
@@ -63,20 +62,38 @@ function Carousel({
     getPriceImage(idList);
   }, [idList]);
 
+  function nextCard() {
+    setCurrent(current === length - 1 ? 0 : current + 1);
+  }
+
+  function prevCard() {
+    setCurrent(current === 0 ? length - 1 : current - 1);
+  }
+
   return (
-    <div>
-      <span className="leftArrow">&#60;</span>
-      <span className="rightArrow">&#62;</span>
+    <>
+      <span className="leftArrow" onClick={prevCard}>&#60;</span>
+      <span className="rightArrow" onClick={nextCard}>&#62;</span>
       {productInfo?.map((info, i) => {
         const allInfo = {...info, ...stylesInfo[i], id: idList[i]};
-        console.log(allInfo);
         return (
-          <div>
-            {i <= current + 2 && <Card productInfo={allInfo} setId={setId} id={id} related={related}/>}
-          </div>
+          <>
+            {(() => {
+              if (current === length -1 && (i === current - 1 || i === 0 || i === current)) {
+                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} key={allInfo.name} />);
+              } else if (current === 0 && (i === current + 1 || i === length - 1 || i === current)) {
+                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} key={allInfo.name} />);
+              } else if (current >= 1 && current <= length -2 && i >= current - 1 && i <= current + 1) {
+                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} key={allInfo.name} />);
+              } else {
+                return null;
+              }
+            })()}
+          </>
         )
       })}
-    </div>
+    </>
   );
 }
 export default Carousel;
+
