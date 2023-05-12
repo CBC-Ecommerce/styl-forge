@@ -1,6 +1,8 @@
 #Overview {
   display: flex;
   height: 75vh;
+  width: 75vw;
+  position: relative;
 }
 
 .review-link {
@@ -9,9 +11,8 @@
 }
 
 .info-and-style-selector {
-  display: inline-grid;
-  justify-content: end;
-  align-content: center;
+  display: block;
+  width: 25%;
 }
 
 .style-selector {
@@ -36,14 +37,6 @@
   object-fit: cover;
   border-style: hidden;
   border-radius: 56px;
-}
-
-.chackmark-circle {
-  position: relative;
-  background: #36ca25;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
 }
 
 .fa-check {
@@ -71,6 +64,8 @@
 }
 
 .title {
+  width: 100%;
+  white-space: nowrap;
 }
 
 .product-category {
@@ -112,6 +107,8 @@
   height: 100%;
   width: 100%;
   display: inline-flex;
+  justify-content: flex-start;
+  overflow: hidden;
 }
 
 .image-gallery img{
@@ -127,6 +124,7 @@
   height: 75vh;
   position: relative;
   overflow: hidden;
+  transition: all 1s ease-in-out;
 }
 
 .carousel ul {
@@ -136,28 +134,49 @@
 }
 
 .single-img {
-  position: absolute;
+  display: flex;
   inset: 0;
-  opacity: 1;
-  transition: all 0.5s;
+
+  transition: All 0.5s ease-in-out;
 }
 
 .thumbnails {
   position: absolute;
   z-index: 2;
+  overflow-y: scroll;
+  height: 75%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
 
+.thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.single-thumbnail {
+  width: 32%;
+  padding-left: 0;
+}
+
+.single-thumbnail:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.thumbnail-underline {
+  border-style: solid;
 }
 
 .single-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 
 .carousel-button {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   background: none;
   border: none;
   font-size: 2rem;
@@ -175,7 +194,7 @@
   background-color: rgba(0, 0, 0, .25);
 }
 .prev {
-  left: 1rem;
+  left: 6rem;
 }
 
 .next {
