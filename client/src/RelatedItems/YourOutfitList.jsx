@@ -16,12 +16,21 @@ function YourOutfitList({id, setId }) {
     localStorage.setItem('outfits', JSON.stringify([...outfits, id]));
   }
 
+  function crossClickHandler(productId) {
+    const outfitList = JSON.parse(localStorage.getItem('outfits'));
+    const index = outfitList.indexOf(productId);
+    outfitList.splice(index, 1);
+    localStorage.removeItem('outfits');
+    localStorage.setItem('outfits', JSON.stringify(outfitList));
+    setOutfits(outfitList);
+  }
+
   return (
     <div className="cardContainer">
       <div className="card">
         <span onClick={addClickHandler}>+ Add to Outfits</span>
       </div>
-      <Carousel id={id} setId={setId} idList={outfits} />
+      <Carousel id={id} setId={setId} idList={outfits} crossClickHandler={crossClickHandler} />
     </div>
   );
 }

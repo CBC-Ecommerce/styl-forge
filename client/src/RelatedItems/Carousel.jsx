@@ -3,7 +3,7 @@ import axios from 'axios';
 import Card from './Card.jsx';
 
 function Carousel({
-  idList, setId, related, id,
+  idList, setId, related, id, crossClickHandler,
 }) {
 
   const [productInfo, setproductInfo] = useState([]);
@@ -21,7 +21,6 @@ function Carousel({
 
     Promise.all(data)
       .then((res) => {
-        console.log(res);
         setproductInfo(res);
       })
       .catch((err) => {
@@ -30,7 +29,6 @@ function Carousel({
   }
 
   function getPriceImage(list) {
-    console.log('getPriceImage is invoked')
     const data = list.map((productId) => axios.get(`products/?product_id=${productId}/styles`)
       .then((res) => {
         let index = 0;
@@ -40,8 +38,8 @@ function Carousel({
           }
         });
         const updates = {
-          originalPrice: res.data.results[index].original_price,
-          salePrice: res.data.results[index].sale_price,
+          original_price: res.data.results[index].original_price,
+          sale_price: res.data.results[index].sale_price,
           photoURL: res.data.results[index].photos[0].url,
         };
         return updates;
@@ -49,7 +47,6 @@ function Carousel({
 
     Promise.all(data)
       .then((res) => {
-        console.log(res);
         setStylesInfo(res);
       })
       .catch((err) => {
@@ -72,24 +69,25 @@ function Carousel({
 
   return (
     <>
-      <span className="leftArrow" onClick={prevCard}>&#60;</span>
-      <span className="rightArrow" onClick={nextCard}>&#62;</span>
+      {current !==0 && <span className="leftArrow" onClick={prevCard}>&#60;</span>}
+      {current !== length - 1 && <span className="rightArrow" onClick={nextCard}>&#62;</span>}
       {productInfo?.map((info, i) => {
         const allInfo = {...info, ...stylesInfo[i], id: idList[i]};
         return (
-          <>
+          <div key={allInfo.name}>
+            {/* logics to render three cards at a time */}
             {(() => {
               if (current === length -1 && (i === current - 1 || i === 0 || i === current)) {
-                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} key={allInfo.name} />);
+                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} crossClickHandler={crossClickHandler} />);
               } else if (current === 0 && (i === current + 1 || i === length - 1 || i === current)) {
-                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} key={allInfo.name} />);
+                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} crossClickHandler={crossClickHandler} />);
               } else if (current >= 1 && current <= length -2 && i >= current - 1 && i <= current + 1) {
-                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} key={allInfo.name} />);
+                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} crossClickHandler={crossClickHandler} />);
               } else {
                 return null;
               }
             })()}
-          </>
+          </div>
         )
       })}
     </>
