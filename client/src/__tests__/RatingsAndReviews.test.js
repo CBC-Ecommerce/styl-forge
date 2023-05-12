@@ -1,63 +1,88 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable import/extensions */
+/* eslint-disable no-undef */
 import React from 'react';
 import axios from 'axios';
-import { render, cleanup, fireEvent, screen } from '@testing-library/react';
+// eslint-disable-next-line object-curly-newline
+import { render, cleanup, fireEvent, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import StaticStarList from '../RatingsAndReviews/StaticStarList';
+import RatingsAndReviews from '../RatingsAndReviews/RatingsAndReviews.jsx';
 import ReviewList from '../RatingsAndReviews/ReviewList.jsx';
 import ReviewCardBody from '../RatingsAndReviews/ReviewCardBody.jsx';
+import ReviewPicture from '../RatingsAndReviews/ReviewPicture.jsx';
 
 afterEach(cleanup);
 
 describe('StaticStarList and StaticStars components', () => {
-  // Unit Test
   test('Regardless of rating, should always render 5 stars', () => {
     const { container } = render(<StaticStarList ratingInt={0} />);
     const stars = container.getElementsByClassName('fa-star');
     expect(stars.length).toBe(5);
   });
-  // Unit Test
   test('Should generate an array of stars that represents rating value', () => {
     const { container } = render(<StaticStarList ratingInt={2.5} />);
     const wholeStars = container.getElementsByClassName('whole-star');
     const halfStar = container.getElementsByClassName('half-star');
     const emptyStar = container.getElementsByClassName('empty-star');
+
     expect(wholeStars.length).toBe(2);
     expect(halfStar.length).toBe(1);
     expect(emptyStar.length).toBe(2);
   });
-  // Integration Test (Need to debug)
-  // test('Should render whole stars when given a product_id', () => {
-  //   axios.get.mockResolvedValueOnce({
-  //     data: {
-  //       results: [
-  //         {
-  //           rating: 2,
-  //         },
-  //         {
-  //           rating: 3,
-  //         },
-  //         {
-  //           rating: 5,
-  //         },
-  //         {
-  //           rating: 3,
-  //         },
-  //         {
-  //           rating: 4,
-  //         },
-  //       ],
-  //     },
-  //   });
-  //   render(<StaticStarList productId={40344} />);
-  //   const coloredStars = await waitForElement(() => {
-  //     getElementsByClassName('whole-star');
-  //   })
-  //   expect(coloredStars.length).toBe(4);
-  // });
+  test('Should render partial stars when given a product_id to average', async () => {
+    axios.get = jest.fn().mockResolvedValueOnce({
+      data: {
+        product_id: '1',
+        results: [
+          {
+            rating: 2,
+          },
+          {
+            rating: 3,
+          },
+          {
+            rating: 5,
+          },
+          {
+            rating: 3,
+          },
+          {
+            rating: 4,
+          },
+        ],
+      },
+    });
+    const { container } = render(<StaticStarList productId={1} />);
+    await waitFor(() => {
+      const coloredStars = container.getElementsByClassName('whole-star');
+      const fractionStar = container.getElementsByClassName('quarter-star');
+
+      expect(coloredStars.length).toBe(3); // rating is 3.4
+      expect(fractionStar.length).toBe(1);
+    });
+  });
+});
+
+describe('Ratings And Reviews Main Component', () => {
+  test('Should exist and render on the page', () => {
+    render(<RatingsAndReviews id={null} reviewList={[]} />);
+    expect(screen.getByTestId('rr-main')).toBeInTheDocument();
+  });
+  test('When "More Reviews" is pressed, the listCount State should increase by 2', () => {
+    const setListCount = jest.fn();
+    jest.spyOn(React, 'useState').mockImplementationOnce((initState) => [initState, setListCount]);
+
+    render(<RatingsAndReviews id={null} reviewList={[]} />);
+    const moreReviews = screen.getByRole('button', { name: /More Reviews/i });
+    fireEvent.click(moreReviews);
+
+    expect(setListCount).toHaveBeenCalledWith(4);
+  });
 });
 
 describe('ReviewList Component', () => {
-  test('Should find correct review body content in all children', () => {
+  test('Should find correct body text content in all children', () => {
     const exampleData = [
       {
         review_id: 1,
@@ -78,26 +103,61 @@ describe('ReviewList Component', () => {
     ];
     render(<ReviewList reviewList={exampleData} />);
     exampleData.forEach((e, i) => {
-      expect(screen.getAllByTestId("card")[i]).toHaveTextContent(e.body);
+      expect(screen.getAllByTestId('card')[i]).toHaveTextContent(e.body);
     });
   });
 });
 
 describe('ReviewCardBody Component', () => {
   test('"Show More" button does not appear with body texts below 250 characters', () => {
+    // eslint-disable-next-line react/jsx-boolean-value
     render(<ReviewCardBody short={true} body={"World's bestestest review that's under 250 characters, let's go!"} pics={[]} />);
+
     expect(screen.queryByRole('button')).toBe(null);
   });
+
   test('"Show More" Button changes text to "Show Less" after click', () => {
     render(<ReviewCardBody short={false} body={"Right now I'm trying to get above 250 characters so that I can use the Show More button as an example to expand the container that it's in. This is actually quite a bit to type but I think I'm almost there so just a few more keyboard smashes and I'll be good to go. AHHH CHOO alsdkfjalkdsjflkoqepklzdvna"} pics={[]} />);
+
     const button = screen.getByRole('button', { name: /Show More/i });
     fireEvent.click(button);
+
     expect(screen.getByRole('button', { name: /Show Less/i })).toBeInTheDocument();
   });
 });
 
-// describe('ReviewPicture Component', () => {
-//   test('Clicking on a thumbnail picture will trigger a modal popup', () => {
+describe('ReviewPicture Component', () => {
+  test('Clicking on a thumbnail picture will trigger a modal state', () => {
+    const cuteSealPic = 'https://images.app.goo.gl/xFRi1YVUuazGdZW58';
+    const setModal = jest.fn();
+    jest.spyOn(React, 'useState').mockImplementationOnce((initState) => [initState, setModal]);
+
+    render(<ReviewPicture src={cuteSealPic} />);
+    const thumbnail = screen.getByTestId('thumbnail');
+    fireEvent.click(thumbnail);
+
+    expect(setModal).toHaveBeenCalledWith(true);
+  });
+});
+
+// WORK IN PROGRESS:
+// describe('Modal Popup: Full Resolution Thumbnail', () => {
+//   test('Should render a modal onto the screen', () => {
+
+//   });
+// });
+
+// describe('Helpfullness Component', () => {
+//   test('Should update "Yes" count when helpful is clicked', () => {
+//     const setCount = jest.fn();
+//     jest.spyOn(React, 'useState').mockImplementationOnce((initState) => [initState, setCount]);
+
+//     render(<Helpfullness review_id={1111} helpful={3} />);
+//     const yesBtn = screen.getByRole('button', { name: /Yes (3)/i });
+
+//     fireEvent.click(yesBtn);
+//   });
+//   test('Should only be able to mark helpful once, even after page refresh', () => {
 
 //   });
 // });

@@ -12,6 +12,7 @@
   position: relative;
   color: #ABAEB5;
   font-size: 0.75em;
+  z-index: -1;
 }
 /* can't combine these common properties on an after? */
 .half-star:after {
