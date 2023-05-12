@@ -19,7 +19,7 @@ function App() {
       .then((results) => { setCurrentProduct(results.data); })
       .catch((err) => { throw err; });
     // Every time main product id changes, reset the reviews list
-    axios.get(`/reviews?product_id=${id}&page=11`)
+    axios.get(`/reviews?product_id=${id}&count=100`)
       .then((results) => { setReviewList(results.data.results); })
       .catch((err) => { throw err; });
   }, [id]);
@@ -32,7 +32,7 @@ function App() {
         <Social />
       </div>
       <RelatedProducts id={id} setId={setId} />
-      <QnA id={id} />
+      <QnA id={id} product={currentProduct} />
       <ReviewList reviewList={reviewList} />
     </div>
   );

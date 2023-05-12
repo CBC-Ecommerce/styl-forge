@@ -29,7 +29,7 @@ app.put('/reviews/report', controllers.reportReview);
 app.get('/qa/questions', controllers.getQuestions);
 app.get('/qa/questions/:question_id/answers', controllers.getAnswers);
 app.post('/qa/questions', controllers.addAQuestion);
-app.post('/qa/questions/answers', controllers.addAnswer);
+app.post('/qa/questions/:question_id/answers', controllers.addAnswer);
 app.put('/qa/questions/helpful', controllers.markQuestionHelpful);
 app.put('/qa/questions/report', controllers.reportQuestion);
 app.put('/qa/answers/helpful', controllers.markAnswerHelpful);
