@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import StaticStarList from './StaticStarList.jsx';
 import ReviewList from './ReviewList.jsx';
 import './css/MainContainer.css';
 
 export default function RatingsAndReviews({id, reviewList}) {
+  // Pass to Review List, which will render 2 reviews at a time
+  const [listCount, setListCount] = useState(2);
+
+  function increaseReviewsSeen() {
+    setListCount(listCount + 2);
+  }
+
   return (
     <div className="main-container">
       <h4>Ratings & Reviews</h4>
@@ -19,9 +26,15 @@ export default function RatingsAndReviews({id, reviewList}) {
         <div className="column2">
           <div className="blue-col">
             #of Reviews and Dropdown Menu
-            <ReviewList reviewList={reviewList} />
+            <ReviewList reviewList={reviewList} listCount={listCount} />
             <div className="review-list-buttons">
-              <button type="button" className="more-reviews">More Reviews</button>
+              <button
+                type="button"
+                className="more-reviews"
+                onClick={increaseReviewsSeen}
+              >
+                More Reviews
+              </button>
               <button type="button" className="add-review">Add Review +</button>
             </div>
 

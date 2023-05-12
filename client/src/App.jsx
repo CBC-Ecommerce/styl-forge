@@ -3,7 +3,6 @@ import axios from 'axios';
 import RelatedProducts from './RelatedItems/RelatedProducts.jsx';
 import QnA from './QnA/QnA.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
-import ReviewList from './RatingsAndReviews/ReviewList.jsx';
 import Overview from './Overview/Overview.jsx';
 import ProductOverview from './Overview/ProductOverview.jsx';
 import Social from './Overview/Social.jsx';
@@ -20,7 +19,7 @@ function App() {
       .then((results) => { setCurrentProduct(results.data); })
       .catch((err) => { throw err; });
     // Every time main product id changes, reset the reviews list
-    axios.get(`/reviews?product_id=${id}&count=2`)
+    axios.get(`/reviews?product_id=${id}&count=9999`)
       .then((results) => { setReviewList(results.data.results); })
       .catch((err) => { throw err; });
   }, [id]);
@@ -35,7 +34,6 @@ function App() {
       <RelatedProducts id={id} setId={setId} />
       <QnA id={id} product={currentProduct} />
       <RatingsAndReviews id={id} reviewList={reviewList} />
-      {/* <ReviewList reviewList={reviewList} /> */}
     </div>
   );
 }
