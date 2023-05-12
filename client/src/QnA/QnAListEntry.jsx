@@ -12,7 +12,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
   const [helpButton, setHelpButton] = useState(false);
   const grabAnswers = () => {
     const config = { params: { page: 1, count: 9999 } };
-    axios(`/qa/questions/${quest.question_id}/answers`, config)
+    axios.get(`/qa/questions/${quest.question_id}/answers`, config)
       .then((info) => {
         setAnswers(info.data.results);
         // This also works instead of the useEffect for answers.length
@@ -46,7 +46,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
   const addAnswerClicker = () => {
     setShowAdd(!showAdd);
   };
-  console.log(typeof quest.question_id);
+  // console.log(typeof quest.question_id);
 
   const questionHelpful = (e) => {
     e.preventDefault();
@@ -64,23 +64,23 @@ function QnAListEntry({ quest, product, grabQuestions }) {
 
   return (
 
-    <div>
-      <div>
+    <div className="individual-question" data-testid="individual-question-test">
+      <div className="question">
         Q:
         {' '}
         {quest.question_body}
         {' '}
-        <span>
+        <span className="question-buttons">
           Helpful?
           {' '}
-          <button onClick={questionHelpful} type="button" disabled={helpButton}>
+          <button className="helpful-question-button" onClick={questionHelpful} type="button" disabled={helpButton}>
             Yes
             {' '}
             (
             {quest.question_helpfulness}
             )
           </button>
-          <button type="button" onClick={addAnswerClicker}>Add Answer</button>
+          <button className="add-answer-button" type="button" onClick={addAnswerClicker}>Add Answer</button>
           <AddAnswer
             showAdd={showAdd}
             addAnswerClicker={addAnswerClicker}
@@ -89,7 +89,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
           />
         </span>
       </div>
-      <div>
+      <div className="answer">
         A:
         {' '}
         {answers.slice(0, ansEntry)
