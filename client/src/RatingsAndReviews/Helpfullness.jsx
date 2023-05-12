@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+/* eslint-disable no-undef */
+import React from 'react';
 import axios from 'axios';
 
 export default function Helpfullness({ review_id, helpful }) {
-  const [count, setCount] = useState(helpful);
-  const [clicked, setClicked] = useState(
+  const [count, setCount] = React.useState(helpful);
+  const [clicked, setClicked] = React.useState(
     JSON.parse(localStorage.getItem(`${review_id}`)) || false,
   );
 
@@ -14,7 +15,6 @@ export default function Helpfullness({ review_id, helpful }) {
       if (markedYes) {
         axios.put(`/reviews/helpful?review_id=${review_id}`)
           .then(() => {
-            console.log('Marked Review as helpful');
             setCount(count + 1);
           })
           .catch((err) => { throw err; });

@@ -1,0 +1,31 @@
+.screen-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  max-height: 600px;
+  max-width: 600px;
+}
+
+.modal button {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  background: transparent;
+  color: beige;
+}
+
+.modal button:active {
+  background: rgba(0, 0, 0, 0.8);
+}

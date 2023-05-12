@@ -4,7 +4,7 @@ const config = {
   collectCoverage: true,
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: [
-    "<rootDir>/client/src/__tests__/App.test.js",
+    "<rootDir>/client/src/__tests__/RatingsAndReviews.test.js",
     // "@testing-library/react/cleanup-after-each"
   ],
   transform: {

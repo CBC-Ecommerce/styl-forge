@@ -2,10 +2,13 @@
 /* global afterEach, describe, test, expect */
 import React from 'react';
 import axios from 'axios';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import {
+  render, screen, fireEvent, cleanup,
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import RelatedProducts from '../RelatedItems/RelatedProducts.jsx';
 import RelatedProList from '../RelatedItems/RelatedProList.jsx';
+import Card from '../RelatedItems/Card.jsx';
 
 afterEach(() => {
   cleanup();
@@ -25,10 +28,34 @@ describe('RelatedProducts', () => {
   });
 });
 
-// describe('RelatedProList', () => {
-//   test('should render a list of cards"', async () => {
-//     const { container } = render(<RelatedProList relatedIdList={[40346, 40350, 40349, 40348]} />);
-//     // const cards = container.getElementsByClassName('card');
-//     await expect(container.getElementsByClassName('card').length).toBe(4);
+describe('RelatedProList', () => {
+  test('should render a list of cards"', async () => {
+    const { container } = render(<RelatedProList relatedIdList={[40346, 40350, 40349, 40348]} />);
+    const cards = await container.getElementsByClassName('card');
+    expect(cards.length).toBe(4);
+  });
+});
+
+// describe('Card', () => {
+//   test('should render product name', async () => {
+//     render(<Card id={40346} />);
+//     const cardName = await screen.findByTestId('cardName');
+//     expect(cardName).toBeInTheDocument();
+//   });
+// });
+
+// describe('Card', () => {
+//   test('should render product name', async () => {
+//     const mockData = {
+//       data: {
+//         name: 'joggers',
+//         category: 'pants',
+//       },
+//     };
+//     axios.get = jest.fn().mockResolvedValue(mockData);
+//     render(<Card id={40346} />);
+//     const cardName = await screen.getElementsByClassName('cardName');
+//     screen.debug();
+//     expect(cardName).toBeInTheDocument();
 //   });
 // });

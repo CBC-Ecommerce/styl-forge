@@ -82,7 +82,6 @@ function Card({
       {showModal &&
         <ComparisonModal productInfo={productInfo} id={id} setShowModal={setShowModal} />}
     </div>
-
   );
 }
 

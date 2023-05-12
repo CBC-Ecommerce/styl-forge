@@ -1,0 +1,183 @@
+#Overview {
+  display: flex;
+  height: 75vh;
+}
+
+.review-link {
+  text-decoration: underline;
+  color: blue;
+}
+
+.info-and-style-selector {
+  display: inline-grid;
+  justify-content: end;
+  align-content: center;
+}
+
+.style-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.style-thumbnail-buttons {
+  display: inline-flex;
+  justify-content: center;
+  background-color: inherit;
+  cursor: pointer;
+  border-style: hidden;
+  border-radius: 60px;
+  height: 110px;
+  width: 110px;
+}
+
+.style-selector-thumbnails {
+  height: 96px;
+  width: 96px;
+  object-fit: cover;
+  border-style: hidden;
+  border-radius: 56px;
+}
+
+.chackmark-circle {
+  position: relative;
+  background: #36ca25;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.fa-check {
+  position: relative;
+  top: 10px;
+  left: 16px;
+}
+
+.empty-circle {
+  position: relative;
+  display: flex;
+  top: -10px;
+  left: 13px;
+  height: 16px;
+  width: 16px;
+  border-style: solid;
+  border-radius: 50%;
+  border-color: #36ca25;
+}
+
+.price {
+  display: inline-flex;
+  padding-bottom: 24px;
+  white-space: nowrap;
+}
+
+.title {
+}
+
+.product-category {
+}
+
+.checkmark {
+  transform: rotate(0deg);
+  left: -18%;
+  top: -36%;
+  height: 10px;
+  width: 5px;
+  position: relative;
+}
+
+.style-name {
+  margin: auto;
+  padding-left: 12px;
+  padding-top: 24px;
+  white-space: nowrap;
+}
+
+.stars {
+}
+
+.sale-price {
+  color: red;
+  padding-right: 16px;
+}
+
+.original-price {
+  text-decoration: line-through;
+}
+
+.image-gallery-box {
+  height: 100%;
+  width: 100%;
+}
+.image-gallery {
+  height: 100%;
+  width: 100%;
+  display: inline-flex;
+}
+
+.image-gallery img{
+  object-fit: contain;
+  height: 100%;
+  width: 75%;
+  margin: auto;
+  display: grid;
+}
+
+.carousel {
+  width: 50vw;
+  height: 75vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.single-img {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.thumbnails {
+  position: absolute;
+  z-index: 2;
+
+}
+
+.single-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel-button {
+  position: absolute;
+  z-index: 2;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, .5);
+  cursor: pointer;
+  border-radius: .25rem;
+  padding: 0 .5rem;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.carousel-button:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, .25);
+}
+.prev {
+  left: 1rem;
+}
+
+.next {
+  right: 1rem;
+}
