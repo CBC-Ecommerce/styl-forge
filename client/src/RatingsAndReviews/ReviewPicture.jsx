@@ -23,7 +23,7 @@ export default function ReviewPicture({src}) {
   if (src) {
     return (
       <>
-        <div className="thumbnail" style={style} onClick={toggleModal} data-testid="thumbnail"></div>
+        <img className="thumbnail" style={style} onClick={toggleModal} data-testid="thumbnail" alt=""/>
         {modal && (
           <ReviewModal toggleModal={toggleModal} img={src} />
         )}

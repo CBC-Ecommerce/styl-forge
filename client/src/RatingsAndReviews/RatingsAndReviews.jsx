@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import StaticStarList from './StaticStarList.jsx';
 import ReviewList from './ReviewList.jsx';
 import './css/MainContainer.css';
@@ -27,7 +27,7 @@ export default function RatingsAndReviews({id, reviewList}) {
         <div className="column2">
           <div className="blue-col">
             #of Reviews and Dropdown Menu
-            <ReviewList reviewList={reviewList} listCount={listCount} />
+            <ReviewList reviewList={reviewList} listCount={listCount} setListCount={setListCount} />
             <div className="review-list-buttons">
               <button
                 type="button"
