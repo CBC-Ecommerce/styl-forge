@@ -15,8 +15,3 @@ export default function ImageGallery({ selectedStyle }) {
     </div>
   );
 }
-
-/* image gallery
-    carousel
-    buttons
-      image */

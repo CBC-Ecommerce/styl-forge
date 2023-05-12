@@ -142,8 +142,10 @@
   transition: all 0.5s;
 }
 
-.single-img[data-active] {
-  opacity: 1;
+.thumbnails {
+  position: absolute;
+  z-index: 2;
+
 }
 
 .single-img img {
