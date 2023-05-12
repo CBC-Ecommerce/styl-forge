@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import React from 'react';
 import dateFormat from 'dateformat';
 import StaticStarList from './StaticStarList.jsx';
