@@ -6,6 +6,7 @@ import Category from './Category.jsx';
 import Stars from '../RatingsAndReviews/StaticStarList.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import ImageGallery from './ImageGallery.jsx';
+import './Overview.css';
 
 export default function Overview({ product, id }) {
   const [styles, setStyles] = useState(0);
@@ -40,6 +41,8 @@ export default function Overview({ product, id }) {
         <div className="product-info-box">
           <div className="stars">
             <Stars productId={id} />
+            <p>&nbsp;</p>
+            <div className="review-link">Link to reviews</div>
           </div>
           <Category name={product.category} />
           <Title name={product.name} />
