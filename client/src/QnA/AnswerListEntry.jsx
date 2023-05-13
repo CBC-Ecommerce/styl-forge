@@ -14,6 +14,7 @@ function AnswerListEntry({ answer, grabAnswers }) {
     day: 'numeric',
 
   };
+  console.log(answer);
 
   const formattedDate = date.toLocaleDateString('en-US', options);
 

@@ -7,6 +7,7 @@ function AddAnswer({
   const [answer, setAnswer] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [pics, setPics] = useState([]);
   if (!showAdd) {
     return null;
   }
@@ -25,7 +26,7 @@ function AddAnswer({
   const submitAnswer = () => {
     axios.post(`/qa/questions/${quest.question_id}/answers`, {
       // eslint-disable-next-line object-shorthand
-      body: answer, name: username, email: email, photos: [],
+      body: answer, name: username, email: email, photos: pics,
     })
       .then(() => {
         grabAnswers();
@@ -36,6 +37,25 @@ function AddAnswer({
       .catch((err) => {
         console.log('error posting answer', err);
       });
+  };
+
+  const fileSelector = (e) => {
+    const currentFiles = e.target.files;
+    const fileArray = [];
+    for (let i = 0; i < currentFiles.length; i++) {
+      const objectURL = URL.createObjectURL(currentFiles[i]);
+      fileArray.push(objectURL);
+    }
+    // Is promise.all required? It seems like it should do it synchronously.
+    // It seems like the promise is not necessary.
+    setPics(fileArray);
+    // Promise.all(fileArray)
+    //   .then((fileArray) => {
+    //     setPics(fileArray);
+    //   })
+    //   .catch((err) => {
+    //     console.log('Error creating array of urls', err);
+    //   });
   };
 
   return (
@@ -55,10 +75,7 @@ function AddAnswer({
             <input type="text" onChange={answerChanger} placeholder="Answer..." value={answer} />
             <input type="text" onChange={usernameChanger} placeholder="Username" value={username} />
             <input type="text" onChange={emailChanger} placeholder="email" value={email} />
-            {/* <input type="file" id="answer-image" accept="image/*" multiple /> */}
-            {/* <div className="qna-modal-footer">
-              <input type="submit" value="Submit Answer" />
-            </div> */}
+            <input type="file" onChange={fileSelector} id="answer-image" accept="image/*" multiple />
           </form>
         </div>
         <div className="qna-modal-footer">
