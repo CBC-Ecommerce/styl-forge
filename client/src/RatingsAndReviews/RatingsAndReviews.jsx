@@ -1,16 +1,17 @@
 /* eslint-disable import/extensions */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import StaticStarList from './StaticStarList.jsx';
 import ReviewList from './ReviewList.jsx';
+import DropDownFilter from './DropDownFilter.jsx';
 import './css/MainContainer.css';
 import './css/RatingSummary.css';
 
-export default function RatingsAndReviews({id, reviewList}) {
+export default function RatingsAndReviews({id, reviewList, changeList}) {
   // Pass to Review List, which will render 2 reviews at a time
   // Need to use React.useState for testing purposes so that Jest can spyon this state
-  const [listCount, setListCount] = React.useState(2);
+  const [listCount, setListCount] = useState(2);
   const [ratingReturnVal, setRatingReturnVal] = React.useState(0);
-  const [recommendPercent, setRecommendPercent] = React.useState(0);
+  const [recommendPercent, setRecommendPercent] = useState(0);
 
   function increaseReviewsSeen() {
     setListCount(listCount + 2);
@@ -18,6 +19,10 @@ export default function RatingsAndReviews({id, reviewList}) {
 
   function returnAvgRating(avgRating) {
     setRatingReturnVal(avgRating);
+  }
+
+  function resetCount(count) {
+    setListCount(count);
   }
 
   useEffect(() => {
@@ -47,8 +52,8 @@ export default function RatingsAndReviews({id, reviewList}) {
         </div>
         <div className="column2">
           <div className="blue-col">
-            #of Reviews and Dropdown Menu
-            <ReviewList reviewList={reviewList} listCount={listCount} setListCount={setListCount} />
+            <DropDownFilter reviewList={reviewList} changeList={changeList} />
+            <ReviewList reviewList={reviewList} listCount={listCount} resetCount={resetCount} />
             <div className="review-list-buttons">
               <button
                 type="button"
@@ -63,7 +68,6 @@ export default function RatingsAndReviews({id, reviewList}) {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

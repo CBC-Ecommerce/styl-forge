@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReviewListCard from './ReviewListCard.jsx';
 import './css/ReviewList.css';
 
-export default function ReviewList({ reviewList, listCount, setListCount }) {
+export default function ReviewList({ reviewList, listCount, resetCount }) {
   const [currentList, setCurrentList] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function ReviewList({ reviewList, listCount, setListCount }) {
   useEffect(() => {
     // upon receiving a new reviewList, should render a new set of only 2
     setCurrentList([]);
-    setListCount(2);
+    resetCount(2);
   }, [reviewList]);
 
   return (

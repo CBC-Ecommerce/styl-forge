@@ -1,0 +1,14 @@
+.filter-menu {
+  display: flex;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.dropdown-box {
+  margin-left: 5px;
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 14px;
+}

@@ -8,7 +8,7 @@ import ProductOverview from './Overview/ProductOverview.jsx';
 import Social from './Overview/Social.jsx';
 
 function App() {
-  const [id, setId] = useState(40344); // Better product id for testing QnA.
+  const [id, setId] = useState(40355); // Better product id for testing QnA.
   const [currentProduct, setCurrentProduct] = useState({});
   const [reviewList, setReviewList] = useState([]);
 
@@ -24,6 +24,10 @@ function App() {
       .catch((err) => { throw err; });
   }, [id]);
 
+  function changeReviewList(list) {
+    setReviewList(list);
+  }
+//41198 41022
   return (
     <div data-testid="app">
       <Overview product={currentProduct} id={id} />
@@ -33,7 +37,7 @@ function App() {
       </div>
       <RelatedProducts id={id} setId={setId} />
       <QnA id={id} product={currentProduct} />
-      <RatingsAndReviews id={id} reviewList={reviewList} />
+      <RatingsAndReviews id={id} reviewList={reviewList} changeList={changeReviewList} />
     </div>
   );
 }
