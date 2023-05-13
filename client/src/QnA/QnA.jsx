@@ -9,7 +9,7 @@ function QnA({ id, product }) {
 
   const grabQuestions = () => {
     const config = { params: { product_id: id, page: 1, count: 99999 } };
-    axios('/qa/questions', config)
+    axios.get('/qa/questions', config)
       .then((response) => {
         setQuests(response.data.results);
       })
@@ -24,7 +24,7 @@ function QnA({ id, product }) {
 
   return (
 
-    <div>
+    <div className="QnA div" data-testid="QnA Test">
       <QnAList quests={quests} product={product} grabQuestions={grabQuestions} />
     </div>
 
