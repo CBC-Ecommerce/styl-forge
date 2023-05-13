@@ -22,7 +22,11 @@ export default function Stars({ productId, ratingInt, returnAvgRating }) {
           const avRating = Math.round((ratingSum / results.data.results.length) * 10) / 10;
           setRating(avRating);
           if (returnAvgRating) {
-            returnAvgRating(avRating);
+            if (avRating % 1 === 0) {
+              returnAvgRating(`${avRating}.0`);
+            } else {
+              returnAvgRating(avRating);
+            }
           }
         })
         .catch((err) => { throw err; });

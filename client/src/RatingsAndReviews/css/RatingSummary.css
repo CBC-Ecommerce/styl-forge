@@ -13,3 +13,36 @@
   color: gray;
   margin-bottom: 20px;
 }
+
+.all-rating-bars {
+  margin-bottom: 25px;
+  padding: 10px;
+}
+
+.rating-bar {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.bar-label {
+  display: flex;
+  width: 60px;
+  text-decoration: underline;
+}
+
+.rating-qty {
+  font-size: 10px;
+}
+
+.bar-row {
+  display: flex;
+  width: 100%;
+}
+
+.bar-col1 {
+  background-color: #525252;
+}
+
+.bar-col2 {
+  background-color: #EBEBEB;
+}
