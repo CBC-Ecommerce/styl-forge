@@ -116,14 +116,16 @@ function QnAListEntry({ quest, product, grabQuestions }) {
       <div className="answer">
         A:
         {' '}
-        {answers.slice(0, ansEntry)
-          .map((answer) => (
-            <AnswerListEntry
-              answer={answer}
-              key={answer.answer_id}
-              grabAnswers={grabAnswers}
-            />
-          ))}
+        <div className="answer-list">
+          {answers.slice(0, ansEntry)
+            .map((answer) => (
+              <AnswerListEntry
+                answer={answer}
+                key={answer.answer_id}
+                grabAnswers={grabAnswers}
+              />
+            ))}
+        </div>
       </div>
       {anyMore ? (
         <form onSubmit={submitHandler}>

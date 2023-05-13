@@ -28,6 +28,12 @@
 }
 
 /* QnA Styling */
+.answer {
+  display: flex;
+}
+.answer-list {
+  margin-left: 5px;
+}
 .answer-photo {
   max-width: 100px;
   margin-right: 10px;
