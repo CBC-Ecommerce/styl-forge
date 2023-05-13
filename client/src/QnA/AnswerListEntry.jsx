@@ -21,14 +21,17 @@ function AnswerListEntry({ answer, grabAnswers }) {
       .then((result) => {
         setAnsHelpful(!ansHelpful);
       })
+      .then(() => {
+        grabAnswers();
+      })
       .catch((err) => {
         console.log('Error with helpful answer', err);
       });
   };
 
-  useEffect(() => {
-    grabAnswers();
-  }, [ansHelpful]);
+  // useEffect(() => {
+  //   grabAnswers();
+  // }, [ansHelpful]);
 
   return (
     <div>

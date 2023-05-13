@@ -12,7 +12,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
   const [helpButton, setHelpButton] = useState(false);
   const [reportQuest, setReportQuest] = useState(false);
   const grabAnswers = () => {
-    const config = { params: { page: 1, count: 9999 } };
+    const config = { params: { page: 1, count: 99999 } };
     axios.get(`/qa/questions/${quest.question_id}/answers`, config)
       .then((info) => {
         setAnswers(info.data.results);
@@ -111,7 +111,13 @@ function QnAListEntry({ quest, product, grabQuestions }) {
         A:
         {' '}
         {answers.slice(0, ansEntry)
-          .map((answer) => <AnswerListEntry answer={answer} key={answer.answer_id} grabAnswers={grabAnswers} />)}
+          .map((answer) => (
+            <AnswerListEntry
+              answer={answer}
+              key={answer.answer_id}
+              grabAnswers={grabAnswers}
+            />
+          ))}
       </div>
       {anyMore ? (
         <form onSubmit={submitHandler}>
