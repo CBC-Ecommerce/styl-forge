@@ -106,6 +106,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
           <button onClick={questionReport} className="report-question-button" type="button" disabled={reportQuest}>Report</button>
           <button className="add-answer-button" type="button" onClick={addAnswerClicker}>Add Answer</button>
           <AddAnswer
+            grabAnswers={grabAnswers}
             showAdd={showAdd}
             addAnswerClicker={addAnswerClicker}
             quest={quest}
