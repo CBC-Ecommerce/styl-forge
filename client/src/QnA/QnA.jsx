@@ -22,6 +22,10 @@ function QnA({ id, product }) {
     grabQuestions();
   }, []);
 
+  useEffect(() => {
+    grabQuestions();
+  }, [id]);
+
   return (
 
     <div className="QnA div" data-testid="QnA Test">

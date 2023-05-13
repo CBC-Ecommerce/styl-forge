@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function AnswerListEntry({ answer, grabAnswers }) {
   const [ansHelpful, setAnsHelpful] = useState(false);
+  const [report, setReport] = useState(false);
 
   const date = new Date(answer.date);
 
@@ -29,6 +30,21 @@ function AnswerListEntry({ answer, grabAnswers }) {
       });
   };
 
+  const reportListener = (e) => {
+    e.preventDefault();
+    axios.put('/qa/answers/report', { answer_id: answer.answer_id })
+      .then((result) => {
+        setReport(!report);
+      })
+      .then(() => {
+        grabAnswers();
+      })
+      .catch((err) => {
+        console.log('Error reporting answer', err);
+      });
+  };
+
+  // Invoking grabAnswers in the promises seems to make it render faster? Also less errors.
   // useEffect(() => {
   //   grabAnswers();
   // }, [ansHelpful]);
@@ -52,7 +68,7 @@ function AnswerListEntry({ answer, grabAnswers }) {
           {answer.helpfulness}
           )
         </button>
-        <button type="button">
+        <button onClick={reportListener} type="button" disabled={report}>
           {' '}
           Report
         </button>
