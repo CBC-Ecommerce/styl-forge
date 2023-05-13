@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Photos from './Photos.jsx';
 
 function AnswerListEntry({ answer, grabAnswers }) {
   const [ansHelpful, setAnsHelpful] = useState(false);
@@ -73,6 +74,9 @@ function AnswerListEntry({ answer, grabAnswers }) {
           Report
         </button>
       </span>
+      <div className="answer-photo-container">
+        {answer.photos.map((photo) => <Photos photo={photo} key={photo.id} />)}
+      </div>
     </div>
   );
 }
