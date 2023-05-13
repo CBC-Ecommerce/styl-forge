@@ -1,0 +1,15 @@
+.rating-summary {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.large-rating-number {
+  font-size: 64px;
+  margin-right: 12px;
+}
+
+.percent {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 20px;
+}
