@@ -13,7 +13,7 @@ export default function RatingsAndReviews({id, reviewList}) {
   }
 
   return (
-    <div className="main-container" data-testid="rr-main">
+    <div className="main-container" id="main-container" data-testid="rr-main">
       <h4>Ratings & Reviews</h4>
       <div className="row">
         <div className="column1">

@@ -12,7 +12,6 @@
 
 .info-and-style-selector {
   display: block;
-  width: 25%;
 }
 
 .style-selector {
@@ -199,4 +198,73 @@
 
 .next {
   right: 1rem;
+}
+
+.add-to-cart-box {
+  display: block;
+  height: 18vh;
+}
+
+.add-to-cart {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  padding: 0.5rem;
+  gap: 1rem;
+  background-color: grey;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.size-dropdn {
+
+}
+
+.qty-dropdn {
+
+}
+
+.dropdn-btn {
+  background: none;
+  /* border: none; */
+  text-decoration: none;
+  color: black;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  width: 20%;
+}
+
+/* .dropdn > .dropdn-btn:focus,
+.dropdn-btn:hover {
+  color: black;
+} */
+
+.dropdn {
+  position: relative;
+
+}
+
+.dropdn-menu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + .25rem);
+  background-color: white;
+  padding: .75rem;
+  border-radius: .25rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.dropdn > .dropdn-btn:focus + .dropdn-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.data-grid {
+
 }
