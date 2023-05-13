@@ -26,6 +26,15 @@
 .cardName {
   font-size: 20px;
 }
+
+/* QnA Styling */
+.answer-photo {
+  max-width: 100px;
+  margin-right: 10px;
+}
+.answer-photo-container {
+  display: flex;
+}
 .qna-modal {
   position: fixed;
   left: 0;
