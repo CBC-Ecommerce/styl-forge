@@ -7,11 +7,16 @@ export default function DropDownFilter({ reviewList, changeList }) {
     if (value === 'helpful') {
       const helpful = reviewList.filter((review) => (review.helpfulness)).sort((a, b) => (b - a));
       changeList(helpful);
+    } else if (value === 'newest') {
+      const newest = reviewList.sort((a, b) => (new Date(b.date) - new Date(a.date)));
+      changeList(newest);
+    } else {
+      console.log('Relevance!');
     }
   }
   return (
     <div className="filter-menu" onChange={changeFilter}>
-      <div>X reviews, sorted by: </div>
+      <div>{`${reviewList.length} reviews, sorted by: `}</div>
       <select className="dropdown-box">
         <option value="relevant">Relevance</option>
         <option value="newest">Newest</option>

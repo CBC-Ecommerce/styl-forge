@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedProducts from './RelatedItems/RelatedProducts.jsx';
@@ -25,9 +26,10 @@ function App() {
   }, [id]);
 
   function changeReviewList(list) {
+    console.log('RECEIVED A NEW LIST AND IT IS: ', list);
     setReviewList(list);
   }
-//41198 41022
+
   return (
     <div data-testid="app">
       <Overview product={currentProduct} id={id} />
