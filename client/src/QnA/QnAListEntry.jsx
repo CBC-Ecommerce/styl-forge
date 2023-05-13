@@ -10,6 +10,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
   const [anyMore, setAnyMore] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
   const [helpButton, setHelpButton] = useState(false);
+  const [reportQuest, setReportQuest] = useState(false);
   const grabAnswers = () => {
     const config = { params: { page: 1, count: 9999 } };
     axios.get(`/qa/questions/${quest.question_id}/answers`, config)
@@ -37,6 +38,10 @@ function QnAListEntry({ quest, product, grabQuestions }) {
     }
   }, [answers]);
 
+  useEffect(() => {
+    grabAnswers();
+  }, [reportQuest]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     setAnsEntry(answers.length);
@@ -52,7 +57,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
     e.preventDefault();
     axios.put('/qa/questions/helpful', { question_id: quest.question_id })
       .then((result) => {
-        console.log(result.data);
+        // console.log(result.data);
         setHelpButton(!helpButton);
         grabQuestions();
       })
@@ -60,6 +65,18 @@ function QnAListEntry({ quest, product, grabQuestions }) {
         console.log(error);
       });
     // setHelpButton(!helpButton);
+  };
+
+  const questionReport = (e) => {
+    e.preventDefault();
+    axios.put('/qa/questions/report', { question_id: quest.question_id })
+      .then((result) => {
+        setReportQuest(!reportQuest);
+        // console.log('Successfully reported question');
+      })
+      .catch((err) => {
+        console.log('Error reporting:', err);
+      });
   };
 
   return (
@@ -80,6 +97,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
             {quest.question_helpfulness}
             )
           </button>
+          <button onClick={questionReport} className="report-question-button" type="button" disabled={reportQuest}>Report</button>
           <button className="add-answer-button" type="button" onClick={addAnswerClicker}>Add Answer</button>
           <AddAnswer
             showAdd={showAdd}
@@ -93,7 +111,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
         A:
         {' '}
         {answers.slice(0, ansEntry)
-          .map((answer) => <AnswerListEntry answer={answer} key={answer.answer_id} />)}
+          .map((answer) => <AnswerListEntry answer={answer} key={answer.answer_id} grabAnswers={grabAnswers} />)}
       </div>
       {anyMore ? (
         <form onSubmit={submitHandler}>
