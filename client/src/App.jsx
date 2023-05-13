@@ -8,7 +8,7 @@ import ProductOverview from './Overview/ProductOverview.jsx';
 import Social from './Overview/Social.jsx';
 
 function App() {
-  const [id, setId] = useState(40344); // Better product id for testing QnA.
+  const [id, setId] = useState(40346); // Better product id for testing QnA.
   const [currentProduct, setCurrentProduct] = useState({});
   const [reviewList, setReviewList] = useState([]);
 
