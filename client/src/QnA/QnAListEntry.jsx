@@ -10,9 +10,10 @@ function QnAListEntry({ quest, product, grabQuestions }) {
   const [anyMore, setAnyMore] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
   const [helpButton, setHelpButton] = useState(false);
+  const [reportQuest, setReportQuest] = useState(false);
   const grabAnswers = () => {
     const config = { params: { page: 1, count: 9999 } };
-    axios(`/qa/questions/${quest.question_id}/answers`, config)
+    axios.get(`/qa/questions/${quest.question_id}/answers`, config)
       .then((info) => {
         setAnswers(info.data.results);
         // This also works instead of the useEffect for answers.length
@@ -37,6 +38,10 @@ function QnAListEntry({ quest, product, grabQuestions }) {
     }
   }, [answers]);
 
+  useEffect(() => {
+    grabAnswers();
+  }, [reportQuest]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     setAnsEntry(answers.length);
@@ -46,13 +51,13 @@ function QnAListEntry({ quest, product, grabQuestions }) {
   const addAnswerClicker = () => {
     setShowAdd(!showAdd);
   };
-  console.log(typeof quest.question_id);
+  // console.log(typeof quest.question_id);
 
   const questionHelpful = (e) => {
     e.preventDefault();
     axios.put('/qa/questions/helpful', { question_id: quest.question_id })
       .then((result) => {
-        console.log(result.data);
+        // console.log(result.data);
         setHelpButton(!helpButton);
         grabQuestions();
       })
@@ -62,25 +67,38 @@ function QnAListEntry({ quest, product, grabQuestions }) {
     // setHelpButton(!helpButton);
   };
 
+  const questionReport = (e) => {
+    e.preventDefault();
+    axios.put('/qa/questions/report', { question_id: quest.question_id })
+      .then((result) => {
+        setReportQuest(!reportQuest);
+        // console.log('Successfully reported question');
+      })
+      .catch((err) => {
+        console.log('Error reporting:', err);
+      });
+  };
+
   return (
 
-    <div>
-      <div>
+    <div className="individual-question" data-testid="individual-question-test">
+      <div className="question">
         Q:
         {' '}
         {quest.question_body}
         {' '}
-        <span>
+        <span className="question-buttons">
           Helpful?
           {' '}
-          <button onClick={questionHelpful} type="button" disabled={helpButton}>
+          <button className="helpful-question-button" onClick={questionHelpful} type="button" disabled={helpButton}>
             Yes
             {' '}
             (
             {quest.question_helpfulness}
             )
           </button>
-          <button type="button" onClick={addAnswerClicker}>Add Answer</button>
+          <button onClick={questionReport} className="report-question-button" type="button" disabled={reportQuest}>Report</button>
+          <button className="add-answer-button" type="button" onClick={addAnswerClicker}>Add Answer</button>
           <AddAnswer
             showAdd={showAdd}
             addAnswerClicker={addAnswerClicker}
@@ -89,11 +107,11 @@ function QnAListEntry({ quest, product, grabQuestions }) {
           />
         </span>
       </div>
-      <div>
+      <div className="answer">
         A:
         {' '}
         {answers.slice(0, ansEntry)
-          .map((answer) => <AnswerListEntry answer={answer} key={answer.answer_id} />)}
+          .map((answer) => <AnswerListEntry answer={answer} key={answer.answer_id} grabAnswers={grabAnswers} />)}
       </div>
       {anyMore ? (
         <form onSubmit={submitHandler}>

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function AnswerListEntry({ answer }) {
+function AnswerListEntry({ answer, grabAnswers }) {
+  const [ansHelpful, setAnsHelpful] = useState(false);
+
   const date = new Date(answer.date);
 
   const options = {
@@ -11,6 +14,21 @@ function AnswerListEntry({ answer }) {
   };
 
   const formattedDate = date.toLocaleDateString('en-US', options);
+
+  const helpfulListener = (e) => {
+    e.preventDefault();
+    axios.put('/qa/answers/helpful', { answer_id: answer.answer_id })
+      .then((result) => {
+        setAnsHelpful(!ansHelpful);
+      })
+      .catch((err) => {
+        console.log('Error with helpful answer', err);
+      });
+  };
+
+  useEffect(() => {
+    grabAnswers();
+  }, [ansHelpful]);
 
   return (
     <div>
@@ -24,7 +42,7 @@ function AnswerListEntry({ answer }) {
         {' '}
         Helpful?
         {' '}
-        <button type="button">
+        <button onClick={helpfulListener} type="button" disabled={ansHelpful}>
           Yes
           {' '}
           (
