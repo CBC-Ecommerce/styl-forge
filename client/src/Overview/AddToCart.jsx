@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
 export default function AddToCart({ selectedStyle }) {
-  const [openMenu, setOpenMenu] = useState(false);
   const [selectedSize, setSelectedSize] = useState('');
   const [quantityArray, setQuantityArray] = useState([]);
-  const [selectedQty, setSelectedQty] = useState(0);
   const { skus } = selectedStyle;
 
   // create object of sizes: quantities
@@ -29,7 +27,7 @@ export default function AddToCart({ selectedStyle }) {
   return (
     <div className="add-to-cart">
       <select className="dropdn-btn" value={selectedSize} onChange={handleChange}>
-        <option value="" disabled defaultValue>Select Size</option>
+        <option value="" defaultValue>Select Size</option>
         {availableItems.map((item, index) => (
           <option id={index}>{item.size}</option>
         ))}
