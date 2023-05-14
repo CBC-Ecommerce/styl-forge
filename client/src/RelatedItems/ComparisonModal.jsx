@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CharacteristicsList from './CharacteristicsList.jsx';
-import './css/modalStyle.css';
+
 
 function ComparisonModal({ productInfo, id, setShowModal }) {
   const [currentProInfo, setCurrentProInfo] = useState({});
@@ -30,8 +30,8 @@ function ComparisonModal({ productInfo, id, setShowModal }) {
     <div className="modalBox">
       <div className="compModal">
         <h4>COMPARING</h4>
-        <span onClick={closeClickHandler}>&#10005;</span>
-        <table>
+        <span className="btn closeModal-btn" onClick={closeClickHandler}>&#10005;</span>
+        <table className="comp-table">
           <thead>
             <tr>
               <th>{currentProInfo.name}</th>

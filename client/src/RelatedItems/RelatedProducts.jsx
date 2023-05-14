@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedProList from './RelatedProList.jsx';
 import YourOutfitList from './YourOutfitList.jsx';
+import './css/RelatedItems.css';
 
 function RelatedProducts({ id, setId }) {
   const [relatedIdList, setRelatedIdList] = useState([]);
