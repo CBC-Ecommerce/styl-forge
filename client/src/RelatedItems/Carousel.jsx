@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card.jsx';
+import './css/carousel.css';
 
 function Carousel({
   idList, setId, related, id, crossClickHandler,
 }) {
-
   const [productInfo, setproductInfo] = useState([]);
   const [stylesInfo, setStylesInfo] = useState([]);
-  const [current, setCurrent] = useState(0);
-  const length = idList.length;
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(startIndex + 2);
+  const { length } = idList;
 
   function getProductInfo(list) {
     const data = list.map((productId) => axios.get(`products/?product_id=${productId}`)
@@ -59,39 +60,75 @@ function Carousel({
     getPriceImage(idList);
   }, [idList]);
 
-  function nextCard() {
-    setCurrent(current === length - 1 ? 0 : current + 1);
+  function prevClickHandler() {
+    if (startIndex <= 0) {
+      return;
+    }
+    setStartIndex(startIndex - 1);
+    setEndIndex(endIndex - 1);
   }
 
-  function prevCard() {
-    setCurrent(current === 0 ? length - 1 : current - 1);
+  function nextClickHandler() {
+    if (endIndex >= length - 1 || (endIndex >= length - 2 && related)) {
+      return;
+    }
+    setStartIndex(startIndex + 1);
+    setEndIndex(endIndex + 1);
   }
 
   return (
     <>
-      {current !==0 && <span className="leftArrow" onClick={prevCard}>&#60;</span>}
-      {current !== length - 1 && <span className="rightArrow" onClick={nextCard}>&#62;</span>}
-      {productInfo?.map((info, i) => {
-        const allInfo = {...info, ...stylesInfo[i], id: idList[i]};
-        return (
-          <div key={allInfo.name}>
-            {/* logics to render three cards at a time */}
-            {(() => {
-              if (current === length -1 && (i === current - 1 || i === 0 || i === current)) {
-                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} crossClickHandler={crossClickHandler} />);
-              } else if (current === 0 && (i === current + 1 || i === length - 1 || i === current)) {
-                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} crossClickHandler={crossClickHandler} />);
-              } else if (current >= 1 && current <= length -2 && i >= current - 1 && i <= current + 1) {
-                return (<Card productInfo={allInfo} setId={setId} id={id} related={related} crossClickHandler={crossClickHandler} />);
-              } else {
-                return null;
-              }
-            })()}
-          </div>
-        )
+      {startIndex !== 0 && (
+      <span
+        className="btn arrow-btn left-arrow"
+        onClick={prevClickHandler}
+      >
+        &#60;
+      </span>
+      )}
+      {productInfo.map((info, i) => {
+        const allInfo = { ...info, ...stylesInfo[i], id: idList[i] };
+        if (related !== undefined) {
+          if (i >= startIndex && i <= (endIndex + 1)) {
+            return (
+              <Card
+                productInfo={allInfo}
+                setId={setId}
+                id={id}
+                related={related}
+                crossClickHandler={crossClickHandler}
+                key={allInfo.name}
+              />
+            );
+          }
+          return null;
+        }
+        if (i >= startIndex && i <= endIndex) {
+          return (
+            <Card
+              productInfo={allInfo}
+              setId={setId}
+              id={id}
+              related={related}
+              crossClickHandler={crossClickHandler}
+              key={allInfo.name}
+            />
+          );
+        }
+        return null;
       })}
+      {(() => {
+        if ((related && (endIndex === length - 2))
+        || (related === undefined && (endIndex === length - 1))) {
+          return null;
+        }
+        return (
+          <span className="btn arrow-btn right-arrow" onClick={nextClickHandler}>
+            &#62;
+          </span>
+        );
+      })()}
     </>
   );
 }
 export default Carousel;
-
