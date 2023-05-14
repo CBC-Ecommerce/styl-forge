@@ -25,6 +25,7 @@ export default function RatingBreakdown({ratingsList}) {
     const qty = breakdown[rating];
     const col1 = Math.round((qty / totalRatings) * 100);
     const col2 = 100 - col1;
+    // the rating is directly correlated with the index (index 0 is empty array)
     barGraph[rating] = ([col1, col2]);
   }
 
