@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CharacteristicsList from './CharacteristicsList.jsx';
-import './css/modalStyle.css';
 
 function ComparisonModal({ productInfo, id, setShowModal }) {
   const [currentProInfo, setCurrentProInfo] = useState({});
@@ -18,7 +17,7 @@ function ComparisonModal({ productInfo, id, setShowModal }) {
       });
   }
 
-  function closeClickHandler(e) {
+  function closeClickHandler() {
     setShowModal(false);
   }
 
