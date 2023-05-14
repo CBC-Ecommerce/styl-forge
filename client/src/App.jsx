@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedProducts from './RelatedItems/RelatedProducts.jsx';
@@ -11,6 +12,7 @@ function App() {
   const [id, setId] = useState(40346); // Better product id for testing QnA.
   const [currentProduct, setCurrentProduct] = useState({});
   const [reviewList, setReviewList] = useState([]);
+  const [characteristics, setCharacteristics] = useState({});
 
   // useEffect gets new product information when id changes
   useEffect(() => {
@@ -21,6 +23,10 @@ function App() {
     // Every time main product id changes, reset the reviews list
     axios.get(`/reviews?product_id=${id}&count=9999`)
       .then((results) => { setReviewList(results.data.results); })
+      .catch((err) => { throw err; });
+    // set a list of characteristics
+    axios.get(`/reviews/meta?product_id=${id}`)
+      .then((results) => { setCharacteristics(results.data.characteristics); })
       .catch((err) => { throw err; });
   }, [id]);
 
@@ -33,7 +39,7 @@ function App() {
       </div>
       <RelatedProducts id={id} setId={setId} />
       <QnA id={id} product={currentProduct} />
-      <RatingsAndReviews id={id} reviewList={reviewList} />
+      <RatingsAndReviews id={id} reviewList={reviewList} char={characteristics} />
     </div>
   );
 }

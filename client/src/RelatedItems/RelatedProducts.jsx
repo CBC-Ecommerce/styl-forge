@@ -21,10 +21,10 @@ function RelatedProducts({ id, setId }) {
   }, [id]);
 
   return (
-    <section>
-      <h4>RELATED PRODUCTS</h4>
+    <section className="related-products">
+      <h4 className="related-heading">RELATED PRODUCTS</h4>
       <RelatedProList relatedIdList={relatedIdList} setId={setId} id={id} />
-      <h4>YOUR OUTFITS</h4>
+      <h4 className="related-heading">YOUR OUTFITS</h4>
       <YourOutfitList id={id} setId={setId} />
     </section>
   );
