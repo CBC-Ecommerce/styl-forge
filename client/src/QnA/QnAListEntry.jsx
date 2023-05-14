@@ -106,6 +106,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
           <button onClick={questionReport} className="report-question-button" type="button" disabled={reportQuest}>Report</button>
           <button className="add-answer-button" type="button" onClick={addAnswerClicker}>Add Answer</button>
           <AddAnswer
+            grabAnswers={grabAnswers}
             showAdd={showAdd}
             addAnswerClicker={addAnswerClicker}
             quest={quest}
@@ -116,14 +117,16 @@ function QnAListEntry({ quest, product, grabQuestions }) {
       <div className="answer">
         A:
         {' '}
-        {answers.slice(0, ansEntry)
-          .map((answer) => (
-            <AnswerListEntry
-              answer={answer}
-              key={answer.answer_id}
-              grabAnswers={grabAnswers}
-            />
-          ))}
+        <div className="answer-list">
+          {answers.slice(0, ansEntry)
+            .map((answer) => (
+              <AnswerListEntry
+                answer={answer}
+                key={answer.answer_id}
+                grabAnswers={grabAnswers}
+              />
+            ))}
+        </div>
       </div>
       {anyMore ? (
         <form onSubmit={submitHandler}>
