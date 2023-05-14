@@ -198,7 +198,8 @@ exports.markQuestionHelpful = function (req, res) {
 };
 
 exports.reportQuestion = function (req, res) {
-  const urlPut = `${process.env.API_URL}/qa/questions/${req.query.question_id}/report`;
+  const urlPut = `${process.env.API_URL}/qa/questions/${req.body.question_id}/report`;
+  console.log(req.body.question_id);
 
   axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
     .then((results) => {
@@ -210,7 +211,8 @@ exports.reportQuestion = function (req, res) {
 };
 
 exports.markAnswerHelpful = function (req, res) {
-  const urlPut = `${process.env.API_URL}/qa/answers/${req.query.answer_id}/helpful`;
+  console.log(req.query.answer_id);
+  const urlPut = `${process.env.API_URL}/qa/answers/${req.body.answer_id}/helpful`;
 
   axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
     .then((results) => {
@@ -222,7 +224,7 @@ exports.markAnswerHelpful = function (req, res) {
 };
 
 exports.reportAnswer = function (req, res) {
-  const urlPut = `${process.env.API_URL}/qa/answers/${req.query.answer_id}/report`;
+  const urlPut = `${process.env.API_URL}/qa/answers/${req.body.answer_id}/report`;
 
   axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
     .then((results) => {

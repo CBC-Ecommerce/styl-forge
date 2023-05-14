@@ -9,7 +9,7 @@ import StaticStar from './StaticStar.jsx';
 // Example: You want to use the stars to represent total reviews:
 // <StaticStarList productId={40344} /> <--ideally this is one we have useContext for
 
-export default function Stars({ productId, ratingInt }) {
+export default function Stars({ productId, ratingInt, returnAvgRating }) {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
@@ -21,6 +21,9 @@ export default function Stars({ productId, ratingInt }) {
           ), 0);
           const avRating = Math.round((ratingSum / results.data.results.length) * 10) / 10;
           setRating(avRating);
+          if (returnAvgRating) {
+            returnAvgRating(avRating);
+          }
         })
         .catch((err) => { throw err; });
     }

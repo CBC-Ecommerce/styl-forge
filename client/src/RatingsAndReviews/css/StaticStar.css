@@ -1,9 +1,3 @@
-/* .star-box {
-  display: flex;
-  left: 10px;
-  margin-bottom: 10px;
-} */
-
 .empty-star,
 .half-star,
 .quarter-star,
@@ -49,49 +43,3 @@
   color: rgb(255, 191, 42);
   font-size: 0.75em;
 }
-
-/* Tutorial: https://jsfiddle.net/gonh06aL/2/ */
-/* Note to self: don't use react font awesome icons ever again. Perfecting this is an art within an art. Too many custom CSS variables and I am not about to learn how to create custom svg paths to clip backgrounds/shapes. Nope. */
-
-/* .half-star:after {
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  --fa-style-family: 'Font Awesome 5 Free';
-  content: '\f005';
-  position: absolute;
-  --fa-style: 900;
-  left: 0;
-  top: 0;
-  width: 50%;
-  overflow: hidden;
-  color: green;
-} */
-
-/* .star {
-  display: inline-block;
-  position: relative;
-  color: #ABAEB5;
-}
-.half-star::before {
-  content: '';
-  background-color: red;
-  width: 100px;
-  height: 100px;
-  position: absolute;
-}
-.half-star::after {
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  --fa-style-family: 'Font Awesome 5 Free';
-  --fa-style: 900;
-  --fa-content: '\f005';
-  position: absolute;
-  right: 50%;
-  --fa-primary-color: green;
-  --fa-stack-z-index: 10;
-  width: 50%;
-} */
