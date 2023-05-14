@@ -4,10 +4,11 @@ import StaticStarList from './StaticStarList.jsx';
 import ReviewList from './ReviewList.jsx';
 import DropDownFilter from './DropDownFilter.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
+import Characteristics from './Characteristics.jsx';
 import './css/MainContainer.css';
 import './css/RatingSummary.css';
 
-export default function RatingsAndReviews({id, reviewList, changeList}) {
+export default function RatingsAndReviews({id, reviewList, changeList, char}) {
   const [listCount, setListCount] = useState(2);
   const [ratingReturnVal, setRatingReturnVal] = React.useState(0);
   const [ratingsList, setRatingsList] = useState([]);
@@ -50,7 +51,7 @@ export default function RatingsAndReviews({id, reviewList, changeList}) {
             </div>
             <div className="percent">{`${recommendPercent}% of reviews recommend this product`}</div>
             <RatingBreakdown ratingsList={ratingsList} />
-            And then some other bar guy for Characteristics
+            <Characteristics characteristics={char} />
           </div>
         </div>
         <div className="column2">

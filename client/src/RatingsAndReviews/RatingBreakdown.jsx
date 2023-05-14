@@ -2,7 +2,6 @@ import React from 'react';
 import BreakdownBars from './BreakdownBars.jsx';
 
 export default function RatingBreakdown({ratingsList}) {
-  console.log('RATINGS LIST IS', ratingsList);
   const breakdown = {
     1: 0,
     2: 0,
@@ -28,8 +27,6 @@ export default function RatingBreakdown({ratingsList}) {
     const col2 = 100 - col1;
     barGraph[rating] = ([col1, col2]);
   }
-
-  console.log(barGraph);
 
   return (
     <div className="all-rating-bars">
