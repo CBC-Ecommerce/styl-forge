@@ -4,16 +4,13 @@ import './css/ReviewList.css';
 
 export default function ReviewList({ currentList, listCount }) {
   const [renderList, setRenderList] = useState([]);
-  console.log('RENDER LIST IS ', renderList);
 
   useEffect(() => {
     const reviewsVisible = currentList.slice(0, listCount);
     setRenderList(reviewsVisible);
-    console.log('List Count has changed');
   }, [listCount]);
 
   useEffect(() => {
-    console.log('Current List has changed');
     setRenderList(currentList.slice(0, listCount));
   }, [currentList]);
 

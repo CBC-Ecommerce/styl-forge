@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import StaticStarList from './StaticStarList.jsx';
@@ -64,16 +65,22 @@ export default function RatingsAndReviews({id, reviewList, char}) {
           <Characteristics characteristics={char} />
         </div>
         <div className="column2">
-          <DropDownFilter currentList={currentList} changeList={changeList} numReviews={numReviews} />
+          <DropDownFilter
+            currentList={currentList}
+            changeList={changeList}
+            numReviews={numReviews}
+          />
           <ReviewList currentList={currentList} listCount={listCount} />
           <div className="review-list-buttons">
-            <button
-              type="button"
-              className="more-reviews"
-              onClick={increaseReviewsSeen}
-            >
-              More Reviews
-            </button>
+            {reviewList.length > 2 && (
+              <button
+                type="button"
+                className="more-reviews"
+                onClick={increaseReviewsSeen}
+              >
+                More Reviews
+              </button>
+            )}
             <button type="button" className="add-review">Add Review +</button>
           </div>
         </div>
