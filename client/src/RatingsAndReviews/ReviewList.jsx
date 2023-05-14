@@ -2,28 +2,27 @@ import React, { useState, useEffect } from 'react';
 import ReviewListCard from './ReviewListCard.jsx';
 import './css/ReviewList.css';
 
-export default function ReviewList({ reviewList, listCount, resetCount }) {
-  const [currentList, setCurrentList] = useState([]);
+export default function ReviewList({ currentList, listCount }) {
+  const [renderList, setRenderList] = useState([]);
+  console.log('RENDER LIST IS ', renderList);
 
   useEffect(() => {
-    const reviews = reviewList.slice(0, listCount);
-    setCurrentList(reviews);
+    const reviewsVisible = currentList.slice(0, listCount);
+    setRenderList(reviewsVisible);
+    console.log('List Count has changed');
   }, [listCount]);
 
   useEffect(() => {
-    // upon receiving a new reviewList, should render a new set of only 2
-    setCurrentList([]);
-    resetCount(2);
-  }, [reviewList]);
+    console.log('Current List has changed');
+    setRenderList(currentList.slice(0, listCount));
+  }, [currentList]);
 
   return (
     <div className="review-list">
-      {currentList.length === 0 && reviewList.slice(0, listCount).map((rev) => (
+      {renderList.length === 0 && <div>This product has no reviews yet</div>}
+      {renderList.map((rev) => (
         <ReviewListCard review={rev} key={rev.review_id} />
       ))}
-      {currentList.length > 0 && currentList.map((rev) => (
-        <ReviewListCard review={rev} key={rev.review_id} />
-      )) }
     </div>
   );
 }

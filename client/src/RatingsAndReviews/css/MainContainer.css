@@ -11,8 +11,8 @@
   min-height: 100px;
 }
 
-.green-col,
-.blue-col {
+.column1,
+.column2 {
     height: 100%;
     padding: 10px;
   }
@@ -22,16 +22,8 @@
     margin-right: 2%;
   }
 
-  .green-col {
-    border: 2px solid green;
-  }
-
   .column2 {
     flex-basis: 63%;
-  }
-
-  .blue-col {
-    border: 2px solid blue;
   }
 
   .review-list-buttons {

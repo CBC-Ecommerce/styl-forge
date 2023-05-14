@@ -8,11 +8,13 @@ import Characteristics from './Characteristics.jsx';
 import './css/MainContainer.css';
 import './css/RatingSummary.css';
 
-export default function RatingsAndReviews({id, reviewList, changeList, char}) {
+export default function RatingsAndReviews({id, reviewList, char}) {
   const [listCount, setListCount] = useState(2);
   const [ratingReturnVal, setRatingReturnVal] = React.useState(0);
   const [ratingsList, setRatingsList] = useState([]);
   const [recommendPercent, setRecommendPercent] = useState(0);
+  const [currentList, setCurrentList] = useState([]);
+  const [numReviews, setNumReviews] = useState(0);
 
   function increaseReviewsSeen() {
     setListCount(listCount + 2);
@@ -26,17 +28,26 @@ export default function RatingsAndReviews({id, reviewList, changeList, char}) {
     setListCount(count);
   }
 
+  function changeList(list) {
+    setCurrentList(list.slice());
+    resetCount(2);
+  }
+
   useEffect(() => {
     const sumOfReviews = reviewList.length;
     const numOfRecommend = reviewList.reduce((accum, review) => (
       review.recommend ? accum + 1 : accum + 0
     ), 0);
-    console.log('Number of recommended ', numOfRecommend);
     const recommended = Math.floor((numOfRecommend / sumOfReviews) * 100);
     setRecommendPercent(recommended);
 
-    const onlyRatingsList = reviewList.map((review) => (review.rating));
-    setRatingsList(onlyRatingsList);
+    const onlyRatings = reviewList.map((review) => (review.rating));
+    setRatingsList(onlyRatings);
+
+    resetCount(2);
+    setCurrentList(reviewList.slice());
+
+    setNumReviews(reviewList.length);
   }, [reviewList]);
 
   return (
@@ -44,31 +55,26 @@ export default function RatingsAndReviews({id, reviewList, changeList, char}) {
       <h4>Ratings & Reviews</h4>
       <div className="row">
         <div className="column1">
-          <div className="green-col">
-            <div className="rating-summary">
-              <div className="large-rating-number">{ratingReturnVal}</div>
-              <StaticStarList productId={id} returnAvgRating={returnAvgRating} />
-            </div>
-            <div className="percent">{`${recommendPercent}% of reviews recommend this product`}</div>
-            <RatingBreakdown ratingsList={ratingsList} />
-            <Characteristics characteristics={char} />
+          <div className="rating-summary">
+            <div className="large-rating-number">{ratingReturnVal}</div>
+            <StaticStarList productId={id} returnAvgRating={returnAvgRating} />
           </div>
+          <div className="percent">{`${recommendPercent}% of reviews recommend this product`}</div>
+          <RatingBreakdown ratingsList={ratingsList} />
+          <Characteristics characteristics={char} />
         </div>
         <div className="column2">
-          <div className="blue-col">
-            <DropDownFilter reviewList={reviewList} changeList={changeList} />
-            <ReviewList reviewList={reviewList} listCount={listCount} resetCount={resetCount} />
-            <div className="review-list-buttons">
-              <button
-                type="button"
-                className="more-reviews"
-                onClick={increaseReviewsSeen}
-              >
-                More Reviews
-              </button>
-              <button type="button" className="add-review">Add Review +</button>
-            </div>
-
+          <DropDownFilter currentList={currentList} changeList={changeList} numReviews={numReviews} />
+          <ReviewList currentList={currentList} listCount={listCount} />
+          <div className="review-list-buttons">
+            <button
+              type="button"
+              className="more-reviews"
+              onClick={increaseReviewsSeen}
+            >
+              More Reviews
+            </button>
+            <button type="button" className="add-review">Add Review +</button>
           </div>
         </div>
       </div>

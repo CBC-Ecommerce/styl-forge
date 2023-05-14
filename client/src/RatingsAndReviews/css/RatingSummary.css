@@ -61,7 +61,8 @@
 
 .pf-icon-row .fa-caret-down {
   position: absolute;
-  top: -8px;
+  top: -10px;
+  font-size: 20px;
 }
 
 .factor-name {
