@@ -31,8 +31,6 @@ export default function ProductFactor({factor, avg}) {
   }
 
   const iconPlacement = Math.round((avg / 5) * 100);
-  console.log('AVERAGE ', avg);
-  console.log('PERCENTAGE ', iconPlacement);
   const iconStyle = {
     left: `${iconPlacement}%`,
   };
