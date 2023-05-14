@@ -9,7 +9,7 @@ export default function Price({ selectedStyle }) {
       {salePrice ? (
         <>
           <div className="sale-price">
-            Sale Price: $
+            Sale: $
             { salePrice }
           </div>
           <div className="original-price">
