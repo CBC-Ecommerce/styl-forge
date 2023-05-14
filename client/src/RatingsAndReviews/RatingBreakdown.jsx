@@ -28,14 +28,24 @@ export default function RatingBreakdown({ratingsList}) {
     barGraph[rating] = ([col1, col2]);
   }
 
+  const descendingRatings = barGraph.slice(1).reverse();
+
   return (
     <div className="all-rating-bars">
-      {barGraph.map((bar, rating) => {
-        // index 0 has an empty array
-        if (bar.length !== 0) {
-          return <BreakdownBars bar={bar} rating={rating} qty={breakdown[rating]} key={rating} />;
+      {descendingRatings.map((bar, index) => {
+        let rating;
+        if (index === 0) {
+          rating = 5;
+        } else if (index === 1) {
+          rating = 4;
+        } else if (index === 2) {
+          rating = 3;
+        } else if (index === 3) {
+          rating = 2;
+        } else {
+          rating = 1;
         }
-        return <div />;
+        return <BreakdownBars bar={bar} rating={rating} qty={breakdown[rating]} key={rating} />;
       })}
     </div>
   );
