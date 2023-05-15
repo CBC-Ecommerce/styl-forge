@@ -1,10 +1,11 @@
 // import all your libraries and path to the component you want to test
-/* global afterEach, describe, test, expect, jest, window, beforeEach */
+/* global afterEach, describe, test, expect, jest,  */
 import React from 'react';
 import {
   render, screen, fireEvent, cleanup,
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import axios from 'axios';
 import RelatedProducts from '../RelatedItems/RelatedProducts.jsx';
 import RelatedProList from '../RelatedItems/RelatedProList.jsx';
 import YourOutfitList from '../RelatedItems/YourOutfitList.jsx';
@@ -53,7 +54,7 @@ describe('YourOutfitList Component', () => {
     expect(plus).toBeInTheDocument();
   });
 
-  // fix the following test
+  // ************** FIX THIS TEST**************
   test('clicking the add to outfits card should invoke localStorage getItem and setItem', () => {
     const localStorageMock = {
       getItem: jest.fn(),
@@ -99,7 +100,7 @@ describe('Card', () => {
     expect(image).toBeInTheDocument();
   });
 
-  // fix the following test
+  // ************** FIX THIS TEST**************
   test('clicking the card will invoke setId function', () => {
     render(<Card id={40346} setId={setId} productInfo={productInfo} related={related} />);
     const card = screen.getByTestId('card');
@@ -156,5 +157,37 @@ describe('Carousel component', () => {
     />);
     const cards = await screen.findAllByTestId('card');
     expect(cards.length).toBe(4);
+  });
+  // ************** FIX THIS TEST**************
+  test('should update startIndex and endIndex when right arrow is clicked', () => {
+    const setStartIndex = jest.fn();
+    jest.spyOn(React, 'useState').mockImplementationOnce((initState) => [initState, setStartIndex]);
+    // render(<Carousel
+    //   idList={[40346, 40350, 40349, 40348, 40351]}
+    //   setId={setId}
+    //   related={related}
+    //   id={40344}
+    //   crossClickHandler={crossClickHandler}
+    // />);
+    // const rightArrow = screen.getByTestId('rightArrow');
+    // fireEvent.click(rightArrow);
+    // expect(setStartIndex).toHaveBeenCalledWith(1);
+  });
+
+  test('axios.get should be called 2*n time where n is the length of idList', async () => {
+    const mockValue = {
+      name: 'Heir Force Ones',
+      category: 'Kicks',
+      features: [],
+    };
+    axios.get = jest.fn().mockResolvedValueOnce(mockValue);
+    render(<Carousel
+      idList={[40346, 40350, 40349, 40348, 40351]}
+      setId={setId}
+      related={related}
+      id={40344}
+      crossClickHandler={crossClickHandler}
+    />);
+    expect(axios.get).toHaveBeenCalledTimes(10);
   });
 });

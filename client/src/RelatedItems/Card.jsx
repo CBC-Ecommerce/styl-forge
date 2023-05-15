@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Stars from '../RatingsAndReviews/StaticStarList.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 import Price from '../Overview/Price.jsx';
@@ -6,7 +6,7 @@ import Price from '../Overview/Price.jsx';
 function Card({
   productInfo, setId, related, id, crossClickHandler
 }) {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = React.useState(false);
   // console.log(productInfo)
   function cardClickHandler() {
     setId(productInfo.id);

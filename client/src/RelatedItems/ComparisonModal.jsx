@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import CharacteristicsList from './CharacteristicsList.jsx';
 
 
 function ComparisonModal({ productInfo, id, setShowModal }) {
-  const [currentProInfo, setCurrentProInfo] = useState({});
+  const [currentProInfo, setCurrentProInfo] = React.useState({});
 
   function getProductInfo(productId) {
     axios.get(`products/?product_id=${productId}`)
