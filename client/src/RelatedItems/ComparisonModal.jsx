@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import CharacteristicsList from './CharacteristicsList.jsx';
 
 function ComparisonModal({ productInfo, id, setShowModal }) {
-  const [currentProInfo, setCurrentProInfo] = useState({});
+  const [currentProInfo, setCurrentProInfo] = React.useState({});
 
   function getProductInfo(productId) {
     axios.get(`products/?product_id=${productId}`)
-      .then((res) => {
+      ?.then((res) => {
         setCurrentProInfo(
           { name: res.data.name, category: res.data.category, features: res.data.features },
         );
@@ -26,11 +26,11 @@ function ComparisonModal({ productInfo, id, setShowModal }) {
   }, []);
 
   return (
-    <div className="modalBox">
+    <div className="modalBox" data-testid="compModal">
       <div className="compModal">
         <h4>COMPARING</h4>
-        <span onClick={closeClickHandler}>&#10005;</span>
-        <table>
+        <span className="btn closeModal-btn" onClick={closeClickHandler}>&#10005;</span>
+        <table className="comp-table">
           <thead>
             <tr>
               <th>{currentProInfo.name}</th>

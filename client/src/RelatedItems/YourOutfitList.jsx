@@ -1,12 +1,12 @@
 /* global localStorage */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Carousel from './Carousel.jsx';
 
 function YourOutfitList({id, setId }) {
   if (JSON.parse(localStorage.getItem('outfits')) === null) {
     localStorage.setItem('outfits', JSON.stringify([]));
   }
-  const [outfits, setOutfits] = useState(JSON.parse(localStorage.getItem('outfits')));
+  const [outfits, setOutfits] = React.useState(JSON.parse(localStorage.getItem('outfits')));
 
   function addClickHandler() {
     const currentList = JSON.parse(localStorage.getItem('outfits'));
@@ -27,7 +27,7 @@ function YourOutfitList({id, setId }) {
 
   return (
     <div className="cardContainer">
-      <div className="card addOutfit-card">
+      <div className="card addOutfit-card" data-testid="card">
         <span className="btn addOutfit-btn" onClick={addClickHandler}><strong>+ </strong>Add to Outfits</span>
       </div>
       <Carousel id={id} setId={setId} idList={outfits} crossClickHandler={crossClickHandler} />

@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import RelatedProList from './RelatedProList.jsx';
 import YourOutfitList from './YourOutfitList.jsx';
+import './css/RelatedItems.css';
 
 function RelatedProducts({ id, setId }) {
-  const [relatedIdList, setRelatedIdList] = useState([]);
+  const [relatedIdList, setRelatedIdList] = React.useState([]);
 
   function getRelatedList(currentId) {
     axios.get(`products/?product_id=${currentId}/related`)
-      .then((res) => {
+      ?.then((res) => {
         setRelatedIdList(res.data);
       })
       .catch((err) => {
