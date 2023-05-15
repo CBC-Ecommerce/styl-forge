@@ -34,6 +34,7 @@ function ComparisonModal({ productInfo, id, setShowModal }) {
           <thead>
             <tr>
               <th>{currentProInfo.name}</th>
+              <th></th>
               <th>{productInfo.name}</th>
             </tr>
           </thead>
