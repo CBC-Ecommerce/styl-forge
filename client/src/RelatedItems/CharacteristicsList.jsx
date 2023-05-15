@@ -3,8 +3,8 @@ import CharacteristicEntry from './CharacteristicEntry.jsx';
 
 function CharacteristicsList({ currentProInfo, productInfo }) {
   const [features, setFeatures] = React.useState([]);
-  // console.log(productInfo, 'this is the compared product*******');
-  // console.log(currentProInfo, 'this is the current product******');
+  console.log(productInfo, 'this is the compared product*******');
+  console.log(currentProInfo, 'this is the current product******');
 
   function getCharList(comparedProduct, currentProduct) {
     const featuresArr = [];
@@ -29,12 +29,13 @@ function CharacteristicsList({ currentProInfo, productInfo }) {
         featuresArr.push(featureObj2);
       }
     });
+    console.log(featuresArr);
     setFeatures(featuresArr);
   }
 
   useEffect(() => {
     getCharList(productInfo, currentProInfo);
-  }, []);
+  }, [currentProInfo]);
 
   return (
     <tbody>
