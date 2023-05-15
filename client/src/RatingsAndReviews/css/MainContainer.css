@@ -2,7 +2,12 @@
   box-sizing: border-box;
   height: 100vh;
   margin: 50px;
-  /* margin: 50px 200px; SAVE THIS FOR END PRODUCT*/
+  /* margin: 50px 250px; SAVE THIS FOR END PRODUCT*/
+}
+
+.main-container h4 {
+  margin-bottom: 20px;
+  color: #545454;
 }
 
 .row {
@@ -18,12 +23,12 @@
   }
 
   .column1 {
-    flex-basis: 35%;
+    flex-basis: 28%;
     margin-right: 2%;
   }
 
   .column2 {
-    flex-basis: 63%;
+    flex-basis: 70%;
   }
 
   .review-list-buttons {
