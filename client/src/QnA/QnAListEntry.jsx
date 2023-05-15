@@ -11,8 +11,9 @@ function QnAListEntry({ quest, product, grabQuestions }) {
   const [showAdd, setShowAdd] = useState(false);
   const [helpButton, setHelpButton] = useState(false);
   const [reportQuest, setReportQuest] = useState(false);
+
   const grabAnswers = () => {
-    const config = { params: { page: 1, count: 9999 } };
+    const config = { params: { page: 1, count: 99999 } };
     axios.get(`/qa/questions/${quest.question_id}/answers`, config)
       .then((info) => {
         setAnswers(info.data.results);
@@ -38,9 +39,9 @@ function QnAListEntry({ quest, product, grabQuestions }) {
     }
   }, [answers]);
 
-  useEffect(() => {
-    grabAnswers();
-  }, [reportQuest]);
+  // useEffect(() => {
+  //   grabAnswers();
+  // }, [reportQuest]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -59,6 +60,8 @@ function QnAListEntry({ quest, product, grabQuestions }) {
       .then((result) => {
         // console.log(result.data);
         setHelpButton(!helpButton);
+      })
+      .then(() => {
         grabQuestions();
       })
       .catch((error) => {
@@ -73,6 +76,9 @@ function QnAListEntry({ quest, product, grabQuestions }) {
       .then((result) => {
         setReportQuest(!reportQuest);
         // console.log('Successfully reported question');
+      })
+      .then(() => {
+        grabQuestions();
       })
       .catch((err) => {
         console.log('Error reporting:', err);
@@ -100,6 +106,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
           <button onClick={questionReport} className="report-question-button" type="button" disabled={reportQuest}>Report</button>
           <button className="add-answer-button" type="button" onClick={addAnswerClicker}>Add Answer</button>
           <AddAnswer
+            grabAnswers={grabAnswers}
             showAdd={showAdd}
             addAnswerClicker={addAnswerClicker}
             quest={quest}
@@ -110,8 +117,16 @@ function QnAListEntry({ quest, product, grabQuestions }) {
       <div className="answer">
         A:
         {' '}
-        {answers.slice(0, ansEntry)
-          .map((answer) => <AnswerListEntry answer={answer} key={answer.answer_id} grabAnswers={grabAnswers} />)}
+        <div className="answer-list">
+          {answers.slice(0, ansEntry)
+            .map((answer) => (
+              <AnswerListEntry
+                answer={answer}
+                key={answer.answer_id}
+                grabAnswers={grabAnswers}
+              />
+            ))}
+        </div>
       </div>
       {anyMore ? (
         <form onSubmit={submitHandler}>

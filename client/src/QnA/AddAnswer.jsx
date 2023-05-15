@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function AddAnswer({ showAdd, addAnswerClicker, quest, product}) {
+function AddAnswer({
+  grabAnswers, showAdd, addAnswerClicker, quest, product,
+}) {
   const [answer, setAnswer] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [pics, setPics] = useState([]);
   if (!showAdd) {
     return null;
   }
@@ -20,10 +23,40 @@ function AddAnswer({ showAdd, addAnswerClicker, quest, product}) {
   const emailChanger = (e) => {
     setEmail(e.target.value);
   };
-  // const submitAnswer = (e) => {
-  //   e.preventDefault();
-  //   axios.post('/qa/questions/', {body: quest.question_body, name: username, email: email, photos: [url]});
-  // };
+  const submitAnswer = () => {
+    axios.post(`/qa/questions/${quest.question_id}/answers`, {
+      // eslint-disable-next-line object-shorthand
+      body: answer, name: username, email: email, photos: pics,
+    })
+      .then(() => {
+        grabAnswers();
+      })
+      .then(() => {
+        addAnswerClicker();
+      })
+      .catch((err) => {
+        console.log('error posting answer', err);
+      });
+  };
+
+  const fileSelector = (e) => {
+    const currentFiles = e.target.files;
+    const fileArray = [];
+    for (let i = 0; i < currentFiles.length; i++) {
+      const objectURL = URL.createObjectURL(currentFiles[i]);
+      fileArray.push(objectURL);
+    }
+    // Is promise.all required? It seems like it should do it synchronously.
+    // It seems like the promise is not necessary.
+    setPics(fileArray);
+    // Promise.all(fileArray)
+    //   .then((fileArray) => {
+    //     setPics(fileArray);
+    //   })
+    //   .catch((err) => {
+    //     console.log('Error creating array of urls', err);
+    //   });
+  };
 
   return (
     <div className="qna-modal">
@@ -38,14 +71,15 @@ function AddAnswer({ showAdd, addAnswerClicker, quest, product}) {
           </h5>
         </div>
         <div className="qna-modal-body">
-          <form>
+          <form id="answer-form" onSubmit={submitAnswer}>
             <input type="text" onChange={answerChanger} placeholder="Answer..." value={answer} />
             <input type="text" onChange={usernameChanger} placeholder="Username" value={username} />
             <input type="text" onChange={emailChanger} placeholder="email" value={email} />
+            <input type="file" onChange={fileSelector} id="answer-image" accept="image/*" multiple />
           </form>
         </div>
         <div className="qna-modal-footer">
-          <button type="submit">Submit Answer</button>
+          <button onClick={submitAnswer} type="button">Submit Answer</button>
           <button type="button" className="button" onClick={closeClicker}>Close</button>
         </div>
       </div>

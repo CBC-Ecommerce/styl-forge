@@ -224,7 +224,7 @@ exports.markAnswerHelpful = function (req, res) {
 };
 
 exports.reportAnswer = function (req, res) {
-  const urlPut = `${process.env.API_URL}/qa/answers/${req.query.answer_id}/report`;
+  const urlPut = `${process.env.API_URL}/qa/answers/${req.body.answer_id}/report`;
 
   axios({ url: urlPut, method: 'PUT', headers: authHeader.headers })
     .then((results) => {

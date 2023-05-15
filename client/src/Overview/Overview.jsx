@@ -6,6 +6,7 @@ import Category from './Category.jsx';
 import Stars from '../RatingsAndReviews/StaticStarList.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import ImageGallery from './ImageGallery.jsx';
+import AddToCart from './AddToCart.jsx';
 import './Overview.css';
 
 export default function Overview({ product, id }) {
@@ -41,8 +42,7 @@ export default function Overview({ product, id }) {
         <div className="product-info-box">
           <div className="stars">
             <Stars productId={id} />
-            <p>&nbsp;</p>
-            <div className="review-link">Link to reviews</div>
+            <a href="#main-container" className="review-link">Link to reviews</a>
           </div>
           <Category name={product.category} />
           <Title name={product.name} />
@@ -57,7 +57,9 @@ export default function Overview({ product, id }) {
             />
           )}
         </div>
-        <div className="add-to-cart-box"></div>
+        <div className="add-to-cart-box">
+          {styles && <AddToCart selectedStyle={selectedStyle} />}
+        </div>
       </div>
     </div>
   );

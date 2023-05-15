@@ -3,7 +3,7 @@ import RenderStyle from './RenderStyle.jsx';
 
 export default function StyleSelector({ styles, selectedStyle, styleSelectClickHandler }) {
   return (
-    <div className="thumbnails style-selector">
+    <div className="style-selector">
       { styles.results.map((style) => (
         <RenderStyle
           style={style}
