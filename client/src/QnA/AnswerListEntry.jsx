@@ -51,6 +51,10 @@ function AnswerListEntry({ answer, grabAnswers }) {
   //   grabAnswers();
   // }, [ansHelpful]);
 
+  // useEffect(() => {
+  //   grabAnswers();
+  // }, []);
+
   return (
     <div>
       <div>{answer.body}</div>

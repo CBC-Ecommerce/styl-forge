@@ -27,7 +27,15 @@ function QnA({ id, product }) {
   };
 
   const filterQuestion = (input) => {
-    const filtered = quests.filter((quest) => quest.question_body.toLowerCase().includes(input));
+    const filtered = quests.filter((quest) => quest.question_body.toLowerCase()
+      .includes(input.toLowerCase()));
+    // Promise.all(filtered)
+    //   .then((result) => {
+    //     setFiltQuests(result);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
     setFiltQuests(filtered);
   };
 
@@ -60,11 +68,10 @@ function QnA({ id, product }) {
           />
         ) : null }
       </div>
-      <div className="QnA List">
+      <div className="QnA-List">
         <QnAList quests={filtQuests} product={product} grabQuestions={grabQuestions} />
       </div>
     </div>
-
   );
 }
 

@@ -18,6 +18,10 @@
 .answer-photo-container {
   display: flex;
 }
+.QnA-List {
+  max-height: 100vh;
+  overflow-x: scroll;
+}
 .qna-modal {
   position: fixed;
   left: 0;

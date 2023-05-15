@@ -11,6 +11,11 @@ function QnAList({ quests, product, grabQuestions }) {
       setQuestButton(true);
     }
   };
+  const allQuestionHandler = () => {
+    setNumEntry(quests.length);
+    setQuestButton(true);
+  };
+
   return (
     <div data-testid="QnAList Test">
       {quests.slice(0, numEntry)
@@ -22,13 +27,17 @@ function QnAList({ quests, product, grabQuestions }) {
             grabQuestions={grabQuestions}
           />
         ))}
-      {questButton ? null : (
-        <form onSubmit={submitHandler}>
-          <input type="submit" value="Show More Answered Questions" />
-        </form>
-      )}
+      <div>
+        {questButton ? null : (
+          <form onSubmit={submitHandler}>
+            <input type="submit" value="Show More Answered Questions" />
+          </form>
+        )}
+      </div>
+      <div>
+        {questButton ? null : (<button type="button" onClick={allQuestionHandler}>Show All Questions</button>)}
+      </div>
     </div>
-
   );
 }
 

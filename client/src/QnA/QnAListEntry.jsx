@@ -16,6 +16,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
     const config = { params: { page: 1, count: 99999 } };
     axios.get(`/qa/questions/${quest.question_id}/answers`, config)
       .then((info) => {
+        console.log('grabAnswers is invoked');
         setAnswers(info.data.results);
         // This also works instead of the useEffect for answers.length
         // if (info.data.results.length <= 2) {
