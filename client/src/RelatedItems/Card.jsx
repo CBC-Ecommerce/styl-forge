@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Stars from '../RatingsAndReviews/StaticStarList.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 import Price from '../Overview/Price.jsx';
@@ -6,8 +6,8 @@ import Price from '../Overview/Price.jsx';
 function Card({
   productInfo, setId, related, id, crossClickHandler
 }) {
-  const [showModal, setShowModal] = useState(false);
-
+  const [showModal, setShowModal] = React.useState(false);
+  // console.log(productInfo)
   function cardClickHandler() {
     setId(productInfo.id);
   }
@@ -21,9 +21,9 @@ function Card({
   }
 
   return (
-    <div className="card">
-      {related ? <span className="btn action-button" onClick={starClickHandler}>&#9733;</span>
-        : <span className="btn action-button cross-btn" onClick={crossClick}>&#10005;</span>}
+    <div className="card" data-testid="card">
+      {related ? <span className="btn action-button" data-testid="star" onClick={starClickHandler}>&#9733;</span>
+        : <span className="btn action-button cross-btn" data-testid="cross" onClick={crossClick}>&#10005;</span>}
       <div onClick={cardClickHandler}>
         <img className="card-img" src={productInfo.photoURL ? productInfo.photoURL : 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'} alt="related product" />
         <ul className="card-text">
