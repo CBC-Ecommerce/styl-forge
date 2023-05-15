@@ -65,7 +65,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
         grabQuestions();
       })
       .catch((error) => {
-        console.log(error);
+        console.log('Error marking as helpful', error);
       });
     // setHelpButton(!helpButton);
   };
