@@ -8,7 +8,7 @@ function ComparisonModal({ productInfo, id, setShowModal }) {
 
   function getProductInfo(productId) {
     axios.get(`products/?product_id=${productId}`)
-      .then((res) => {
+      ?.then((res) => {
         setCurrentProInfo(
           { name: res.data.name, category: res.data.category, features: res.data.features },
         );
@@ -27,7 +27,7 @@ function ComparisonModal({ productInfo, id, setShowModal }) {
   }, []);
 
   return (
-    <div className="modalBox">
+    <div className="modalBox" data-testid="compModal">
       <div className="compModal">
         <h4>COMPARING</h4>
         <span className="btn closeModal-btn" onClick={closeClickHandler}>&#10005;</span>

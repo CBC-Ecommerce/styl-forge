@@ -9,7 +9,7 @@ function RelatedProducts({ id, setId }) {
 
   function getRelatedList(currentId) {
     axios.get(`products/?product_id=${currentId}/related`)
-      .then((res) => {
+      ?.then((res) => {
         setRelatedIdList(res.data);
       })
       .catch((err) => {

@@ -1,14 +1,15 @@
 // import all your libraries and path to the component you want to test
-/* global afterEach, describe, test, expect */
+/* global afterEach, describe, test, expect, jest, window, beforeEach */
 import React from 'react';
-import axios from 'axios';
 import {
   render, screen, fireEvent, cleanup,
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import RelatedProducts from '../RelatedItems/RelatedProducts.jsx';
 import RelatedProList from '../RelatedItems/RelatedProList.jsx';
+import YourOutfitList from '../RelatedItems/YourOutfitList.jsx';
 import Card from '../RelatedItems/Card.jsx';
+import Carousel from '../RelatedItems/Carousel.jsx';
 
 afterEach(() => {
   cleanup();
@@ -29,33 +30,131 @@ describe('RelatedProducts', () => {
 });
 
 describe('RelatedProList', () => {
-  test('should render a list of cards"', async () => {
-    const { container } = render(<RelatedProList relatedIdList={[40346, 40350, 40349, 40348]} />);
-    const cards = await container.getElementsByClassName('card');
+  test('should render a list of 4 cards"', async () => {
+    const setId = jest.fn();
+    render(<RelatedProList
+      relatedIdList={[40346, 40350, 40349, 40348]}
+      id={40347}
+      setId={setId}
+    />);
+    const cards = await screen.findAllByTestId('card');
     expect(cards.length).toBe(4);
   });
 });
 
-// describe('Card', () => {
-//   test('should render product name', async () => {
-//     render(<Card id={40346} />);
-//     const cardName = await screen.findByTestId('cardName');
-//     expect(cardName).toBeInTheDocument();
-//   });
-// });
+describe('YourOutfitList Component', () => {
+  const setId = jest.fn();
 
-// describe('Card', () => {
-//   test('should render product name', async () => {
-//     const mockData = {
-//       data: {
-//         name: 'joggers',
-//         category: 'pants',
-//       },
-//     };
-//     axios.get = jest.fn().mockResolvedValue(mockData);
-//     render(<Card id={40346} />);
-//     const cardName = await screen.getElementsByClassName('cardName');
-//     screen.debug();
-//     expect(cardName).toBeInTheDocument();
-//   });
-// });
+  test('should render a card with text "Add to outfits"', () => {
+    render(<YourOutfitList id={40347} setId={setId} />);
+    const addOutfits = screen.getByText('Add to Outfits');
+    const plus = screen.getByText('+');
+    expect(addOutfits).toBeInTheDocument();
+    expect(plus).toBeInTheDocument();
+  });
+
+  // fix the following test
+  test('clicking the add to outfits card should invoke localStorage getItem and setItem', () => {
+    const localStorageMock = {
+      getItem: jest.fn(),
+      setItem: jest.fn(),
+      removeItem: jest.fn(),
+      clear: jest.fn(),
+    };
+    global.localStorage = localStorageMock;
+    render(<YourOutfitList id={40346} setId={setId} />);
+    const addOutfits = screen.getByText('Add to Outfits');
+    fireEvent.click(addOutfits);
+    expect(global.localStorage.getItem).toHaveBeenCalledTimes(1);
+    expect(global.localStorage.setItem).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('Card', () => {
+  const productInfo = {
+    photoURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png',
+    category: 'Kicks',
+    name: 'Heir Force Ones',
+    id: 40348,
+    features: [],
+    original_price: '729.00',
+    sale_price: '219.00',
+  };
+  const crossClickHandler = jest.fn();
+  const setId = jest.fn();
+  let related = true;
+
+  test('Card componnet should render product name, category and image', () => {
+    render(<Card
+      id={40346}
+      setId={setId}
+      productInfo={productInfo}
+      crossClickHandler={crossClickHandler}
+    />);
+    const cardName = screen.getByText('Heir Force Ones');
+    const category = screen.getByText('Kicks');
+    const image = screen.getByRole('img');
+    expect(cardName).toBeInTheDocument();
+    expect(category).toBeInTheDocument();
+    expect(image).toBeInTheDocument();
+  });
+
+  // fix the following test
+  test('clicking the card will invoke setId function', () => {
+    render(<Card id={40346} setId={setId} productInfo={productInfo} related={related} />);
+    const card = screen.getByTestId('card');
+    fireEvent.click(card);
+    expect(setId).toHaveBeenCalledTimes(1);
+  });
+
+  test('clicking the star will create a comparison modal', () => {
+    render(<Card id={40346} setId={setId} productInfo={productInfo} related={related} />);
+    const star = screen.getByTestId('star');
+    fireEvent.click(star);
+    const compModal = screen.getByTestId('compModal');
+    expect(compModal).toBeInTheDocument();
+  });
+
+  test('clicking the cross will invoke crossClickHandler function', () => {
+    related = undefined;
+    render(<Card
+      id={40346}
+      setId={setId}
+      productInfo={productInfo}
+      crossClickHandler={crossClickHandler}
+    />);
+    const cross = screen.getByTestId('cross');
+    fireEvent.click(cross);
+    expect(crossClickHandler).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('Carousel component', () => {
+  const crossClickHandler = jest.fn();
+  const setId = jest.fn();
+  let related = true;
+  test('should render a list of 4 cards when related is true', async () => {
+    render(<Carousel
+      idList={[40346, 40350, 40349, 40348]}
+      setId={setId}
+      related={related}
+      id={40344}
+      crossClickHandler={crossClickHandler}
+    />);
+    const cards = await screen.findAllByTestId('card');
+    expect(cards.length).toBe(4);
+  });
+
+  test('should render a list of 4 cards when related is false', async () => {
+    related = false;
+    render(<Carousel
+      idList={[40346, 40350, 40349, 40348]}
+      setId={setId}
+      related={related}
+      id={40344}
+      crossClickHandler={crossClickHandler}
+    />);
+    const cards = await screen.findAllByTestId('card');
+    expect(cards.length).toBe(4);
+  });
+});

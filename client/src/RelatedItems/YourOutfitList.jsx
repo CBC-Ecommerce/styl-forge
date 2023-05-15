@@ -27,7 +27,7 @@ function YourOutfitList({id, setId }) {
 
   return (
     <div className="cardContainer">
-      <div className="card addOutfit-card">
+      <div className="card addOutfit-card" data-testid="card">
         <span className="btn addOutfit-btn" onClick={addClickHandler}><strong>+ </strong>Add to Outfits</span>
       </div>
       <Carousel id={id} setId={setId} idList={outfits} crossClickHandler={crossClickHandler} />

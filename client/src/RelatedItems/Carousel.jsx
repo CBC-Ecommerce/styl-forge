@@ -10,11 +10,11 @@ function Carousel({
   const [stylesInfo, setStylesInfo] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(startIndex + 2);
-  const { length } = idList;
+  const length = idList ? idList.length : 0;
 
   function getProductInfo(list) {
-    const data = list.map((productId) => axios.get(`products/?product_id=${productId}`)
-      .then((res) => ({
+    const data = list?.map((productId) => axios.get(`products/?product_id=${productId}`)
+      ?.then((res) => ({
         name: res.data.name,
         category: res.data.category,
         features: res.data.features,
@@ -30,8 +30,8 @@ function Carousel({
   }
 
   function getPriceImage(list) {
-    const data = list.map((productId) => axios.get(`products/?product_id=${productId}/styles`)
-      .then((res) => {
+    const data = list?.map((productId) => axios.get(`products/?product_id=${productId}/styles`)
+      ?.then((res) => {
         let index = 0;
         res.data.results.forEach((el, i) => {
           if (el['default?']) {
@@ -86,7 +86,7 @@ function Carousel({
         &#60;
       </span>
       )}
-      {productInfo.map((info, i) => {
+      {productInfo?.map((info, i) => {
         const allInfo = { ...info, ...stylesInfo[i], id: idList[i] };
         if (related !== undefined) {
           if (i >= startIndex && i <= (endIndex + 1)) {
