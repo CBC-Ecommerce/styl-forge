@@ -1,14 +1,14 @@
 /* eslint-disable no-undef */
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 export default function Helpfullness({ review_id, helpful }) {
   const [count, setCount] = React.useState(helpful);
-  const [clicked, setClicked] = React.useState(
+  const [clicked, setClicked] = useState(
     JSON.parse(localStorage.getItem(`${review_id}`)) || false,
   );
 
-  // User can only click helpfullness once per review, even upon page refresh so store in LS
+  // User can only click helpfulness once per review, even upon page refresh so store in LS
   function clickHandler(markedYes) {
     if (!clicked) {
       localStorage.setItem(`${review_id}`, 'true');

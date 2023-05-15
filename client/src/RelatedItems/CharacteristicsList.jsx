@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import CharacteristicEntry from './CharacteristicEntry.jsx';
 
 function CharacteristicsList({ currentProInfo, productInfo }) {
-  const [features, setFeatures] = useState([]);
+  const [features, setFeatures] = React.useState([]);
   // console.log(productInfo, 'this is the compared product*******');
   // console.log(currentProInfo, 'this is the current product******');
 
