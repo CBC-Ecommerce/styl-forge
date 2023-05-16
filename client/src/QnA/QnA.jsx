@@ -54,7 +54,7 @@ function QnA({ id, product }) {
 
   return (
 
-    <div className="QnA div" data-testid="QnA Test">
+    <div className="QnA Test" data-testid="QnA Test">
       <div className="QnA-Widget-Title">Questions and Answers</div>
       <div className="QnA-Search-Questions">
         <SearchQuestions quests={quests} filterQuestion={filterQuestion} />

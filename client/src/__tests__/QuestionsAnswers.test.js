@@ -10,10 +10,13 @@ import QnAList from '../QnA/QnAList.jsx';
 import QnAListEntry from '../QnA/QnAListEntry.jsx';
 import AddAnswer from '../QnA/AddAnswer.jsx';
 import AnswerListEntry from '../QnA/AnswerListEntry.jsx';
+import AddQuestion from '../QnA/AddQuestion.jsx';
+import Photos from '../QnA/Photos.jsx';
+import SearchQuestions from '../QnA/SearchQuestions.jsx';
 
 // Before each test, I want to imitate an axios get request and set the response.
 
-describe('Renders the QnA Component, GET Request Pulls Data', () => {
+describe('GET Request Pulls Data', () => {
   const mockValue = {
     data: {
       product_id: '40444',
@@ -223,12 +226,18 @@ describe('Renders the QnA Component, GET Request Pulls Data', () => {
 });
 
 describe('The QnA Component', () => {
-  beforeEach(() => {
-    render(<QnA id={40444} product={{}} />);
-  });
   test('Renders the QnA Component', () => {
+    render(<QnA id={null} product={{}} />);
     const QnARender = screen.getByTestId('QnA Test');
     expect(QnARender).toBeInTheDocument();
+  });
+  // test('When QnA is rendered, should immediately invoke grabQuestions()', () => {
+  // });
+  test('When id given, QnA List should render', () => {
+    const id = 40444;
+    render(<QnA id={id} product={{}} />);
+    const QnAListRender = screen.getByTestId('QnAList Test');
+    expect(QnAListRender).toBeInTheDocument();
   });
   // test('Renders two questions at start', () => {
   //   const IndQuestion = screen.getByTestId('individual-question-test');
@@ -237,28 +246,47 @@ describe('The QnA Component', () => {
   // Why doesn't this render furter components?
   // I think to render the subcomponents, I need to specify it and also the props along with them.
 });
-
 describe('The QnAList Component', () => {
-  beforeEach(() => {
-    render(<QnAList
-      product={{}}
-      quests={[
-        {
-          question_id: 329973,
-          question_body: 'Et cum ut est itaque ullam natus molestiae dolores qui.',
-          question_date: '2021-06-10T00:00:00.000Z',
-          question_helpfulness: 12,
+  test('QnAList to render', () => {
+    const quests = [
+      {
+        question_id: 329977,
+        question_body: 'Ipsam aperiam enim.',
+        question_helpfulness: 27,
+        reported: false,
+        answers: {
+          3082776: {
+            id: 3082776,
+            body: 'Eaque voluptate qui sed sed quo dolorem enim eos.',
+            date: '2020-11-13T00:00:00.000Z',
+            answerer_name: 'Violette.Boyer18',
+            helpfulness: 7,
+            photos: [
+              'https://images.unsplash.com/photo-1519396317879-83334cb422f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+            ],
+          },
         },
-        {
-          question_id: 329974,
-          question_body: 'Test Question #2',
-          question_date: '2021-06-10T00:00:00.000Z',
-          question_helpfulness: 10,
+      },
+      {
+        question_id: 329976,
+        question_body: 'Veniam voluptatem est et quidem nemo similique occaecati.',
+        question_helpfulness: 25,
+        reported: false,
+        answers: {
+          3082759: {
+            id: 3082759,
+            body: 'Veniam in ipsam id assumenda.',
+            date: '2020-10-05T00:00:00.000Z',
+            answerer_name: 'Adan35',
+            helpfulness: 2,
+            photos: [],
+          },
         },
-      ]}
-    />);
-  });
-  test('QnAList Component is rendered', () => {
+      },
+    ];
+    const grabQuestionsMock = jest.fn();
+
+    render(<QnAList quests={quests} product={{}} grabQuestions={grabQuestionsMock} />);
     const QnAListRender = screen.getByTestId('QnAList Test');
     expect(QnAListRender).toBeInTheDocument();
   });
