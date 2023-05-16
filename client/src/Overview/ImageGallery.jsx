@@ -12,7 +12,7 @@ export default function ImageGallery({ selectedStyle }) {
     styleThumbs.push(selectedStyle.photos[i].thumbnail_url);
   }
   return (
-    <div className="image-gallery">
+    <div className="image-gallery" data-testid="imgGallery">
       <Carousel allPics={stylePhotos} activeImage={activeImage} setActiveImage={setActiveImage} />
       <div className="thumbnails">
         {styleThumbs.map((thumbNailUrl, index) => (

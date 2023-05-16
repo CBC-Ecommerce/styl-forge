@@ -5,7 +5,7 @@ export default function Price({ selectedStyle }) {
   const salePrice = selectedStyle.sale_price;
 
   return (
-    <div className="price">
+    <div className="price" data-testid="price">
       {salePrice ? (
         <>
           <div className="sale-price">
