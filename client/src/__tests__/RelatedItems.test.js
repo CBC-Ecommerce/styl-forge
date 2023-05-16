@@ -6,11 +6,13 @@ import {
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import axios from 'axios';
+import { act } from 'react-dom/test-utils';
 import RelatedProducts from '../RelatedItems/RelatedProducts.jsx';
 import RelatedProList from '../RelatedItems/RelatedProList.jsx';
 import YourOutfitList from '../RelatedItems/YourOutfitList.jsx';
 import Card from '../RelatedItems/Card.jsx';
 import Carousel from '../RelatedItems/Carousel.jsx';
+import ComparisonModal from '../RelatedItems/ComparisonModal.jsx';
 
 afterEach(() => {
   cleanup();
@@ -28,6 +30,20 @@ describe('RelatedProducts', () => {
     const heading = screen.getByText('YOUR OUTFITS');
     expect(heading).toBeInTheDocument();
   });
+
+  // test('should invoke setRelatedIdList function ', async () => {
+  //   const setRelatedIdList = jest.fn();
+  //   jest.spyOn(React, 'useState').mockImplementationOnce((initState) => [initState, setRelatedIdList]);
+  //   const mockAxiosVal = {
+  //     data: [40346, 40350, 40349, 40348],
+  //   };
+  //   axios.get.mockImplementation(() => Promise.resolve(mockAxiosVal));
+  //   await act(async () => {
+  //     render(<RelatedProducts id={40347} />);
+  //   });
+
+  //   expect(setRelatedIdList).toHaveBeenCalledTimes(1);
+  // });
 });
 
 describe('RelatedProList', () => {
@@ -191,5 +207,89 @@ describe('Carousel component', () => {
       crossClickHandler={crossClickHandler}
     />);
     expect(axios.get).toHaveBeenCalledTimes(10);
+  });
+});
+
+describe('ComparisonModal Component', () => {
+  const productInfo = {
+    name: 'Heir Force Ones',
+    category: 'Kicks',
+    features: [
+      {
+        feature: 'Mid-Sole',
+        value: 'ControlSupport Arch Bridge',
+      },
+      {
+        feature: 'Material',
+        value: 'Double Stitch',
+      },
+    ],
+  };
+  const mockAxiosVal = {
+    data: {
+      name: 'Morning Joggers',
+      category: 'Pants',
+      features: [
+        {
+          feature: 'Sole',
+          value: 'true',
+        },
+        {
+          feature: 'Material',
+          value: 'FullControlSkin',
+        },
+      ],
+    },
+  };
+  const setShowModal = jest.fn();
+
+  test('should render the compared product name and the current product name', async () => {
+    axios.get.mockImplementation(() => Promise.resolve(mockAxiosVal));
+    await act(async () => {
+      render(<ComparisonModal productInfo={productInfo} id={null} setShowModal={setShowModal} />);
+    });
+
+    const comparedProName = screen.getByText('Heir Force Ones');
+    const currentProName = screen.getByText('Morning Joggers');
+    expect(comparedProName).toBeInTheDocument();
+    expect(currentProName).toBeInTheDocument();
+  });
+
+  test('should render features once; features shared by both products should appear once', async () => {
+    axios.get.mockImplementation(() => Promise.resolve(mockAxiosVal));
+    await act(async () => {
+      render(<ComparisonModal productInfo={productInfo} id={null} setShowModal={setShowModal} />);
+    });
+
+    const duplicateFeature = screen.getAllByText('Material');
+    const nonDuplicateFeature = screen.getAllByText('Sole');
+    expect(duplicateFeature.length).toBe(1);
+    expect(nonDuplicateFeature.length).toBe(1);
+  });
+
+  test("should display the value if product's feature has a specific value; should display checkmark if the value is 'true'", async () => {
+    axios.get.mockImplementation(() => Promise.resolve(mockAxiosVal));
+    await act(async () => {
+      render(<ComparisonModal productInfo={productInfo} id={null} setShowModal={setShowModal} />);
+    });
+
+    const specificValue = screen.getByText('ControlSupport Arch Bridge');
+    const factValue = screen.queryByText('true');
+    const checkmark = screen.getByText('&#10003;');
+    expect(specificValue).toBeInTheDocument();
+    expect(factValue).toBeNull();
+    expect(checkmark).toBeInTheDocument();
+  });
+  // ************** FIX THIS TEST**************
+  test('should close comparison modal if close button is clicked', async () => {
+    axios.get.mockImplementation(() => Promise.resolve(mockAxiosVal));
+    await act(async () => {
+      render(<ComparisonModal productInfo={productInfo} id={null} setShowModal={setShowModal} />);
+    });
+
+    const closeBtn = screen.getByText('✕');
+    fireEvent.click(closeBtn);
+    const feature = screen.queryByText('Material');
+    expect(feature).not.toBeInTheDocument();
   });
 });

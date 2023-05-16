@@ -9,10 +9,10 @@ export default function Stars({ productId, ratingInt, returnAvgRating }) {
     if (productId) {
       axios.get(`/reviews?product_id=${productId}&count=9999`)
         ?.then((results) => {
-          const ratingSum = results.data.results.reduce((accum, val) => (
+          const ratingSum = results.data.results?.reduce((accum, val) => (
             accum + val.rating
           ), 0);
-          const avRating = Math.round((ratingSum / results.data.results.length) * 10) / 10;
+          const avRating = Math.round((ratingSum / results.data.results?.length) * 10) / 10;
           setRating(avRating);
           if (returnAvgRating) {
             if (avRating % 1 === 0) {
