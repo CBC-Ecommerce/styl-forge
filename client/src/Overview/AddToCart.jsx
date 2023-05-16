@@ -51,9 +51,13 @@ export default function AddToCart({ selectedStyle }) {
     <div className="add-to-cart" data-testid="add2Cart">
       <select className="dropdn-btn" id="sizeDropdown" value={selectedSize} onChange={handleChange} data-testid="selectDrop">
         <option value="" defaultValue>Select Size</option>
-        {availableItems.map((item, index) => (
-          <option id={index}>{item.size}</option>
-        ))}
+        {availableItems.map((item, index) => {
+          if (availableItems[index].quantity > 0) {
+            return <option id={index}>{item.size}</option>;
+          } else {
+            return <option disabled>Out of Stock</option>
+          }
+        })}
       </select>
       <select className="dropdn-btn" data-testid="qtyDrop" value={selectedQty} onChange={(e) => setSelectedQty(e.target.value)}>
         {selectedSize ? (
