@@ -12,6 +12,7 @@ function QnA({ id, product }) {
   const [questModal, setQuestModal] = useState(false);
 
   const grabQuestions = () => {
+    console.log('grabQuestions is invoked');
     const config = { params: { product_id: id, page: 1, count: 99999 } };
     axios.get('/qa/questions', config)
       .then((response) => {
