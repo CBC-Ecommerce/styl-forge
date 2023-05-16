@@ -40,9 +40,9 @@ function QnA({ id, product }) {
     setFiltQuests(filtered);
   };
 
-  useEffect(() => {
-    grabQuestions();
-  }, []);
+  // useEffect(() => {
+  //   grabQuestions();
+  // }, []);
   // Need to render change in selection from related products
   useEffect(() => {
     grabQuestions();

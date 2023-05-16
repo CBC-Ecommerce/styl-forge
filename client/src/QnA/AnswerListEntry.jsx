@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Photos from './Photos.jsx';
+import './style/AnswerListEntry.css';
 
 function AnswerListEntry({ answer, grabQuestions }) {
-  const [ansHelpful, setAnsHelpful] = useState(false);
+  const [ansHelpful, setAnsHelpful] = useState(() => {
+    const saved = localStorage.getItem('helpfulStatus');
+    return saved !== null ? saved : false;
+  });
   const [report, setReport] = useState(false);
 
   const date = new Date(answer.date);
@@ -15,6 +19,9 @@ function AnswerListEntry({ answer, grabQuestions }) {
 
   };
   // console.log(answer);
+  useEffect(() => {
+    localStorage.setItem('helpfulStatus', ansHelpful);
+  }, [ansHelpful]);
 
   const formattedDate = date.toLocaleDateString('en-US', options);
 

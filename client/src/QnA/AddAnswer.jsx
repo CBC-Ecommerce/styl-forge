@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './style/Modal.css';
 
 function AddAnswer({
   grabQuestions, showAdd, addAnswerClicker, quest, product,
