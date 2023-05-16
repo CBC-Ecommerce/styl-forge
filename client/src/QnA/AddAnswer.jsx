@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function AddAnswer({
-  grabAnswers, showAdd, addAnswerClicker, quest, product,
+  grabQuestions, showAdd, addAnswerClicker, quest, product,
 }) {
   const [answer, setAnswer] = useState('');
   const [username, setUsername] = useState('');
@@ -29,7 +29,7 @@ function AddAnswer({
       body: answer, name: username, email: email, photos: pics,
     })
       .then(() => {
-        grabAnswers();
+        grabQuestions();
       })
       .then(() => {
         addAnswerClicker();
