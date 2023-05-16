@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Photos from './Photos.jsx';
 
-function AnswerListEntry({ answer, grabAnswers }) {
+function AnswerListEntry({ answer, grabQuestions }) {
   const [ansHelpful, setAnsHelpful] = useState(false);
   const [report, setReport] = useState(false);
 
@@ -20,12 +20,12 @@ function AnswerListEntry({ answer, grabAnswers }) {
 
   const helpfulListener = (e) => {
     e.preventDefault();
-    axios.put('/qa/answers/helpful', { answer_id: answer.answer_id })
+    axios.put('/qa/answers/helpful', { answer_id: answer.id })
       .then((result) => {
         setAnsHelpful(!ansHelpful);
       })
       .then(() => {
-        grabAnswers();
+        grabQuestions();
       })
       .catch((err) => {
         console.log('Error with helpful answer', err);
@@ -34,53 +34,43 @@ function AnswerListEntry({ answer, grabAnswers }) {
 
   const reportListener = (e) => {
     e.preventDefault();
-    axios.put('/qa/answers/report', { answer_id: answer.answer_id })
+    axios.put('/qa/answers/report', { answer_id: answer.id })
       .then((result) => {
         setReport(!report);
       })
       .then(() => {
-        grabAnswers();
+        grabQuestions();
       })
       .catch((err) => {
         console.log('Error reporting answer', err);
       });
   };
 
-  // Invoking grabAnswers in the promises seems to make it render faster? Also less errors.
-  // useEffect(() => {
-  //   grabAnswers();
-  // }, [ansHelpful]);
-
-  // useEffect(() => {
-  //   grabAnswers();
-  // }, []);
-
   return (
-    <div>
-      <div>{answer.body}</div>
-      <span>
-        by
-        {' '}
-        {answer.answerer_name}
-        {' '}
-        {formattedDate}
-        {' '}
-        Helpful?
-        {' '}
-        <button onClick={helpfulListener} type="button" disabled={ansHelpful}>
-          Yes
-          {' '}
-          (
-          {answer.helpfulness}
-          )
-        </button>
-        <button onClick={reportListener} type="button" disabled={report}>
-          {' '}
-          Report
-        </button>
-      </span>
+    <div className="answer-individual">
+      <div className="answer-body">{answer.body}</div>
       <div className="answer-photo-container">
-        {answer.photos.map((photo) => <Photos photo={photo} key={photo.id} />)}
+        {answer.photos.map((photo) => (
+          <Photos photo={photo} key={photo} />
+        ))}
+      </div>
+      <div className="answerer-info">
+        <div className="answer-username">
+          by
+          {' '}
+          {answer.answerer_name}
+        </div>
+        <div className="answer-date">{formattedDate}</div>
+        <div className="answer-buttons">
+          <button onClick={helpfulListener} type="button" disabled={ansHelpful}>
+            Yes (
+            {answer.helpfulness}
+            )
+          </button>
+          <button onClick={reportListener} type="button" disabled={report}>
+            Report
+          </button>
+        </div>
       </div>
     </div>
   );

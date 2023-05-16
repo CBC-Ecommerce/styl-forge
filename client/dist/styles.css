@@ -8,8 +8,18 @@
 .answer {
   display: flex;
 }
+.answer-info {
+  display: flex;
+}
 .answer-list {
   margin-left: 5px;
+}
+/* .answer-individual {
+  margin-top: 10px;
+} */
+.answer-username, .answer-date, .answer-buttons {
+  display: inline-block;
+  margin-right: 10px;
 }
 .answer-photo {
   max-width: 100px;
