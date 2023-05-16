@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/DynamicStar.css';
 
-export default function DynamicStarList() {
+export default function DynamicStarList({ overallResults }) {
   const [rating, setRating] = React.useState(0);
   const [hover, setHover] = React.useState(0);
 
@@ -17,7 +17,7 @@ export default function DynamicStarList() {
             type="button"
             key={currentRating}
             className="dynamic-star"
-            onClick={() => { setRating(currentRating); }}
+            onClick={() => { setRating(currentRating); overallResults(currentRating); }}
             onMouseEnter={() => setHover(currentRating)}
             onMouseLeave={() => setHover(rating)}
           >
