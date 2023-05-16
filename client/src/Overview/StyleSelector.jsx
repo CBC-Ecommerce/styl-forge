@@ -3,7 +3,7 @@ import RenderStyle from './RenderStyle.jsx';
 
 export default function StyleSelector({ styles, selectedStyle, styleSelectClickHandler }) {
   return (
-    <div className="style-selector">
+    <div className="style-selector" data-testid="stylSelect">
       { styles.results.map((style) => (
         <RenderStyle
           style={style}

@@ -33,14 +33,14 @@ export default function Overview({ product, id }) {
   }
 
   return (
-    <div id="Overview">
+    <div id="Overview" data-testid="Overview">
       <div className="image-gallery-box">
         {styles && <ImageGallery selectedStyle={selectedStyle} />}
       </div>
       {/* conditionally render link to reviews if they exist here */}
       <div className="info-and-style-selector">
         <div className="product-info-box">
-          <div className="stars">
+          <div className="stars" data-testid="stars">
             <Stars productId={id} />
             <a href="#main-container" className="review-link">Link to reviews</a>
           </div>
