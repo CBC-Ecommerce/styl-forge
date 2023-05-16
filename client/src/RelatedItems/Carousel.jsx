@@ -33,7 +33,7 @@ function Carousel({
     const data = list?.map((productId) => axios.get(`products/?product_id=${productId}/styles`)
       ?.then((res) => {
         let index = 0;
-        res.data.results.forEach((el, i) => {
+        res.data.results?.forEach((el, i) => {
           if (el['default?']) {
             index = i;
           }

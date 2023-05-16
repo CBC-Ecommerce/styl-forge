@@ -4,14 +4,14 @@ import dateFormat from 'dateformat';
 import StaticStarList from './StaticStarList.jsx';
 import ReviewCardBody from './ReviewCardBody.jsx';
 import ReviewPicture from './ReviewPicture.jsx';
-import Helpfullness from './Helpfullness.jsx';
+import Helpfulness from './Helpfulness.jsx';
 
 export default function ReviewListCard({ review }) {
   if (review.response) {
     var responseNoQuotes = review.response.slice(1, review.response.length - 2);
   }
   return (
-    <div className="review-card" data-testid="card">
+    <div className="review-card" data-testid="r-card">
 
       <div className="card-top-row">
         <StaticStarList ratingInt={review.rating} />
@@ -32,7 +32,7 @@ export default function ReviewListCard({ review }) {
       {review.summary.length < 60 && <div className="summary-title"><strong>{review.summary}</strong></div>}
 
       {review.body.length <= 250 && (
-        <ReviewCardBody short={true} body={review.body} pics={review.photos} />
+        <ReviewCardBody short={true} body={review.body} />
       )}
       {review.body.length > 250 && (
         <ReviewCardBody short={false} body={review.body} />
@@ -57,7 +57,7 @@ export default function ReviewListCard({ review }) {
         </div>
       )}
 
-      <Helpfullness review_id={review.review_id} helpful={review.helpfulness}/>
+      <Helpfulness review_id={review.review_id} helpful={review.helpfulness} />
 
     </div>
   );

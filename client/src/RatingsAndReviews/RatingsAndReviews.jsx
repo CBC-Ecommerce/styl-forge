@@ -1,21 +1,23 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable import/extensions */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import StaticStarList from './StaticStarList.jsx';
 import ReviewList from './ReviewList.jsx';
 import DropDownFilter from './DropDownFilter.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import Characteristics from './Characteristics.jsx';
+import AddReview from './AddReview.jsx';
 import './css/MainContainer.css';
 import './css/RatingSummary.css';
 
 export default function RatingsAndReviews({id, reviewList, char}) {
-  const [listCount, setListCount] = useState(2);
+  const [listCount, setListCount] = React.useState(2);
   const [ratingReturnVal, setRatingReturnVal] = React.useState(0);
-  const [ratingsList, setRatingsList] = useState([]);
-  const [recommendPercent, setRecommendPercent] = useState(0);
-  const [currentList, setCurrentList] = useState([]);
-  const [numReviews, setNumReviews] = useState(0);
+  const [ratingsList, setRatingsList] = React.useState([]);
+  const [recommendPercent, setRecommendPercent] = React.useState(0);
+  const [currentList, setCurrentList] = React.useState([]);
+  const [numReviews, setNumReviews] = React.useState(0);
+  const [addRevModal, setAddRevModal] = React.useState(false);
 
   function increaseReviewsSeen() {
     setListCount(listCount + 2);
@@ -32,6 +34,11 @@ export default function RatingsAndReviews({id, reviewList, char}) {
   function changeList(list) {
     setCurrentList(list.slice());
     resetCount(2);
+  }
+
+  function triggerAddModal() {
+    console.log('modal triggered');
+    setAddRevModal(!addRevModal);
   }
 
   useEffect(() => {
@@ -81,7 +88,14 @@ export default function RatingsAndReviews({id, reviewList, char}) {
                 More Reviews
               </button>
             )}
-            <button type="button" className="add-review">Add Review +</button>
+            <button
+              type="button"
+              className="add-review"
+              onClick={triggerAddModal}
+            >
+              Add Review +
+            </button>
+            {addRevModal && <AddReview id={id} toggleModal={triggerAddModal} />}
           </div>
         </div>
       </div>

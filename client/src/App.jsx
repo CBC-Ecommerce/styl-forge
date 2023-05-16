@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import RelatedProducts from './RelatedItems/RelatedProducts.jsx';
+// import RelatedProducts from './RelatedItems/RelatedProducts.jsx';
 import QnA from './QnA/QnA.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import Overview from './Overview/Overview.jsx';
@@ -37,7 +37,7 @@ function App() {
         {currentProduct.description && <ProductOverview description={currentProduct.description} />}
         <Social />
       </div>
-      <RelatedProducts id={id} setId={setId} />
+      {/* <RelatedProducts id={id} setId={setId} /> */}
       <QnA id={id} product={currentProduct} />
       <RatingsAndReviews id={id} reviewList={reviewList} char={characteristics} />
     </div>

@@ -5,54 +5,43 @@ import AddAnswer from './AddAnswer.jsx';
 
 function QnAListEntry({ quest, product, grabQuestions }) {
   // console.log('This is quest:', quest);
-  const [answers, setAnswers] = useState([]);
   const [ansEntry, setAnsEntry] = useState(2);
-  const [anyMore, setAnyMore] = useState(false);
+  const [anyMore, setAnyMore] = useState(true);
   const [showAdd, setShowAdd] = useState(false);
   const [helpButton, setHelpButton] = useState(false);
   const [reportQuest, setReportQuest] = useState(false);
 
-  const grabAnswers = () => {
-    const config = { params: { page: 1, count: 99999 } };
-    axios.get(`/qa/questions/${quest.question_id}/answers`, config)
-      .then((info) => {
-        setAnswers(info.data.results);
-        // This also works instead of the useEffect for answers.length
-        // if (info.data.results.length <= 2) {
-        //   setAnyMore(false);
-        // }
-      })
-      .catch((error) => {
-        // console.log(error);
-      });
-  };
+  // const grabAnswers = () => {
+  //   const config = { params: { page: 1, count: 99999 } };
+  //   axios.get(`/qa/questions/${quest.question_id}/answers`, config)
+  //     .then((info) => {
+  //       console.log('grabAnswers is invoked');
+  //       setAnswers(info.data.results);
+  //       // This also works instead of the useEffect for answers.length
+  //       // if (info.data.results.length <= 2) {
+  //       //   setAnyMore(false);
+  //       // }
+  //     })
+  //     .catch((error) => {
+  //       // console.log(error);
+  //     });
+  // };
 
   useEffect(() => {
-    // console.log(quest);
-    grabAnswers();
-  }, []);
-
-  useEffect(() => {
-    // console.log(answers);
-    if (answers.length > 2) {
-      setAnyMore(true);
+    if (Object.keys(quest.answers).length <= 2) {
+      setAnyMore(false);
     }
-  }, [answers]);
-
-  // useEffect(() => {
-  //   grabAnswers();
-  // }, [reportQuest]);
+  }, [quest.answers]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setAnsEntry(answers.length);
+    setAnsEntry(Object.keys(quest.answers).length);
     setAnyMore(false);
   };
 
   const addAnswerClicker = () => {
     setShowAdd(!showAdd);
   };
-  // console.log(typeof quest.question_id);
 
   const questionHelpful = (e) => {
     e.preventDefault();
@@ -65,7 +54,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
         grabQuestions();
       })
       .catch((error) => {
-        console.log(error);
+        console.log('Error marking as helpful', error);
       });
     // setHelpButton(!helpButton);
   };
@@ -106,7 +95,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
           <button onClick={questionReport} className="report-question-button" type="button" disabled={reportQuest}>Report</button>
           <button className="add-answer-button" type="button" onClick={addAnswerClicker}>Add Answer</button>
           <AddAnswer
-            grabAnswers={grabAnswers}
+            grabQuestions={grabQuestions}
             showAdd={showAdd}
             addAnswerClicker={addAnswerClicker}
             quest={quest}
@@ -118,16 +107,12 @@ function QnAListEntry({ quest, product, grabQuestions }) {
         A:
         {' '}
         <div className="answer-list">
-          {answers.slice(0, ansEntry)
-            .map((answer) => (
-              <AnswerListEntry
-                answer={answer}
-                key={answer.answer_id}
-                grabAnswers={grabAnswers}
-              />
-            ))}
+          {Object.keys(quest.answers).slice(0, ansEntry).map((key) => (
+            <AnswerListEntry key={key} answer={quest.answers[key]} grabQuestions={grabQuestions} />
+          ))}
         </div>
       </div>
+
       {anyMore ? (
         <form onSubmit={submitHandler}>
           <input type="submit" value="See More Answers" />

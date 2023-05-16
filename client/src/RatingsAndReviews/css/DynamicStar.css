@@ -1,0 +1,13 @@
+.dynamic-star {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.dynamic-star,
+.off {
+  color: #ABAEB5;
+}
+
+.on {
+  color:rgb(255, 191, 42);
+}

@@ -29,7 +29,7 @@ function CharacteristicsList({ currentProInfo, productInfo }) {
         featuresArr.push(featureObj2);
       }
     });
-    console.log(featuresArr);
+
     setFeatures(featuresArr);
   }
 
