@@ -17,7 +17,7 @@ function QnAList({ quests, product, grabQuestions }) {
   };
 
   return (
-    <div data-testid="QnAList Test">
+    <div className="QnA-List" data-testid="QnAList Test">
       {quests.slice(0, numEntry)
         .map((quest) => (
           <QnAListEntry
@@ -27,14 +27,12 @@ function QnAList({ quests, product, grabQuestions }) {
             grabQuestions={grabQuestions}
           />
         ))}
-      <div>
+      <div className="question-buttons" data-testid="question-buttons">
         {questButton ? null : (
           <form onSubmit={submitHandler}>
             <input type="submit" value="Show More Answered Questions" />
           </form>
         )}
-      </div>
-      <div>
         {questButton ? null : (<button type="button" onClick={allQuestionHandler}>Show All Questions</button>)}
       </div>
     </div>
