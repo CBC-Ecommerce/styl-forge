@@ -12,7 +12,8 @@ import ReviewList from '../RatingsAndReviews/ReviewList.jsx';
 import ReviewCardBody from '../RatingsAndReviews/ReviewCardBody.jsx';
 import ReviewPicture from '../RatingsAndReviews/ReviewPicture.jsx';
 import ReviewListCard from '../RatingsAndReviews/ReviewListCard.jsx';
-import Helpfullness from '../RatingsAndReviews/Helpfullness.jsx';
+import Helpfulness from '../RatingsAndReviews/Helpfulness.jsx';
+import DynamicStarList from '../RatingsAndReviews/DynamicStarList.jsx';
 
 afterEach(cleanup);
 
@@ -212,27 +213,54 @@ describe('Review Modal Popup: Full Resolution Thumbnail', () => {
   });
 });
 
+// DEBUG THIS TEST -------------------------------------------------
 describe('Helpfullness Component', () => {
   test('Should update "Yes" count when helpful is clicked', async () => {
     axios.put = jest.fn().mockResolvedValueOnce({
       data: {
         review_id: 1111,
-        helpful: 3,
+        helpful: 4,
       },
     });
     const setCount = jest.fn();
     jest.spyOn(React, 'useState').mockImplementationOnce((initState) => [initState, setCount]);
 
-    render(<Helpfullness review_id={1111} helpful={3} />);
+    const setClicked = jest.fn();
+    jest.spyOn(React, 'useState').mockImplementationOnce((localStorage) => {
+      localStorage = Storage;
+      Storage.prototype.setItem = jest.fn().mockResolvedValueOnce({
+        data: {
+          count: 4,
+        },
+      });
+      return ([4, setClicked]);
+    });
+
+    render(<Helpfulness review_id={1111} helpful={3} />);
     const yesBtn = screen.getByRole('button', { name: 'Yes (3)' });
 
     fireEvent.click(yesBtn);
-    await waitFor(() => (window.location.reload()));
-    const updatedYes = screen.getByRole('button', { name: 'Yes (4)' });
-    expect(updatedYes).toBeInTheDocument();
-    // expect(setCount).toHaveBeenCalledWith(4);
+    await waitFor(() => {
+      // const updatedYes = screen.getByRole('button', { name: 'Yes (4)' });
+      // expect(updatedYes).toBeInTheDocument();
+      window.location.reload();
+      expect(setCount).toHaveBeenCalledWith(4);
+    });
   });
   // test('Should only be able to mark helpful once, even after page refresh', () => {
 
   // });
+});
+
+describe('Dynamic Start List Component', () => {
+  test('Should send back a user rating input through a callback', () => {
+    const mockCB = jest.fn((rating) => (rating));
+
+    render(<DynamicStarList overallResults={mockCB} />);
+    const stars = screen.getAllByRole('button');
+    fireEvent.click(stars[1]);
+
+    expect(mockCB).toHaveBeenCalledTimes(1);
+    expect(mockCB).toHaveBeenCalledWith(2);
+  });
 });

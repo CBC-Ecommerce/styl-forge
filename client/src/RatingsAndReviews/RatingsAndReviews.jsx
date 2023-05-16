@@ -6,6 +6,7 @@ import ReviewList from './ReviewList.jsx';
 import DropDownFilter from './DropDownFilter.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import Characteristics from './Characteristics.jsx';
+import AddReview from './AddReview.jsx';
 import './css/MainContainer.css';
 import './css/RatingSummary.css';
 
@@ -16,6 +17,7 @@ export default function RatingsAndReviews({id, reviewList, char}) {
   const [recommendPercent, setRecommendPercent] = React.useState(0);
   const [currentList, setCurrentList] = React.useState([]);
   const [numReviews, setNumReviews] = React.useState(0);
+  const [addRevModal, setAddRevModal] = React.useState(false);
 
   function increaseReviewsSeen() {
     setListCount(listCount + 2);
@@ -34,8 +36,12 @@ export default function RatingsAndReviews({id, reviewList, char}) {
     resetCount(2);
   }
 
+  function triggerAddModal() {
+    console.log('modal triggered');
+    setAddRevModal(!addRevModal);
+  }
+
   useEffect(() => {
-    console.log('FIRINGINGIFNGIFNGI');
     const sumOfReviews = reviewList.length;
     const numOfRecommend = reviewList.reduce((accum, review) => (
       review.recommend ? accum + 1 : accum + 0
@@ -46,8 +52,7 @@ export default function RatingsAndReviews({id, reviewList, char}) {
     const onlyRatings = reviewList.map((review) => (review.rating));
     setRatingsList(onlyRatings);
 
-    // resetCount(2);
-    setListCount(2);
+    resetCount(2);
     setCurrentList(reviewList.slice());
 
     setNumReviews(reviewList.length);
@@ -83,7 +88,14 @@ export default function RatingsAndReviews({id, reviewList, char}) {
                 More Reviews
               </button>
             )}
-            <button type="button" className="add-review">Add Review +</button>
+            <button
+              type="button"
+              className="add-review"
+              onClick={triggerAddModal}
+            >
+              Add Review +
+            </button>
+            {addRevModal && <AddReview id={id} toggleModal={triggerAddModal} />}
           </div>
         </div>
       </div>

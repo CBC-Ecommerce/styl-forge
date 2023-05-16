@@ -4,7 +4,7 @@ import dateFormat from 'dateformat';
 import StaticStarList from './StaticStarList.jsx';
 import ReviewCardBody from './ReviewCardBody.jsx';
 import ReviewPicture from './ReviewPicture.jsx';
-import Helpfullness from './Helpfullness.jsx';
+import Helpfulness from './Helpfulness.jsx';
 
 export default function ReviewListCard({ review }) {
   if (review.response) {
@@ -57,7 +57,7 @@ export default function ReviewListCard({ review }) {
         </div>
       )}
 
-      <Helpfullness review_id={review.review_id} helpful={review.helpfulness}/>
+      <Helpfulness review_id={review.review_id} helpful={review.helpfulness} />
 
     </div>
   );

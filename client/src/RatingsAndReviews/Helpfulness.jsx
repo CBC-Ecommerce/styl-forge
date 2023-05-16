@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 
 export default function Helpfullness({ review_id, helpful }) {
   const [count, setCount] = React.useState(helpful);
-  const [clicked, setClicked] = useState(
+  const [clicked, setClicked] = React.useState(
     JSON.parse(localStorage.getItem(`${review_id}`)) || false,
   );
 
