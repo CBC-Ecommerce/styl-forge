@@ -60,7 +60,6 @@ describe('YourOutfitList Component', () => {
       getItem: jest.fn(),
       setItem: jest.fn(),
       removeItem: jest.fn(),
-      clear: jest.fn(),
     };
     global.localStorage = localStorageMock;
     render(<YourOutfitList id={40346} setId={setId} />);
@@ -76,8 +75,11 @@ describe('Card', () => {
     photoURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png',
     category: 'Kicks',
     name: 'Heir Force Ones',
-    id: 40348,
-    features: [],
+    id: 40346,
+    features: [
+      { feature: 'Lenses', value: 'Ultrasheen' },
+      { feature: 'UV Protection', value: null },
+    ],
     original_price: '729.00',
     sale_price: '219.00',
   };
@@ -100,10 +102,9 @@ describe('Card', () => {
     expect(image).toBeInTheDocument();
   });
 
-  // ************** FIX THIS TEST**************
   test('clicking the card will invoke setId function', () => {
     render(<Card id={40346} setId={setId} productInfo={productInfo} related={related} />);
-    const card = screen.getByTestId('card');
+    const card = screen.getByAltText('related product');
     fireEvent.click(card);
     expect(setId).toHaveBeenCalledTimes(1);
   });
@@ -134,6 +135,7 @@ describe('Carousel component', () => {
   const crossClickHandler = jest.fn();
   const setId = jest.fn();
   let related = true;
+
   test('should render a list of 4 cards when related is true', async () => {
     render(<Carousel
       idList={[40346, 40350, 40349, 40348]}
@@ -162,16 +164,16 @@ describe('Carousel component', () => {
   test('should update startIndex and endIndex when right arrow is clicked', () => {
     const setStartIndex = jest.fn();
     jest.spyOn(React, 'useState').mockImplementationOnce((initState) => [initState, setStartIndex]);
-    // render(<Carousel
-    //   idList={[40346, 40350, 40349, 40348, 40351]}
-    //   setId={setId}
-    //   related={related}
-    //   id={40344}
-    //   crossClickHandler={crossClickHandler}
-    // />);
-    // const rightArrow = screen.getByTestId('rightArrow');
-    // fireEvent.click(rightArrow);
-    // expect(setStartIndex).toHaveBeenCalledWith(1);
+    render(<Carousel
+      idList={[40346, 40350, 40349, 40348, 40351]}
+      setId={setId}
+      related={related}
+      id={40344}
+      crossClickHandler={crossClickHandler}
+    />);
+    const rightArrow = screen.getByTestId('rightArrow');
+    fireEvent.click(rightArrow);
+    expect(setStartIndex).toHaveBeenCalledWith(1);
   });
 
   test('axios.get should be called 2*n time where n is the length of idList', async () => {

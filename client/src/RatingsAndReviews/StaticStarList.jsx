@@ -8,7 +8,7 @@ export default function Stars({ productId, ratingInt, returnAvgRating }) {
   useEffect(() => {
     if (productId) {
       axios.get(`/reviews?product_id=${productId}&count=9999`)
-        .then((results) => {
+        ?.then((results) => {
           const ratingSum = results.data.results.reduce((accum, val) => (
             accum + val.rating
           ), 0);
