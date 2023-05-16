@@ -34,9 +34,9 @@ function QnAList({ quests, product, grabQuestions }) {
           </form>
         )}
       </div>
-      {/* <div>
+      <div>
         {questButton ? null : (<button type="button" onClick={allQuestionHandler}>Show All Questions</button>)}
-      </div> */}
+      </div>
     </div>
   );
 }
