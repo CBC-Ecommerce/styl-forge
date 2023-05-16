@@ -11,8 +11,6 @@ export default function AddToCart({ selectedStyle }) {
   // create object of sizes: quantities
   let availableItems = Object.values(skus);
   let availableItemSkus = Object.keys(skus);
-  console.log(skus);
-  console.log(availableItems, availableItemSkus);
   const handleChange = function (e) {
     const index = e.target.selectedIndex;
     const el = e.target.childNodes[index];
@@ -55,7 +53,7 @@ export default function AddToCart({ selectedStyle }) {
           if (availableItems[index].quantity > 0) {
             return <option id={index}>{item.size}</option>;
           } else {
-            return <option disabled>Out of Stock</option>
+            return <option disabled>{item.size} Out of Stock</option>
           }
         })}
       </select>
