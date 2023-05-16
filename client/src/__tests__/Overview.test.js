@@ -1,12 +1,20 @@
-// import all your libraries and path to the component you want to test
+// import all your libraries and path to the component you want to it
 import React from 'react';
 import axios from 'axios';
-import { render, screen } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+  cleanup,
+} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { act } from 'react-dom/test-utils';
 import Overview from '../Overview/Overview.jsx';
-// import * as mocks from '../__mocks__/axios.js';
+import AddToCart from '../Overview/AddToCart.jsx';
+import Carousel from '../Overview/Carousel.jsx';
 
+afterEach(cleanup);
 jest.mock('axios');
 
 const mockProduct = {
@@ -31,65 +39,151 @@ const mockProduct = {
   ],
 };
 
-const mockStyle = {
-  product_id: '40346',
-  results: [
-    {
-      style_id: 240510,
-      name: 'Black',
-      original_price: '40.00',
-      sale_price: null,
-      'default?': true,
-      photos: [{
-        thumbnail_url: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-        url: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-      }],
-    },
-  ],
-};
+// const mockStyle = {
+//   product_id: '40346',
+//   results: [
+//     {
+//       style_id: 240510,
+//       name: 'Black',
+//       original_price: '40.00',
+//       sale_price: null,
+//       'default?': true,
+//       photos: [{
+//         thumbnail_url: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+//         url: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+//       }],
+//     },
+//   ],
+// };
 
-const mockReview = {
-    "product": "40346",
-    "page": 0,
-    "count": 5,
-    "results": [
-        {
-            "review_id": 1279314,
-            "rating": 2,
-            "summary": "summary",
-            "recommend": true,
-            "response": null,
-            "body": "Aidan and Nam were here",
-            "date": "2023-03-27T00:00:00.000Z",
-            "reviewer_name": "Andrew",
-            "helpfulness": 4,
-            "photos": []
-        },
-      ]
-}
-
-describe('Overview', () => {
-  // Unit Test
-
-  it('should include a category', async () => {
-    axios.get.mockImplementation(() => Promise.resolve({ data: mockReview }));
-    await act(async () => {
-      render(<Overview product={mockProduct} id={40346}/>);
+describe('Overview Page', () => {
+  // set mock result of axios request before each it and render Overview component
+  beforeEach(async () => {
+    axios.get = jest.fn().mockResolvedValueOnce({
+      data: {
+        results: [
+          {
+            style_id: 240500,
+            name: 'Forest Green & Black',
+            original_price: 140.00,
+            sale_price: null,
+            photos: [{
+              thumbnail_url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+              url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+            }],
+            skus: [
+              {
+                1394769: {
+                  quantity: 8,
+                  size: 'XS',
+                },
+              },
+            ],
+          },
+        ],
+      },
     });
-    expect(screen.getByText('Pants')).toBeInTheDocument();
+    render(<Overview id={null} product={mockProduct} />);
   });
 
-  // it('should include a title', () => {
-  //   act(() => {
-  //     render(<Overview product={mockProduct} id={40346}/>);
-  //   });
-  //   expect(screen.getByText('Morning Joggers')).toBeInTheDocument();
-  // });
+  it('should render to screen', async () => {
+    expect(screen.getByTestId('Overview')).toBeInTheDocument();
+  });
 
-  // it('should include a price', () => {
-  //   act(() => {
-  //     render(<Overview product={mockProduct} id={40346}/>);
-  //   });
-  //   expect(screen.getByText('$40.00')).toBeInTheDocument();
-  // });
+  it('should show product category', async () => {
+    await waitFor(() => {
+      const overview = screen.getByTestId('Overview');
+      expect(overview).toBeInTheDocument();
+      const category = screen.getByText('Pants');
+      expect(category).toBeInTheDocument();
+    });
+  });
+
+  it('should show product title', async () => {
+    await waitFor(() => {
+      const title = screen.getByText('Morning Joggers');
+      expect(title).toBeInTheDocument();
+    });
+  });
+
+  it('should show product price', async () => {
+    await waitFor(() => {
+      const price = screen.getByTestId('price');
+      expect(price).toBeInTheDocument();
+    });
+  });
+
+  it('should show product star rating', async () => {
+    await waitFor(() => {
+      const stars = screen.getByTestId('stars');
+      expect(stars).toBeInTheDocument();
+    });
+  });
+
+  it('should show image gallery section', async () => {
+    await waitFor(() => {
+      const imgGallery = screen.getByTestId('imgGallery');
+      expect(imgGallery).toBeInTheDocument();
+    });
+  });
+
+  it('should show style selector section', async () => {
+    await waitFor(() => {
+      const stylSelect = screen.getByTestId('stylSelect');
+      expect(stylSelect).toBeInTheDocument();
+    });
+  });
+
+  it('should show add to cart section', async () => {
+    await waitFor(() => {
+      const add2Cart = screen.getByTestId('add2Cart');
+      expect(add2Cart).toBeInTheDocument();
+    });
+  });
+});
+
+describe('Add to cart component', () => {
+  beforeEach(async () => {
+    render(<AddToCart selectedStyle={{
+      skus:
+      {
+        1394769: {
+          quantity: 8,
+          size: 'XS',
+        },
+      },
+    }}
+    />);
+  });
+
+  it('should contain size and quantity dropdowns and an add to cart button', async () => {
+    await waitFor(() => {
+      expect(screen.getByTestId('selectDrop')).toBeInTheDocument();
+      expect(screen.getByTestId('qtyDrop')).toBeInTheDocument();
+      expect(screen.getByTestId('add2CartBtn')).toBeInTheDocument();
+    });
+  });
+
+  it('quantity defaults to 1 for selected size', async () => {
+    const selectDropdown = screen.getByTestId('selectDrop');
+    selectDropdown.value = 'XS';
+    await userEvent.selectOptions(selectDropdown, 'XS');
+    const qtyDropdown = screen.getByTestId('qtyDrop');
+    expect(qtyDropdown.value).toEqual('1');
+  });
+});
+
+describe('Image Carousel component', () => {
+  beforeEach(async () => {
+    render(<Carousel
+      allPics={['https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+      ]}
+      activeImage={0}
+      setActiveImage={0}
+    />);
+  });
+
+  it('should render the carousel', async () => {
+    expect(screen.getByTestId('carousel')).toBeInTheDocument();
+  });
 });
