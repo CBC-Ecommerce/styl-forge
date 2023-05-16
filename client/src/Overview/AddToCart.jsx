@@ -41,7 +41,6 @@ export default function AddToCart({ selectedStyle }) {
         .then((res) => console.log(res))
         .catch((err) => console.log('error:', err.message));
     }
-    console.log(selectedSize, ':', selectedQty);
   };
   return (
     <div className="add-to-cart" data-testid="add2Cart">
