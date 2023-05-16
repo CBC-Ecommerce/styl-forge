@@ -8,7 +8,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
   const [ansEntry, setAnsEntry] = useState(2);
   const [anyMore, setAnyMore] = useState(true);
   const [showAdd, setShowAdd] = useState(false);
-  const [helpButton, setHelpButton] = useState(false);
+  const [helpButton, setHelpButton] = useState(JSON.parse(localStorage.getItem(`${quest.question_id}`)));
   const [reportQuest, setReportQuest] = useState(false);
 
   // const grabAnswers = () => {
@@ -49,6 +49,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
       .then((result) => {
         // console.log(result.data);
         setHelpButton(!helpButton);
+        localStorage.setItem(`${quest.question_id}`, 'true');
       })
       .then(() => {
         grabQuestions();

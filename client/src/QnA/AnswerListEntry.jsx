@@ -4,10 +4,7 @@ import Photos from './Photos.jsx';
 import './style/AnswerListEntry.css';
 
 function AnswerListEntry({ answer, grabQuestions }) {
-  const [ansHelpful, setAnsHelpful] = useState(() => {
-    const saved = localStorage.getItem('helpfulStatus');
-    return saved !== null ? saved : false;
-  });
+  const [ansHelpful, setAnsHelpful] = useState(JSON.parse(localStorage.getItem(`${answer.id}`)));
   const [report, setReport] = useState(false);
 
   const date = new Date(answer.date);
@@ -18,10 +15,6 @@ function AnswerListEntry({ answer, grabQuestions }) {
     day: 'numeric',
 
   };
-  // console.log(answer);
-  useEffect(() => {
-    localStorage.setItem('helpfulStatus', ansHelpful);
-  }, [ansHelpful]);
 
   const formattedDate = date.toLocaleDateString('en-US', options);
 
@@ -30,6 +23,7 @@ function AnswerListEntry({ answer, grabQuestions }) {
     axios.put('/qa/answers/helpful', { answer_id: answer.id })
       .then((result) => {
         setAnsHelpful(!ansHelpful);
+        localStorage.setItem(`${answer.id}`, 'true');
       })
       .then(() => {
         grabQuestions();
