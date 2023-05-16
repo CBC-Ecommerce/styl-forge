@@ -35,12 +35,17 @@ export default function AddToCart({ selectedStyle }) {
       alert('Select a size and quantity');
     } else {
       // make axios request to cart: sku_id = selectedSku, selectedQty as number of requests to send
-      axios.post('cart/', {
-        sku_id: selectedSku,
-      })
-        .then((res) => console.log(res))
-        .catch((err) => console.log('error:', err.message));
+      for (let i = 0; i < selectedQty; i++) {
+        axios.post('cart/', {
+          sku_id: selectedSku,
+        })
+          .then((res) => console.log(res))
+          .catch((err) => console.log('error:', err.message));
+      }
     }
+    // reset selectSize and selectQty
+    setSelectedSize('');
+    setSelectedQty('');
   };
   return (
     <div className="add-to-cart" data-testid="add2Cart">
