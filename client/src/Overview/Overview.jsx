@@ -9,7 +9,7 @@ import ImageGallery from './ImageGallery.jsx';
 import AddToCart from './AddToCart.jsx';
 import './Overview.css';
 
-export default function Overview({ product, id }) {
+export default function Overview({ product, id, reviewList }) {
   const [styles, setStyles] = useState(0);
   const [selectedStyle, setSelectedStyle] = useState(0);
   // get style information for selector
@@ -34,33 +34,34 @@ export default function Overview({ product, id }) {
 
   return (
     <div id="Overview" data-testid="Overview">
+      {styles && (
+      <>
       <div className="image-gallery-box">
-        {styles && <ImageGallery selectedStyle={selectedStyle} />}
+        <ImageGallery selectedStyle={selectedStyle} />
       </div>
-      {/* conditionally render link to reviews if they exist here */}
-      <div className="info-and-style-selector">
-        <div className="product-info-box">
-          <div className="stars" data-testid="stars">
-            <Stars productId={id} />
-            <a href="#main-container" className="review-link">Link to reviews</a>
+        <div className="info-and-style-selector">
+          <div className="product-info-box">
+            <div className="stars" data-testid="stars">
+              <Stars productId={id} />
+              {reviewList.length > 0 && <a href="#main-container" className="review-link">Read all {reviewList.length} reviews</a>}
+            </div>
+            <Category name={product.category} />
+            <Title name={product.name} />
+            {styles && <Price selectedStyle={selectedStyle} />}
           </div>
-          <Category name={product.category} />
-          <Title name={product.name} />
-          {styles && <Price selectedStyle={selectedStyle} />}
-        </div>
-        <div className="style-selector-box">
-          {styles && (
+          <div className="style-selector-box">
             <StyleSelector
               styles={styles}
               selectedStyle={selectedStyle}
               styleSelectClickHandler={styleSelectClickHandler}
             />
-          )}
+          </div>
+          <div className="add-to-cart-box">
+            <AddToCart selectedStyle={selectedStyle} />
+          </div>
         </div>
-        <div className="add-to-cart-box">
-          {styles && <AddToCart selectedStyle={selectedStyle} />}
-        </div>
-      </div>
+      </>
+      )}
     </div>
   );
 }
