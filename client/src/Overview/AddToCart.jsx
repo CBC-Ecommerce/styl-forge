@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function AddToCart({ selectedStyle }) {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQty, setSelectedQty] = useState('');
+  const [selectedSku, setSelectedSku] = useState('');
   const [quantityArray, setQuantityArray] = useState([]);
   const { skus } = selectedStyle;
 
   // create object of sizes: quantities
   let availableItems = Object.values(skus);
-
+  let availableItemSkus = Object.keys(skus);
+  console.log(skus);
+  console.log(availableItems, availableItemSkus);
   const handleChange = function (e) {
     const index = e.target.selectedIndex;
     const el = e.target.childNodes[index];
     const option = el.getAttribute('id');
     let { quantity } = availableItems[option];
     const tempQuantityArray = [];
-
     setSelectedSize(e.target.value);
     setSelectedQty(1);
-    console.log('it got here');
+    setSelectedSku(availableItemSkus[index]);
     quantity = (quantity > 15) ? 15 : quantity;
 
     for (let i = 1; i <= quantity; i++) {
@@ -26,9 +29,23 @@ export default function AddToCart({ selectedStyle }) {
     }
     setQuantityArray(tempQuantityArray);
   };
+
+  const addToCartClicked = function () {
+    if (selectedSize === '') {
+      alert('Select a size and quantity');
+    } else {
+      // make axios request to cart: sku_id = selectedSku, selectedQty as number of requests to send
+      axios.post('cart/', {
+        sku_id: selectedSku,
+      })
+        .then((res) => console.log(res))
+        .catch((err) => console.log('error:', err.message));
+    }
+    console.log(selectedSize, ':', selectedQty);
+  };
   return (
     <div className="add-to-cart" data-testid="add2Cart">
-      <select className="dropdn-btn" value={selectedSize} onChange={handleChange} data-testid="selectDrop">
+      <select className="dropdn-btn" id="sizeDropdown" value={selectedSize} onChange={handleChange} data-testid="selectDrop">
         <option value="" defaultValue>Select Size</option>
         {availableItems.map((item, index) => (
           <option id={index}>{item.size}</option>
@@ -39,10 +56,10 @@ export default function AddToCart({ selectedStyle }) {
           quantityArray.map((quantity) => (
             <option value={quantity}>{quantity}</option>
           ))) : (
-            <option value="" disabled selected>-</option>
+            <option value="" defaultValue>-</option>
         )}
       </select>
-      <button className="add-to-cart-button" type="button" data-testid="add2CartBtn">Add to cart</button>
+      <button className="add-to-cart-button" type="button" data-testid="add2CartBtn" onClick={addToCartClicked}>Add to cart</button>
     </div>
   );
 }
