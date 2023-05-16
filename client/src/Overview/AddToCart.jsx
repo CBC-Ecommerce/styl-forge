@@ -62,7 +62,7 @@ export default function AddToCart({ selectedStyle }) {
           quantityArray.map((quantity) => (
             <option value={quantity}>{quantity}</option>
           ))) : (
-            <option value="" defaultValue>-</option>
+            <option value="-" defaultValue>-</option>
         )}
       </select>
       <button className="add-to-cart-button" type="button" data-testid="add2CartBtn" onClick={addToCartClicked}>Add to cart</button>
