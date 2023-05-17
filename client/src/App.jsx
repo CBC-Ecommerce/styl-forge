@@ -36,6 +36,7 @@ function App() {
         {currentProduct.description && (
           <>
             <ProductOverview
+              slogan={currentProduct.slogan}
               description={currentProduct.description}
               features={currentProduct.features}
             />

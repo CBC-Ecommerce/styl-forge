@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default function ProductOverview({ description, features }) {
+export default function ProductOverview({ slogan, description, features }) {
   return (
     <div className="product-overview">
       <div className="description">
+        <h3 className="product-slogan">{slogan}</h3>
         <p>{description}</p>
       </div>
       <div className="features">
