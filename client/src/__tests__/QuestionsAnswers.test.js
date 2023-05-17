@@ -353,10 +353,25 @@ describe('The QnAListEntry Component', () => {
     },
   ];
   const grabQuestionsMock = jest.fn();
-  test('QnAListEntry to render two questions', () => {
-    const numEntry = 2;
-
-    const { queryAllByTestId } = render(
+  const numEntry = 2;
+  test('QnAListEntry to render two questions', async () => {
+    render(
+      <div>
+        {quests.slice(0, numEntry).map((quest) => (
+          <QnAListEntry
+            quest={quest}
+            key={quest.question_id}
+            product={{}}
+            grabQuestions={grabQuestionsMock}
+          />
+        ))}
+      </div>,
+    );
+    const questionComponents = screen.queryAllByTestId('individual-question-test');
+    expect(questionComponents.length).toBe(numEntry);
+  });
+  test('AddAnswer Modal to popup on click', async () => {
+    render(
       <div>
         {quests.slice(0, numEntry).map((quest) => (
           <QnAListEntry
@@ -369,8 +384,12 @@ describe('The QnAListEntry Component', () => {
       </div>,
     );
 
-    const questionComponents = queryAllByTestId('individual-question-test');
-    expect(questionComponents.length).toBe(numEntry);
+    const button = screen.getByTestId('add-answer-test');
+    fireEvent.click(button);
+
+    await waitFor(() => (screen.getByTestId('addanswer-modal')));
+    const modal = screen.getByTestID('addanswer-modal');
+    expect(modal).toBeInTheDocument();
   });
   // test('Clicking Show More should render more questions', () => {
   //   const numEntry = 2;

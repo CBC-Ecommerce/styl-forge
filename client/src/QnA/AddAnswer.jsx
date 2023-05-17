@@ -60,7 +60,7 @@ function AddAnswer({
   };
 
   return (
-    <div className="qna-modal">
+    <div className="qna-modal" data-testid="addanswer-modal">
       <div className="qna-modal-content">
         <div className="qna-modal-header">
           <h4 className="qna-modal-title">Submit Your Answer</h4>
