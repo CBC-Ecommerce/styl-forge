@@ -93,6 +93,7 @@
   top: 50%;
   left: 0;
   transform: translate(-50%, -50%);
+  z-index: 50;
 }
 
 /* action buttons */
@@ -132,13 +133,12 @@
 .compModal {
   width: 50%;
   min-height: 300px;
-  margin: 20px auto;
+  margin: 100px auto;
   padding: 20px;
   overflow: auto;
   background-color: #fff;
   position: relative;
   border-radius: 8px;
-  /* z-index: 289; */
   position: relative;
 }
 
@@ -149,11 +149,57 @@
   left: 0;
   top: 0;
   position: fixed;
+  z-index: 199;
 }
 
-.comp-table tr td {
-  margin: 0 auto;
+.compModal h4 {
+  font-weight: 400;
+  font-size: 16px;
+  color: #495057;
+  margin: 24px 48px;
+}
+
+.comp-table {
+  margin: 50px auto;
   text-align: center;
-  border: 1px solid;
+  border-collapse: collapse;
 }
 
+.comp-td {
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f1f3f5;
+  border-top: 12px solid #f1f3f5;
+  border-bottom: 12px solid #f1f3f5;
+}
+
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+
+.modal-features {
+  width: 250px;
+}
+
+thead th {
+  background-color: #495057;
+  color: #fff;
+  padding: 6px 12px;
+}
+
+thead th:first-child {
+  border-top-left-radius: 6px;
+}
+
+thead th:last-child {
+  border-top-right-radius: 6px;
+}

@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div data-testid="app">
-      <Overview product={currentProduct} id={id} />
+      <Overview product={currentProduct} id={id} reviewList={reviewList} />
       <div className="product-overview-box">
         {currentProduct.description && <ProductOverview description={currentProduct.description} />}
         <Social />

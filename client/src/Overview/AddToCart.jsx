@@ -18,7 +18,6 @@ export default function AddToCart({ selectedStyle }) {
 
     setSelectedSize(e.target.value);
     setSelectedQty(1);
-    console.log('it got here');
     quantity = (quantity > 15) ? 15 : quantity;
 
     for (let i = 1; i <= quantity; i++) {
@@ -39,7 +38,7 @@ export default function AddToCart({ selectedStyle }) {
           quantityArray.map((quantity) => (
             <option value={quantity}>{quantity}</option>
           ))) : (
-            <option value="" disabled selected>-</option>
+            <option value="-" defaultValue>-</option>
         )}
       </select>
       <button className="add-to-cart-button" type="button" data-testid="add2CartBtn">Add to cart</button>
