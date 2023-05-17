@@ -18,7 +18,7 @@ function QnAList({ quests, product, grabQuestions }) {
   };
 
   return (
-    <div className="QnA-List" data-testid="QnAList Test">
+    <div className="QnA-List-map" data-testid="QnAList Test">
       {quests.slice(0, numEntry)
         .map((quest) => (
           <QnAListEntry

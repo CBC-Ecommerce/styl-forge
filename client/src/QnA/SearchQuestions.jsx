@@ -17,12 +17,9 @@ function SearchQuestions({ quests, filterQuestion }) {
   // };
 
   return (
-    <div>
+    <div className="SearchQuestion" data-testid="SearchQuestionTest">
       Filter Your Search!
-      {/* <form onSubmit={filterSubmitter}> */}
       <input type="text" placeholder="Search Questions" onChange={filterChanger} />
-      {/* <input type="submit" value="Filter" /> */}
-      {/* </form> */}
     </div>
   );
 }
