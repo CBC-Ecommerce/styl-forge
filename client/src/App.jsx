@@ -33,10 +33,17 @@ function App() {
     <div data-testid="app">
       <Overview product={currentProduct} id={id} reviewList={reviewList} />
       <div className="product-overview-box">
-        {currentProduct.description && <ProductOverview description={currentProduct.description} />}
-        <Social />
+        {currentProduct.description && (
+          <>
+            <ProductOverview
+              description={currentProduct.description}
+              features={currentProduct.features}
+            />
+            <Social id={id} />
+          </>
+        )}
       </div>
-      <RelatedProducts id={id} setId={setId} />
+      {/* <RelatedProducts id={id} setId={setId} /> */}
       <QnA id={id} product={currentProduct} />
       <RatingsAndReviews id={id} reviewList={reviewList} char={characteristics} />
     </div>
