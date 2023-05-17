@@ -3,11 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DynamicStarList from './DynamicStarList.jsx';
+import SelectCharacteristics from './SelectCharacteristics.jsx';
 
 export default function AddReview({id, toggleModal}) {
   const [prodName, setProdName] = useState('');
   const [overallRate, setOverallRate] = useState(0);
   const [rateMsg, setRateMsg] = useState('');
+  const [prodCharac, setProdCharac] = useState([]);
+  const [characObj, setCharacObj] = useState({});
 
   function overallResults(rating) {
     setOverallRate(rating);
@@ -30,7 +33,14 @@ export default function AddReview({id, toggleModal}) {
   useEffect(() => {
     axios.get(`/products?product_id=${id}`)
       .then((results) => { setProdName(results.data.name); })
-      .catch((err) => { throw err; });
+      .catch((err) => { console.log('Error in fetching product information ', err); });
+    axios.get(`/reviews/meta?product_id=${id}`)
+      .then((results) => {
+        const characArray = Array.from(Object.keys(results.data.characteristics));
+        setProdCharac(characArray);
+        setCharacObj(results.data.characteristics);
+      })
+      .catch((err) => { console.log('Error in fetching product characteristics ', err); });
   }, [id]);
 
   return (
@@ -51,15 +61,16 @@ export default function AddReview({id, toggleModal}) {
           <div className="would-recommend">
             <div className="recommend-label">Do you recommend this product?</div>
             <label>
-              <input type="radio" name="" value="true" defaultChecked={true} />
+              <input type="radio" name="recommend" value="true" />
               Yes
             </label>
             <label>
-              <input type="radio" name="" value="false" />
+              <input type="radio" name="recommend" value="false" />
               No
             </label>
             <div className="dividing-bar" />
           </div>
+          <SelectCharacteristics prodCharac={prodCharac} characObj={characObj} />
         </form>
       </div>
 

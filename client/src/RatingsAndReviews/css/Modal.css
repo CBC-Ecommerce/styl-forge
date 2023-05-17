@@ -83,3 +83,32 @@
 .recommend-label {
   margin-bottom: 10px;
 }
+
+.characteristic-selection-container {
+  display: flex;
+  flex-direction: column;
+}
+.char-meaning-row {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+}
+.single-characteristic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 15px;
+}
+.characteristic-title {
+  margin: 10px 0;
+}
+
+.single-characteristic label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.single-characteristic input {
+  margin: 0 5px;
+}
