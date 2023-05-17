@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CharacRadioRow({ meaning, usrRating, id }) {
+export default function CharacRadioRow({ meaning, usrRating, name, id }) {
   const [selectedButton, setSelectedButton] = React.useState(0);
 
   function handleClick(e, characId) {
@@ -19,9 +19,8 @@ export default function CharacRadioRow({ meaning, usrRating, id }) {
           id={meaning + usrRating}
           type="radio"
           value={usrRating}
-          name="characteristic-select"
+          name={name}
           defaultChecked={usrRating === selectedButton}
-          // onChange={(e) => { handleClick(e, characObj[charac].id); }}
           onChange={(event) => { handleClick(event, id); }}
         />
       </label>

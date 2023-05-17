@@ -15,6 +15,7 @@ export default function CharacteristicRow({ row }) {
             <CharacRadioRow
               meaning={meaning}
               usrRating={usrRating}
+              name={row.charac}
               id={row.id}
               key={usrRating}
             />

@@ -6,6 +6,7 @@ import CharacteristicRow from './CharacteristicRow.jsx';
 // because POST accepts a single object of all charac as { id: value, id: value }
 // but we need to render different rows of radio buttons and each row needs their own state
 
+// prodCharac is an array of all charac associated with product ['Fit', ]
 export default function SelectCharacteristics({ prodCharac, characObj }) {
   const radioRow = prodCharac.map((charac) => {
     const characMetaData = {};

@@ -64,7 +64,7 @@ export default function AddReview({id, toggleModal}) {
               <input type="radio" name="recommend" value="true" id="recommend-yes" />
               Yes
             </label>
-            <label htmlFor="recommend-nos">
+            <label htmlFor="recommend-no">
               <input type="radio" name="recommend" value="false" id="recommend-no" />
               No
             </label>
