@@ -60,12 +60,12 @@ export default function AddReview({id, toggleModal}) {
           </div>
           <div className="would-recommend">
             <div className="recommend-label">Do you recommend this product?</div>
-            <label>
-              <input type="radio" name="recommend" value="true" />
+            <label htmlFor="recommend-yes">
+              <input type="radio" name="recommend" value="true" id="recommend-yes" />
               Yes
             </label>
-            <label>
-              <input type="radio" name="recommend" value="false" />
+            <label htmlFor="recommend-nos">
+              <input type="radio" name="recommend" value="false" id="recommend-no" />
               No
             </label>
             <div className="dividing-bar" />
