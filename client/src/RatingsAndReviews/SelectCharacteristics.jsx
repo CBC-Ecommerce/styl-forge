@@ -1,5 +1,6 @@
+/* eslint-disable import/extensions */
 /* eslint-disable react/jsx-no-bind */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CharacteristicRow from './CharacteristicRow.jsx';
 // in the end, want an array of objects that looks like:
 // [ { id: characID, charac: 'Fit', rateMsg: Array(5), value: userInputVal }, {...}, {...} ]
@@ -7,7 +8,16 @@ import CharacteristicRow from './CharacteristicRow.jsx';
 // but we need to render different rows of radio buttons and each row needs their own state
 
 // prodCharac is an array of all charac associated with product ['Fit', ]
-export default function SelectCharacteristics({ prodCharac, characObj }) {
+export default function SelectCharacteristics({ prodCharac, characObj, makeCharacObj }) {
+  // make a state in here that will be the useEffect that triggers MakeCharacObj: every time we get a new row result, call makeCharacObj with that row
+  const [newRow, setNewRow] = useState({});
+
+  useEffect(() => {
+    if (JSON.stringify(newRow) !== '{}') {
+      makeCharacObj(newRow);
+    }
+  }, [newRow]);
+
   const radioRow = prodCharac.map((charac) => {
     const characMetaData = {};
     const ratingMsg = [];
@@ -31,12 +41,20 @@ export default function SelectCharacteristics({ prodCharac, characObj }) {
     return characMetaData;
   });
 
+  function updateRow(index, value) {
+    radioRow[index].value = value;
+    const formId = radioRow[index].id;
+    const formVal = radioRow[index].value;
+    const formResults = { [formId]: formVal };
+    setNewRow(formResults);
+  }
+
   // make this whole object a state?
-  console.log('THE ROW OBJECT IS ', radioRow);
+  // console.log('THE ROW OBJECT IS ', radioRow);
   return (
     <div className="characteristic-selection-container">
-      {radioRow.map((row) => (
-        <CharacteristicRow row={row} key={row.id} />
+      {radioRow.map((row, i) => (
+        <CharacteristicRow row={row} i={i} updateRow={updateRow} key={row.id} />
       ))}
     </div>
   );

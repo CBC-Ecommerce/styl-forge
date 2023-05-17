@@ -1,14 +1,12 @@
 import React from 'react';
 
-export default function CharacRadioRow({ meaning, usrRating, name, id }) {
+export default function CharacRadioRow({ meaning, usrRating, name, updateRow, i }) {
   const [selectedButton, setSelectedButton] = React.useState(0);
 
-  function handleClick(e, characId) {
+  function handleClick(e) {
     const { value } = e.target;
     setSelectedButton(Number(value));
-
-    console.log(`CharacId: ${characId} and Value: ${value}`);
-    // send this value back to the parent to record.
+    updateRow(i, Number(value));
   }
   return (
     <div className="single-characteristic">
@@ -21,7 +19,7 @@ export default function CharacRadioRow({ meaning, usrRating, name, id }) {
           value={usrRating}
           name={name}
           defaultChecked={usrRating === selectedButton}
-          onChange={(event) => { handleClick(event, id); }}
+          onChange={(e) => { handleClick(e); }}
         />
       </label>
     </div>

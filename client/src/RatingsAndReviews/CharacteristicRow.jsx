@@ -4,7 +4,8 @@ import CharacRadioRow from './CharacRadioRow.jsx';
 
 // Example of row object:
 // {id: 135224, charac: 'Fit', ratingMsg: Array(5), value: 0}
-export default function CharacteristicRow({ row }) {
+// update Row takes in a charac and a value
+export default function CharacteristicRow({ row, i, updateRow }) {
   return (
     <>
       <div className="characteristic-title">{row.charac}</div>
@@ -16,7 +17,8 @@ export default function CharacteristicRow({ row }) {
               meaning={meaning}
               usrRating={usrRating}
               name={row.charac}
-              id={row.id}
+              updateRow={updateRow}
+              i={i}
               key={usrRating}
             />
           );

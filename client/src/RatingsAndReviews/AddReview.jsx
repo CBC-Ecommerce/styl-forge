@@ -7,14 +7,13 @@ import SelectCharacteristics from './SelectCharacteristics.jsx';
 
 export default function AddReview({id, toggleModal}) {
   const [prodName, setProdName] = useState('');
-  const [overallRate, setOverallRate] = useState(0);
   const [rateMsg, setRateMsg] = useState('');
   const [prodCharac, setProdCharac] = useState([]);
   const [characObj, setCharacObj] = useState({});
-
-  function overallResults(rating) {
-    setOverallRate(rating);
-  }
+  // states for form submission:
+  const [overallRate, setOverallRate] = useState(0);
+  const [recommendRes, setRecommendRes] = useState(false);
+  const [characResults, setCharacResults] = useState({});
 
   useEffect(() => {
     if (overallRate === 1) {
@@ -43,6 +42,23 @@ export default function AddReview({id, toggleModal}) {
       .catch((err) => { console.log('Error in fetching product characteristics ', err); });
   }, [id]);
 
+  function overallResults(rating) {
+    setOverallRate(rating);
+  }
+
+  function recommendClick(e) {
+    if (e.target.value === 'yes') {
+      setRecommendRes(true);
+    } else {
+      setRecommendRes(false);
+    }
+  }
+
+  function makeCharacObj(objRow) {
+    const resultClone = Object.assign(characResults, objRow);
+    setCharacResults(resultClone);
+  }
+
   return (
     <div className="screen-overlay">
       <div className="modal-add-review">
@@ -56,21 +72,37 @@ export default function AddReview({id, toggleModal}) {
             <div className="overall-label">Overall Rating</div>
             <DynamicStarList overallResults={overallResults} />
             {overallRate > 0 && <span className="star-selected-msg">{rateMsg}</span>}
-            <div className="dividing-bar" />
           </div>
           <div className="would-recommend">
-            <div className="recommend-label">Do you recommend this product?</div>
-            <label htmlFor="recommend-yes">
-              <input type="radio" name="recommend" value="true" id="recommend-yes" />
+            <div className="recommend-title">Do you recommend this product?</div>
+            <label htmlFor="recommend-yes" className="recom-label">
+              <input
+                type="radio"
+                name="recommend"
+                value="yes"
+                id="recommend-yes"
+                className="recom-radio"
+                onChange={(e) => (recommendClick(e))}
+              />
               Yes
             </label>
-            <label htmlFor="recommend-no">
-              <input type="radio" name="recommend" value="false" id="recommend-no" />
+            <label htmlFor="recommend-no" className="recom-label">
+              <input
+                type="radio"
+                name="recommend"
+                value="no"
+                id="recommend-no"
+                className="recom-radio"
+                onChange={(e) => (recommendClick(e))}
+              />
               No
             </label>
-            <div className="dividing-bar" />
           </div>
-          <SelectCharacteristics prodCharac={prodCharac} characObj={characObj} />
+          <SelectCharacteristics
+            prodCharac={prodCharac}
+            characObj={characObj}
+            makeCharacObj={makeCharacObj}
+          />
         </form>
       </div>
 
