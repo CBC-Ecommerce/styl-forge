@@ -20,6 +20,7 @@ export default function AddToCart({ selectedStyle }) {
     setSelectedSize(e.target.value);
     setSelectedQty(1);
     setSelectedSku(availableItemSkus[index]);
+
     quantity = (quantity > 15) ? 15 : quantity;
 
     for (let i = 1; i <= quantity; i++) {
@@ -62,7 +63,7 @@ export default function AddToCart({ selectedStyle }) {
           quantityArray.map((quantity) => (
             <option value={quantity}>{quantity}</option>
           ))) : (
-            <option value="" defaultValue>-</option>
+            <option value="-" defaultValue>-</option>
         )}
       </select>
       <button className="add-to-cart-button" type="button" data-testid="add2CartBtn" onClick={addToCartClicked}>Add to cart</button>
