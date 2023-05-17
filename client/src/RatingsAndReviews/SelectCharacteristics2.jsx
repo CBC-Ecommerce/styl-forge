@@ -1,18 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 export default function SelectCharacteristics({ prodCharac, characObj }) {
-  const [selectedButton, setSelectedButton] = React.useState('');
+  const [selectedButton, setSelectedButton] = React.useState(0);
 
   const isRadioSelected = (value) => (value === selectedButton);
 
   function handleClick(e, id) {
     e.preventDefault();
     const { value } = e.target;
-    setSelectedButton(e.target.value);
-    console.log('ID IS ', id);
-    console.log('VALUE IS ', value);
+    console.log('passed value is', value);
+    setSelectedButton(Number(value));
+
+    // console.log('ID IS ', id);
+    // console.log('VALUE IS ', value);
     // send this value back to the parent to record.
   }
+  // split components into rows that share a state.
+  // renderRow => row (has state) => items
   return (
     <div>
       {prodCharac.map((charac) => {
@@ -46,9 +50,9 @@ export default function SelectCharacteristics({ prodCharac, characObj }) {
                         type="radio"
                         value={rating}
                         name="characteristic-select"
-                        // checked={isRadioSelected(rating)}
-                        checked={selectedButton === rating}
-                        onChange={(e) => { handleClick(e, characObj[charac].id); }}
+                        checked={isRadioSelected(rating)}
+                        // onChange={(e) => { handleClick(e, characObj[charac].id); }}
+                        onClick={(e) => { handleClick(e, characObj[charac].id); }}
                       />
                     </label>
                   </div>
