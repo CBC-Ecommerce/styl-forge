@@ -240,11 +240,10 @@ describe('The QnA Component', () => {
     expect(QnAListRender).toBeInTheDocument();
   });
   // test('Renders two questions at start', () => {
-  //   const IndQuestion = screen.getByTestId('individual-question-test');
+  //   render(<QnA id={id} product={{}} />);
+  //   const IndQuestion = screen.getAllByTestId('individual-question-test');
   //   expect(IndQuestion.length).toBe(2);
   // });
-  // Why doesn't this render furter components?
-  // I think to render the subcomponents, I need to specify it and also the props along with them.
 });
 describe('The QnAList Component', () => {
   const quests = [
