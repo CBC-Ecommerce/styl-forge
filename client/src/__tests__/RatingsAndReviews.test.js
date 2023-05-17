@@ -15,6 +15,7 @@ import ReviewListCard from '../RatingsAndReviews/ReviewListCard.jsx';
 import Helpfulness from '../RatingsAndReviews/Helpfulness.jsx';
 import DynamicStarList from '../RatingsAndReviews/DynamicStarList.jsx';
 import ProductFactor from '../RatingsAndReviews/ProductFactor.jsx';
+import DropDownFilter from '../RatingsAndReviews/DropDownFilter.jsx';
 
 afterEach(cleanup);
 
@@ -280,5 +281,97 @@ describe('Product Factor Component', () => {
   test('Should render correct icon placement when given different average ratings', () => {
     const { getByTestId } = render(<ProductFactor factor="Size" avg={2} />);
     expect(getByTestId('arrow')).toHaveStyle('left: 40%');
+  });
+});
+
+describe('DropDown Filter Component', () => {
+  test('Should default to viewing "Relevance"', () => {
+    const exampleList = [
+      {
+        review_id: 651447,
+        rating: 3,
+        summary: 'Tempore ipsa officiis laudantium enim rerum delectus quo tenetur.',
+        body: 'Non architecto optio et architecto eos dolore. Veniam rerum non sunt',
+        date: '2022-04-15T00:00:00.000Z',
+        reviewer_name: 'MadeUpUser223',
+        helpfulness: 14,
+        photos: [],
+      },
+      {
+        review_id: 651446,
+        rating: 5,
+        summary: 'Tempore ipsa officiis laudantium enim rerum delectus quo tenetur.',
+        body: 'Non architecto optio et architecto eos dolore. Veniam rerum non sunt',
+        date: '2023-04-15T00:00:00.000Z',
+        reviewer_name: 'MadeUpUser224',
+        helpfulness: 17,
+        photos: [],
+      },
+      {
+        review_id: 651448,
+        rating: 2,
+        summary: 'Tempore ipsa officiis laudantium enim rerum delectus quo tenetur.',
+        body: 'Non architecto optio et architecto eos dolore. Veniam rerum non sunt',
+        date: '2023-04-15T00:00:00.000Z',
+        reviewer_name: 'Nakia_Boyle98',
+        helpfulness: 14,
+        photos: [],
+      },
+      {
+        review_id: 651449,
+        rating: 5,
+        summary: 'Excepturi vitae fugit quasi culpa eum debitis',
+        body: 'Reiciendis et molestias et rerum. Et eos suscipit dolorum ea nemo ad iure atque id.',
+        date: '2021-02-25T00:00:00.000Z',
+        reviewer_name: 'Kasandra.Kuphal7',
+        helpfulness: 29,
+        photos: [],
+      },
+    ];
+    const relevantExample = [
+      {
+        review_id: 651449,
+        rating: 5,
+        summary: 'Excepturi vitae fugit quasi culpa eum debitis',
+        body: 'Reiciendis et molestias et rerum. Et eos suscipit dolorum ea nemo ad iure atque id.',
+        date: '2021-02-25T00:00:00.000Z',
+        reviewer_name: 'Kasandra.Kuphal7',
+        helpfulness: 29,
+        photos: [],
+      },
+      {
+        review_id: 651446,
+        rating: 5,
+        summary: 'Tempore ipsa officiis laudantium enim rerum delectus quo tenetur.',
+        body: 'Non architecto optio et architecto eos dolore. Veniam rerum non sunt',
+        date: '2023-04-15T00:00:00.000Z',
+        reviewer_name: 'MadeUpUser224',
+        helpfulness: 17,
+        photos: [],
+      },
+      {
+        review_id: 651448,
+        rating: 2,
+        summary: 'Tempore ipsa officiis laudantium enim rerum delectus quo tenetur.',
+        body: 'Non architecto optio et architecto eos dolore. Veniam rerum non sunt',
+        date: '2023-04-15T00:00:00.000Z',
+        reviewer_name: 'Nakia_Boyle98',
+        helpfulness: 14,
+        photos: [],
+      },
+      {
+        review_id: 651447,
+        rating: 3,
+        summary: 'Tempore ipsa officiis laudantium enim rerum delectus quo tenetur.',
+        body: 'Non architecto optio et architecto eos dolore. Veniam rerum non sunt',
+        date: '2022-04-15T00:00:00.000Z',
+        reviewer_name: 'MadeUpUser223',
+        helpfulness: 14,
+        photos: [],
+      },
+    ];
+    const changeList = jest.fn();
+    render(<DropDownFilter currentList={exampleList} changeList={changeList} numReviews={4} />);
+    expect(changeList).toHaveBeenCalledWith(relevantExample);
   });
 });
