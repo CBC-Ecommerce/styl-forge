@@ -145,21 +145,210 @@ describe('QnA Component', () => {
     const qnaListRender = screen.getByTestId('QnAList Test');
     expect(qnaListRender).toBeInTheDocument();
   });
-  test('grabQuestions should invoke setQuests and change state', async () => {
-    render(<QnA id={40444} product={{}} />)
-    const mockedResponse = {
-      data: {
-        results: [
-          {
-            question_id: 1,
-            question_body: 'Example question',
-            // ... other properties
-          },
-        ],
-      },
-    };
-    const getSpy = jest.spyOn(axios, 'get').mockResolvedValue(mockedResponse);
 
-    fireEvent.click()
+  describe('The QnAList Component', () => {
+    test('QnAListEntry should render', async () => {
+      const numEntry = 2;
+      const grabQuestionsMock = jest.fn();
+      const quests = [
+        {
+          question_id: 329987,
+          question_body: 'Tempore dolores quis molestiae.',
+          question_date: '2021-03-04T00:00:00.000Z',
+          asker_name: 'Kasey.Lebsack',
+          question_helpfulness: 24,
+          reported: false,
+          answers: {
+            3082858: {
+              id: 3082858,
+              body: 'Ullam ad error tempora cumque.',
+              date: '2021-01-27T00:00:00.000Z',
+              answerer_name: 'Ana.Kuhic',
+              helpfulness: 10,
+              photos: [
+                'https://images.unsplash.com/photo-1541006008768-d181e7f9f3d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1568&q=80',
+              ],
+            },
+            3082859: {
+              id: 3082859,
+              body: 'Quo qui dolorem reiciendis ea nihil.',
+              date: '2020-09-18T00:00:00.000Z',
+              answerer_name: 'Karina_Sporer',
+              helpfulness: 14,
+              photos: [],
+            },
+            3082860: {
+              id: 3082860,
+              body: 'Iure natus a rerum est incidunt.',
+              date: '2021-02-08T00:00:00.000Z',
+              answerer_name: 'Karina.Toy10',
+              helpfulness: 2,
+              photos: [],
+            },
+          },
+        },
+        {
+          question_id: 329978,
+          question_body: 'Sit veritatis temporibus.',
+          question_date: '2021-07-14T00:00:00.000Z',
+          asker_name: 'Annamae_Waters',
+          question_helpfulness: 24,
+          reported: false,
+          answers: {
+            3082786: {
+              id: 3082786,
+              body: 'Maxime placeat sunt quis ipsa rerum corrupti.',
+              date: '2020-12-20T00:00:00.000Z',
+              answerer_name: 'Devyn.Thiel50',
+              helpfulness: 14,
+              photos: [],
+            },
+            3082787: {
+              id: 3082787,
+              body: 'Quis quaerat cumque.',
+              date: '2021-07-20T00:00:00.000Z',
+              answerer_name: 'Constantin_Corkery94',
+              helpfulness: 5,
+              photos: [
+                'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2760&q=80',
+                'https://images.unsplash.com/photo-1525141741567-f89ef016dfeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
+              ],
+            },
+          },
+        },
+      ];
+      render(
+        <div>
+          {quests.slice(0, numEntry).map((quest) => (
+            <QnAListEntry
+              quest={quest}
+              key={quest.question_id}
+              product={{}}
+              grabQuestions={grabQuestionsMock}
+            />
+          ))}
+        </div>,
+      );
+      const QnALE = await screen.getAllByTestId('individual-question-test');
+      expect(QnALE.length).toBe(2);
+    });
   });
+  describe('The QnAListEntry Component', () => {
+    test('AddAnswer Modal renders', async () => {
+      const grabQuestionsMock = jest.fn();
+      const addAnswerClickerMock = jest.fn();
+      const quest = {
+        question_id: 329978,
+        question_body: 'Sit veritatis temporibus.',
+        question_date: '2021-07-14T00:00:00.000Z',
+        asker_name: 'Annamae_Waters',
+        question_helpfulness: 24,
+        reported: false,
+        answers: {
+          3082786: {
+            id: 3082786,
+            body: 'Maxime placeat sunt quis ipsa rerum corrupti.',
+            date: '2020-12-20T00:00:00.000Z',
+            answerer_name: 'Devyn.Thiel50',
+            helpfulness: 14,
+            photos: [],
+          },
+          3082787: {
+            id: 3082787,
+            body: 'Quis quaerat cumque.',
+            date: '2021-07-20T00:00:00.000Z',
+            answerer_name: 'Constantin_Corkery94',
+            helpfulness: 5,
+            photos: [
+              'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2760&q=80',
+              'https://images.unsplash.com/photo-1525141741567-f89ef016dfeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
+            ],
+          },
+        },
+      };
+      render(<AddAnswer
+        showAdd
+        addAnswerClicker={addAnswerClickerMock}
+        quest={quest}
+        product={{ name: 'running shoes' }}
+      />);
+
+      const AddAnswerRender = await screen.getByTestId('addanswer-modal');
+      expect(AddAnswerRender).toBeInTheDocument();
+    });
+    test('The AnswerListEntry component renders', async () => {
+      const ansEntry = 2;
+      const grabQuestionsMock = jest.fn();
+      const quest = {
+        question_id: 329978,
+        question_body: 'Sit veritatis temporibus.',
+        question_date: '2021-07-14T00:00:00.000Z',
+        asker_name: 'Annamae_Waters',
+        question_helpfulness: 24,
+        reported: false,
+        answers: {
+          3082786: {
+            id: 3082786,
+            body: 'Maxime placeat sunt quis ipsa rerum corrupti.',
+            date: '2020-12-20T00:00:00.000Z',
+            answerer_name: 'Devyn.Thiel50',
+            helpfulness: 14,
+            photos: [],
+          },
+          3082787: {
+            id: 3082787,
+            body: 'Quis quaerat cumque.',
+            date: '2021-07-20T00:00:00.000Z',
+            answerer_name: 'Constantin_Corkery94',
+            helpfulness: 5,
+            photos: [
+              'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2760&q=80',
+              'https://images.unsplash.com/photo-1525141741567-f89ef016dfeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
+            ],
+          },
+        },
+      };
+      render(
+        <div>
+          {Object.keys(quest.answers).slice(0, ansEntry).map((key) => (
+            <AnswerListEntry key={key} answer={quest.answers[key]} grabQuestions={grabQuestionsMock} />
+          ))}
+        </div>,
+      );
+      const ale = await screen.getAllByTestId('answer-individual-test');
+      expect(ale.length).toBe(2);
+    });
+    test('Expect Photos subcomponent to render', async () => {
+      const photos = [
+        'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2760&q=80',
+        'https://images.unsplash.com/photo-1525141741567-f89ef016dfeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
+      ];
+      render(
+        <div className="answer-photo-container">
+          {photos.map((photo) => (
+            <Photos photo={photo} key={photo} />
+          ))}
+        </div>,
+      );
+      const photoRender = await screen.getAllByTestId('photo-test');
+      expect(photoRender.length).toBe(2);
+    });
+  });
+  // test('grabQuestions should invoke setQuests and change state', async () => {
+  //   render(<QnA id={40444} product={{}} />)
+  //   const mockedResponse = {
+  //     data: {
+  //       results: [
+  //         {
+  //           question_id: 1,
+  //           question_body: 'Example question',
+  //           // ... other properties
+  //         },
+  //       ],
+  //     },
+  //   };
+  //   const getSpy = jest.spyOn(axios, 'get').mockResolvedValue(mockedResponse);
+
+  //   fireEvent.click()
+  // });
 });

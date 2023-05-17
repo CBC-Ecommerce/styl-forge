@@ -48,7 +48,7 @@ function AnswerListEntry({ answer, grabQuestions }) {
   };
 
   return (
-    <div className="answer-individual">
+    <div className="answer-individual" data-testid="answer-individual-test">
       <div className="answer-body">{answer.body}</div>
       <div className="answer-photo-container">
         {answer.photos.map((photo) => (
