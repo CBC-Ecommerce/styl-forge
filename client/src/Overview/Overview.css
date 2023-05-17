@@ -312,15 +312,17 @@
 
 .close-expanded-view {
   position: absolute;
-  background: none;
+  border-radius: .25rem;
   top: 1rem;
   right: 3rem;
+  height: 36px;
+  width: 36px;
 }
 
 .close-expanded-view:hover {
   cursor: pointer;
 }
 
-#zoomed-image{
+.zoomed-image{
 
 }
