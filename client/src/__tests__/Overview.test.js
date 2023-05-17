@@ -83,7 +83,7 @@ describe.only('Overview Page', () => {
         ],
       },
     });
-    render(<Overview id={null} product={mockProduct} />);
+    render(<Overview id={null} product={mockProduct} reviewList={[0, 1]}/>);
   });
 
   it('should render to screen', async () => {
@@ -173,6 +173,8 @@ describe.only('Add to cart component', () => {
     qtyDropdown = screen.getByTestId('qtyDrop');
     expect(qtyDropdown.value).toEqual('1');
   });
+  // add tests to check if select size button functions as expected
+  // also add test for add to cart button functionality
 });
 
 describe.only('Image Carousel component', () => {
@@ -188,4 +190,6 @@ describe.only('Image Carousel component', () => {
   it('should render the carousel', async () => {
     expect(screen.getByTestId('carousel')).toBeInTheDocument();
   });
+  // add test for zoom in functionality
+  // add test for button functionality including prev, next, and thumbnails
 });

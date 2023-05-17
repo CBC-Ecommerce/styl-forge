@@ -106,8 +106,9 @@
   height: 100%;
   width: 100%;
   display: inline-flex;
-  justify-content: flex-start;
   overflow: hidden;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .image-gallery img{
@@ -237,11 +238,6 @@
   width: 20%;
 }
 
-/* .dropdn > .dropdn-btn:focus,
-.dropdn-btn:hover {
-  color: black;
-} */
-
 .dropdn {
   position: relative;
 
@@ -267,6 +263,64 @@
   pointer-events: auto;
 }
 
-.data-grid {
+.screen-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  height: 100vh;
+  width: 100vw;
+}
+
+.expanded-view-modal {
+
+}
+
+.expanded-view-modal:hover {
+  cursor: crosshair;
+}
+
+.zoom-view {
+  position: absolute;
+  top: -75%;
+  left: -75%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  object-fit: cover;
+  height: 250vh;
+  width: 250vw;
+  overflow: scroll;
+}
+
+.zoom-view:hover {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="30" style="font-size: 20px;" color="white"><text y="15">-</text></svg>'), auto;
+
+}
+
+.expanded-button {
+  z-index: 4;
+}
+
+.close-expanded-view {
+  position: absolute;
+  background: none;
+  top: 1rem;
+  right: 3rem;
+}
+
+.close-expanded-view:hover {
+  cursor: pointer;
+}
+
+#zoomed-image{
 
 }

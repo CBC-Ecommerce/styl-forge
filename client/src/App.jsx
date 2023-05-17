@@ -29,7 +29,6 @@ function App() {
       .then((results) => { setCharacteristics(results.data.characteristics); })
       .catch((err) => { throw err; });
   }, [id]);
-
   return (
     <div data-testid="app">
       <Overview product={currentProduct} id={id} reviewList={reviewList} />
