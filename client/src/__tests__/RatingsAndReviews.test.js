@@ -4,7 +4,7 @@
 import React from 'react';
 import axios from 'axios';
 // eslint-disable-next-line object-curly-newline
-import { render, cleanup, fireEvent, screen, waitFor } from '@testing-library/react';
+import { render, cleanup, fireEvent, screen, waitFor, within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import StaticStarList from '../RatingsAndReviews/StaticStarList';
 import RatingsAndReviews from '../RatingsAndReviews/RatingsAndReviews.jsx';
@@ -14,6 +14,7 @@ import ReviewPicture from '../RatingsAndReviews/ReviewPicture.jsx';
 import ReviewListCard from '../RatingsAndReviews/ReviewListCard.jsx';
 import Helpfulness from '../RatingsAndReviews/Helpfulness.jsx';
 import DynamicStarList from '../RatingsAndReviews/DynamicStarList.jsx';
+import ProductFactor from '../RatingsAndReviews/ProductFactor.jsx';
 
 afterEach(cleanup);
 
@@ -216,7 +217,7 @@ describe('Review Modal Popup: Full Resolution Thumbnail', () => {
 // DEBUG THIS TEST -------------------------------------------------
 describe('Helpfullness Component', () => {
   test('Should update "Yes" count when helpful is clicked', async () => {
-    axios.put = jest.fn().mockResolvedValueOnce({
+    axios.put = jest.fn().mockResolvedValue({
       data: {
         review_id: 1111,
         helpful: 4,
@@ -262,5 +263,22 @@ describe('Dynamic Start List Component', () => {
 
     expect(mockCB).toHaveBeenCalledTimes(1);
     expect(mockCB).toHaveBeenCalledWith(2);
+  });
+});
+
+describe('Product Factor Component', () => {
+  test('Should render 3 descriptions when given a factor', () => {
+    const { container } = render(<ProductFactor factor="Quality" avg={3} />);
+    const descriptions = container.getElementsByClassName('desc-col');
+    expect(descriptions.length).toBe(3);
+  });
+  test('Should render the correct descriptions for a given factor', () => {
+    render(<ProductFactor factor="Fit" avg={3} />);
+    const { getByText } = within(screen.getByTestId('col-desc2'));
+    expect(getByText('Perfect')).toBeInTheDocument();
+  });
+  test('Should render correct icon placement when given different average ratings', () => {
+    const { getByTestId } = render(<ProductFactor factor="Size" avg={2} />);
+    expect(getByTestId('arrow')).toHaveStyle('left: 40%');
   });
 });

@@ -39,7 +39,7 @@ export default function ProductFactor({factor, avg}) {
     <div className="product-factor-container">
       <div className="factor-name">{factor}</div>
       <div className="pf-icon-row">
-        <span className="fa-solid fa-caret-down" style={iconStyle} />
+        <span className="fa-solid fa-caret-down" style={iconStyle} data-testid="arrow" />
       </div>
       <div className="product-factor-row">
         <div className="pf-col1" />
@@ -47,9 +47,9 @@ export default function ProductFactor({factor, avg}) {
         <div className="pf-col3" />
       </div>
       <div className="product-factor-row2">
-        <div className="pf-descrip-col1">{desc1}</div>
-        <div className="pf-descrip-col2">{desc2}</div>
-        <div className="pf-descrip-col3">{desc3}</div>
+        <div className="pf-descrip-col1 desc-col">{desc1}</div>
+        <div className="pf-descrip-col2 desc-col" data-testid="col-desc2">{desc2}</div>
+        <div className="pf-descrip-col3 desc-col">{desc3}</div>
       </div>
     </div>
   );

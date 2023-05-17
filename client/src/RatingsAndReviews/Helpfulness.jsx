@@ -13,6 +13,7 @@ export default function Helpfullness({ review_id, helpful }) {
     if (!clicked) {
       localStorage.setItem(`${review_id}`, 'true');
       if (markedYes) {
+        console.log('marked yes is checked')
         axios.put(`/reviews/helpful?review_id=${review_id}`)
           .then(() => {
             setCount(count + 1);
