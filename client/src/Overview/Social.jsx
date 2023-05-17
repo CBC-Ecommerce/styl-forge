@@ -13,8 +13,8 @@ export default function Social() {
   };
   return (
     <div>
-      <button type="button" onClick={shareToTwitter}>Twitter</button>
-      <button type="button" onClick={shareToFacebook}>Facebook</button>
+      <button type="button" onClick={shareToTwitter}><i className="fa-brands fa-twitter"></i></button>
+      <button type="button" onClick={shareToFacebook}><i className="fa-brands fa-facebook"></i></button>
     </div>
   );
 }

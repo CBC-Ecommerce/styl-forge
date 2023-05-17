@@ -8,7 +8,7 @@ export default function ImageGallery({ selectedStyle }) {
   let stylePhotos = [];
   let styleThumbs = [];
   for (let i = 0; i < selectedStyle.photos.length; i++) {
-    stylePhotos.push(selectedStyle.photos[i].url);
+    stylePhotos.push(selectedStyle.photos[i]);
     styleThumbs.push(selectedStyle.photos[i].thumbnail_url);
   }
   return (
@@ -25,6 +25,7 @@ export default function ImageGallery({ selectedStyle }) {
           />
         ))}
       </div>
+      <button><i className="fa-solid fa-magnifying-glass"></i></button>
     </div>
   );
 }
