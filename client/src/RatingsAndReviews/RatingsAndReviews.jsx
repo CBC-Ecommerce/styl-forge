@@ -19,6 +19,13 @@ export default function RatingsAndReviews({id, reviewList, char}) {
   const [numReviews, setNumReviews] = React.useState(0);
   const [addRevModal, setAddRevModal] = React.useState(false);
 
+  // Prevent scrolling when "Add Review" modal is active
+  if (addRevModal) {
+    document.body.classList.add('active-modal');
+  } else {
+    document.body.classList.remove('active-modal');
+  }
+
   function increaseReviewsSeen() {
     setListCount(listCount + 2);
   }
@@ -37,7 +44,6 @@ export default function RatingsAndReviews({id, reviewList, char}) {
   }
 
   function triggerAddModal() {
-    console.log('modal triggered');
     setAddRevModal(!addRevModal);
   }
 

@@ -10,10 +10,12 @@ export default function AddReview({id, toggleModal}) {
   const [rateMsg, setRateMsg] = useState('');
   const [prodCharac, setProdCharac] = useState([]);
   const [characObj, setCharacObj] = useState({});
+  const [charExceed, setCharExceed] = useState(null);
   // states for form submission:
   const [overallRate, setOverallRate] = useState(0);
   const [recommendRes, setRecommendRes] = useState(false);
   const [characResults, setCharacResults] = useState({});
+  const [summaryRes, setSummaryRes] = useState('');
 
   useEffect(() => {
     if (overallRate === 1) {
@@ -57,6 +59,15 @@ export default function AddReview({id, toggleModal}) {
   function makeCharacObj(objRow) {
     const resultClone = Object.assign(characResults, objRow);
     setCharacResults(resultClone);
+  }
+
+  function handleAddSummary(e) {
+    if (e.target.value.length > 60) {
+      setCharExceed('Character Limit Exceeded');
+    } else {
+      setCharExceed(null);
+      setSummaryRes(e.target.value);
+    }
   }
 
   return (
@@ -103,6 +114,11 @@ export default function AddReview({id, toggleModal}) {
             characObj={characObj}
             makeCharacObj={makeCharacObj}
           />
+          <div className="add-rev-summary">
+            <div className="rev-summary-label">Add a headline</div>
+            <input className="rev-summary-input" type="text" placeholder="Example: Best purchase ever!" onChange={handleAddSummary} value={summaryRes} />
+            <span className="char-exceeded">{charExceed && charExceed}</span>
+          </div>
         </form>
       </div>
 

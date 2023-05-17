@@ -58,9 +58,10 @@
 }
 .overall-stars,
 .would-recommend,
-.characteristic-selection-container {
+.characteristic-selection-container,
+.add-rev-summary {
   margin: 10px 75px;
-  padding: 20px 0;
+  padding: 0 0 20px 0;
   border-bottom: 2px solid #A8A8A8;
 }
 .overall-stars {
@@ -99,7 +100,6 @@
 .characteristic-selection-container {
   display: flex;
   flex-direction: column;
-  padding: 0 0 30px 0;
 }
 
 .char-meaning-row {
@@ -122,7 +122,8 @@
   font-size: 10px;
 }
 
-.characteristic-title {
+.characteristic-title,
+.rev-summary-label {
   margin: 10px 0;
 }
 
@@ -134,4 +135,16 @@
 
 .single-characteristic input {
   margin: 0 5px;
+}
+.add-rev-summary {
+  padding: 5px 0 30px 0;
+}
+.rev-summary-input {
+  width: 100%;
+  padding: 2px;
+}
+
+.char-exceeded {
+  color: red;
+  font-size: 14px;
 }

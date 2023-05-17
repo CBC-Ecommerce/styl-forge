@@ -1,3 +1,7 @@
+body.active-modal {
+  overflow-y: hidden;
+}
+
 .main-container {
   box-sizing: border-box;
   height: 100vh;
