@@ -20,10 +20,6 @@ export default function AddToCart({ selectedStyle }) {
     setSelectedSize(e.target.value);
     setSelectedQty(1);
     setSelectedSku(availableItemSkus[index]);
-<<<<<<< HEAD
-=======
-
->>>>>>> b3d0fc8ba2db9cf8f27bd604e64b78137dcc0d18
     quantity = (quantity > 15) ? 15 : quantity;
 
     for (let i = 1; i <= quantity; i++) {
