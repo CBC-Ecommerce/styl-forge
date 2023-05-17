@@ -4,12 +4,10 @@ export default function CharacRadioRow({ meaning, usrRating, id }) {
   const [selectedButton, setSelectedButton] = React.useState(0);
 
   function handleClick(e, characId) {
-    e.preventDefault();
     const { value } = e.target;
     setSelectedButton(Number(value));
 
-    console.log('ID IS ', characId);
-    console.log('VALUE IS ', value);
+    console.log(`CharacId: ${characId} and Value: ${value}`);
     // send this value back to the parent to record.
   }
   return (
@@ -22,7 +20,7 @@ export default function CharacRadioRow({ meaning, usrRating, id }) {
           type="radio"
           value={usrRating}
           name="characteristic-select"
-          checked={usrRating === selectedButton}
+          defaultChecked={usrRating === selectedButton}
           // onChange={(e) => { handleClick(e, characObj[charac].id); }}
           onChange={(event) => { handleClick(event, id); }}
         />
