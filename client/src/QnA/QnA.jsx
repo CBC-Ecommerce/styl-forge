@@ -30,13 +30,6 @@ function QnA({ id, product }) {
   const filterQuestion = (input) => {
     const filtered = quests.filter((quest) => quest.question_body.toLowerCase()
       .includes(input.toLowerCase()));
-    // Promise.all(filtered)
-    //   .then((result) => {
-    //     setFiltQuests(result);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
     setFiltQuests(filtered);
   };
 
@@ -54,7 +47,7 @@ function QnA({ id, product }) {
 
   return (
 
-    <div className="QnA Test" data-testid="QnA Test">
+    <div className="QnA Component" data-testid="QnA Test">
       <div className="QnA-Widget-Title">Questions and Answers</div>
       <div className="QnA-Search-Questions">
         <SearchQuestions quests={quests} filterQuestion={filterQuestion} />
