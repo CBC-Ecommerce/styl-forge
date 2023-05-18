@@ -49,10 +49,26 @@ function AnswerListEntry({ answer, grabQuestions }) {
 
   return (
     <div className="answer-individual" data-testid="answer-individual-test">
-      <div className="answer-body">
-        A:
-        {' '}
-        {answer.body}
+      <div className="answer-first-line">
+        <div className="answer-body">
+          A:
+          {' '}
+          {answer.body}
+        </div>
+        <div className="answer-buttons">
+          <div className="helpful-text">
+            Helpful?
+            {' '}
+            <button className="button" onClick={helpfulListener} type="button" disabled={ansHelpful}>
+              Yes (
+              {answer.helpfulness}
+              )
+            </button>
+            <button className="button" onClick={reportListener} type="button" disabled={report}>
+              Report
+            </button>
+          </div>
+        </div>
       </div>
       <div className="answer-photo-container">
         {answer.photos.map((photo) => (
@@ -64,17 +80,8 @@ function AnswerListEntry({ answer, grabQuestions }) {
           by
           {' '}
           {answer.answerer_name}
-        </div>
-        <div className="answer-date">{formattedDate}</div>
-        <div className="answer-buttons">
-          <button onClick={helpfulListener} type="button" disabled={ansHelpful}>
-            Yes (
-            {answer.helpfulness}
-            )
-          </button>
-          <button onClick={reportListener} type="button" disabled={report}>
-            Report
-          </button>
+          ,
+          <div className="answer-date">{formattedDate}</div>
         </div>
       </div>
     </div>

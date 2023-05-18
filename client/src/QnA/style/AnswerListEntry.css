@@ -1,21 +1,29 @@
-.answer {
-  display: flex;
-  justify-content: right;
-}
-.answer-info {
-  display: flex;
-}
-.answer-username, .answer-date, .answer-buttons {
-  display: inline-block;
-  margin-right: 10px;
-}
 .answer-photo {
-  max-width: 100px;
+  max-width: 150px;
+  max-height: 150px;
   margin-right: 10px;
-}
-.answer-photo-container {
-  display: flex;
 }
 .answer-individual {
+  margin-left: 2%;
   border-style: groove;
+}
+.answer-body {
+  margin-bottom: 0.5%;
+  max-width: 50%;
+}
+.helpful-text {
+  margin-right: 10px;
+}
+.button {
+  margin-right: 10px;
+}
+.answer-username {
+  display: flex;
+}
+.answer-date {
+  margin-left: 10px;
+}
+.answer-first-line {
+  display: flex;
+  justify-content: space-between;
 }

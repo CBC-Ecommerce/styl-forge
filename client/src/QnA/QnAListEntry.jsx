@@ -89,15 +89,15 @@ function QnAListEntry({ quest, product, grabQuestions }) {
         <div className="question-buttons">
           Helpful?
           {' '}
-          <button className="helpful-question-button" onClick={questionHelpful} type="button" disabled={helpButton}>
+          <button className="button" onClick={questionHelpful} type="button" disabled={helpButton}>
             Yes
             {' '}
             (
             {quest.question_helpfulness}
             )
           </button>
-          <button onClick={questionReport} className="report-question-button" type="button" disabled={reportQuest}>Report</button>
-          <button data-testid="add-answer-test" className="add-answer-button" type="button" onClick={addAnswerClicker}>Add Answer</button>
+          <button onClick={questionReport} className="button" type="button" disabled={reportQuest}>Report</button>
+          <button data-testid="add-answer-test" className="button" type="button" onClick={addAnswerClicker}>Add Answer</button>
           <AddAnswer
             grabQuestions={grabQuestions}
             showAdd={showAdd}

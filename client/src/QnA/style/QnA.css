@@ -1,17 +1,18 @@
 .QnA-Component {
-  display: flex;
-  flex-direction: column;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 .QnA-Widget-Title {
   text-align: center;
   font-size: 24pt;
   margin-bottom: 2%;
 }
+.question {
+  border-style: groove;
+}
 .QnA-Options {
   display: flex;
-  align-items: center;
-  margin-bottom: 0.5%;
 }
-.QnA-Options > div:not(:last-child) {
-  margin-right: 0.5%;
+.QnA-or {
+  margin-right: 5px;
 }

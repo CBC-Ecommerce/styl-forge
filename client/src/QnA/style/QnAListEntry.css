@@ -1,12 +1,7 @@
-.answer-list {
-  margin-left: 5px;
-}
 .question {
   display: flex;
-  flex-direction: column;
-  justify-content: left;
-  /* padding: 0.5%; */
-  border-style: groove;
-  /* border-width: 1px;
-  border-color: black; */
+  justify-content: space-between;
+}
+.question-body {
+  max-width: 50%;
 }

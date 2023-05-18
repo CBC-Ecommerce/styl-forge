@@ -1,7 +1,7 @@
+/* .QnAList-Component {
+  display: flex;
+} */
 .QnAList-Component {
   max-height: 50vh;
-  overflow-x: scroll;
-}
-.QnAList-buttons button {
-  margin-right: 0.5%;
+  overflow: scroll;
 }
