@@ -19,9 +19,9 @@ function SearchQuestions({ quests, filterQuestion }) {
 
   return (
     <div className="Search-Question">
-      <div className="search-text" data-testid="SearchQuestionTest">
+      {/* <div className="search-text" data-testid="SearchQuestionTest">
         Filter Your Search!
-      </div>
+      </div> */}
       <input className="Search-Bar"type="text" placeholder="Search Questions" onChange={filterChanger} />
     </div>
   );

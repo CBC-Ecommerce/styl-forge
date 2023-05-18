@@ -80,11 +80,15 @@ function QnAListEntry({ quest, product, grabQuestions }) {
 
     <div className="individual-question" data-testid="individual-question-test">
       <div className="question">
-        <div className="question-body">
-          Q:
-          {' '}
-          {quest.question_body}
-          {' '}
+        <div className="question-text">
+          <div className="big-Q">
+            Q:
+            {' '}
+          </div>
+          <div className="question-body">
+            {quest.question_body}
+            {' '}
+          </div>
         </div>
         <div className="question-buttons">
           Helpful?
@@ -117,7 +121,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
 
       {anyMore ? (
         <form onSubmit={submitHandler}>
-          <input type="submit" value="See More Answers" />
+          <input className="more-answers" type="submit" value="See More Answers" />
         </form>
       ) : null}
     </div>

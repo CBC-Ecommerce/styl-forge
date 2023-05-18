@@ -31,12 +31,12 @@ function QnAList({ quests, product, grabQuestions }) {
       </div>
       <div className="QnAList-buttons" data-testid="question-buttons">
         {questButton ? null : (
-          <button type="button" onClick={moreQuestHandler}>
+          <button className="show-more-button" type="button" onClick={moreQuestHandler}>
             Show More Answered Questions
           </button>
         )}
         {questButton ? null : (
-          <button type="button" onClick={allQuestionHandler}>
+          <button className="show-more-button" type="button" onClick={allQuestionHandler}>
             Show All Questions
           </button>
         )}

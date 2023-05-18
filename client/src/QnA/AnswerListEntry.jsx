@@ -50,16 +50,20 @@ function AnswerListEntry({ answer, grabQuestions }) {
   return (
     <div className="answer-individual" data-testid="answer-individual-test">
       <div className="answer-first-line">
-        <div className="answer-body">
-          A:
-          {' '}
-          {answer.body}
+        <div className="answer-text">
+          <div className="big-A">
+            A:
+            {' '}
+          </div>
+          <div className="answer-body">
+            {answer.body}
+          </div>
         </div>
         <div className="answer-buttons">
           <div className="helpful-text">
             Helpful?
             {' '}
-            <button className="button" onClick={helpfulListener} type="button" disabled={ansHelpful}>
+            <button id="underline-button" className="button" onClick={helpfulListener} type="button" disabled={ansHelpful}>
               Yes (
               {answer.helpfulness}
               )
@@ -77,11 +81,13 @@ function AnswerListEntry({ answer, grabQuestions }) {
       </div>
       <div className="answerer-info">
         <div className="answer-username">
-          by
+          by:
           {' '}
           {answer.answerer_name}
-          ,
-          <div className="answer-date">{formattedDate}</div>
+          {' '}
+          on
+          {' '}
+          {formattedDate}
         </div>
       </div>
     </div>

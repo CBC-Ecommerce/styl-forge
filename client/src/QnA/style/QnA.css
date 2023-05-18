@@ -9,10 +9,18 @@
 }
 .question {
   border-style: groove;
+  margin-bottom: 1%;
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: 5px 5px rgba(104, 104, 104, 0.773);
 }
 .QnA-Options {
   display: flex;
 }
 .QnA-or {
   margin-right: 5px;
+}
+.show-more-button {
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
