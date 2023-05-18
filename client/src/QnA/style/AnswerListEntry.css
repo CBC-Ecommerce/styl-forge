@@ -1,0 +1,14 @@
+.answer-info {
+  display: flex;
+}
+.answer-username, .answer-date, .answer-buttons {
+  display: inline-block;
+  margin-right: 10px;
+}
+.answer-photo {
+  max-width: 100px;
+  margin-right: 10px;
+}
+.answer-photo-container {
+  display: flex;
+}

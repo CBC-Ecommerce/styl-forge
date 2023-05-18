@@ -29,13 +29,20 @@ function App() {
       .then((results) => { setCharacteristics(results.data.characteristics); })
       .catch((err) => { throw err; });
   }, [id]);
-
   return (
     <div data-testid="app">
-      <Overview product={currentProduct} id={id} />
+      <Overview product={currentProduct} id={id} reviewList={reviewList} />
       <div className="product-overview-box">
-        {currentProduct.description && <ProductOverview description={currentProduct.description} />}
-        <Social />
+        {currentProduct.description && (
+          <>
+            <ProductOverview
+              slogan={currentProduct.slogan}
+              description={currentProduct.description}
+              features={currentProduct.features}
+            />
+            <Social id={id} />
+          </>
+        )}
       </div>
       <RelatedProducts id={id} setId={setId} />
       <QnA id={id} product={currentProduct} />

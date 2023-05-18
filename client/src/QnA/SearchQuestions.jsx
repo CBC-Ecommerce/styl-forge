@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 function SearchQuestions({ quests, filterQuestion }) {
   // const [filter, setFilter] = useState('');
   const filterChanger = (e) => {
+    // Set timeout to reduce # of function invokations
     if (e.target.value.length >= 3) {
       filterQuestion(e.target.value);
     } else {
@@ -16,12 +17,9 @@ function SearchQuestions({ quests, filterQuestion }) {
   // };
 
   return (
-    <div>
+    <div className="SearchQuestion" data-testid="SearchQuestionTest">
       Filter Your Search!
-      {/* <form onSubmit={filterSubmitter}> */}
       <input type="text" placeholder="Search Questions" onChange={filterChanger} />
-      {/* <input type="submit" value="Filter" /> */}
-      {/* </form> */}
     </div>
   );
 }

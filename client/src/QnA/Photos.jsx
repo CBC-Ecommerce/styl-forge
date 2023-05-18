@@ -6,7 +6,7 @@ function Photos({ photo }) {
   }
 
   return (
-    <div>
+    <div className="individual-photo" data-testid="photo-test">
       <img className="answer-photo" src={photo} />
     </div>
   );
