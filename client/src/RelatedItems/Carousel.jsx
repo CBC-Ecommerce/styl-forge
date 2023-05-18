@@ -92,7 +92,7 @@ function Carousel({
     setStartIndex(startIndex => startIndex + 1);
     setEndIndex(endIndex => endIndex + 1);
   }
-
+  console.log(startIndex)
   return (
     <>
       {startIndex !== 0 && (

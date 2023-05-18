@@ -1,6 +1,29 @@
-.answer {
+.question {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.answer-list {
-  margin-left: 5px;
+/* .question-body {
+  max-width: 50%;
+} */
+.big-Q {
+  font-size: 24pt;
+  margin-right: 5px;
+}
+.question-text {
+  display: flex;
+  align-items: center;
+}
+.question-buttons {
+  font-size: 10pt;
+}
+.question-body {
+  max-width: 500px;
+}
+.more-answers {
+  background: transparent;
+  font-size: 12px;
+  padding: 10px;
+  margin: 15px 0 10px 10px;
+  cursor: pointer;
 }

@@ -1,14 +1,10 @@
 import React from 'react';
 import GetMousePosition from './GetMousePosition.jsx';
 
-export default function ZoomView({ img }) {
-  function positionImageAtMouse() {
-
-  }
+export default function ZoomView({ img, closeZoomView }) {
   return (
-    <div className="zoom-view" id="zoom-view">
-      <img className="zoomed-image" src={img} alt="super zoomer" />
-      {img && <GetMousePosition />}
+    <div className="zoomed-image-container" id="zoomed-image-container" onClick={closeZoomView}>
+      <GetMousePosition img={img} />
     </div>
   );
 }
