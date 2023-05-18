@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DynamicStarList from './DynamicStarList.jsx';
 import SelectCharacteristics from './SelectCharacteristics.jsx';
+import UploadPhotos from './UploadPhotos.jsx';
 
 export default function AddReview({id, toggleModal}) {
   const [prodName, setProdName] = useState('');
@@ -143,6 +144,7 @@ export default function AddReview({id, toggleModal}) {
             {characLeft && <span className="char-left">{characLeft}</span>}
             {characLimit && <span className="char-exceeded">{characLimit}</span>}
           </div>
+          <UploadPhotos />
         </form>
       </div>
 
