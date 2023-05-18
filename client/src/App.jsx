@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Ribbon from './Ribbon.jsx';
 import RelatedProducts from './RelatedItems/RelatedProducts.jsx';
 import QnA from './QnA/QnA.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
@@ -32,6 +33,7 @@ function App() {
   }, [id]);
   return (
     <div data-testid="app">
+      <Ribbon />
       <Overview product={currentProduct} id={id} reviewList={reviewList} />
       <div className="product-overview-box">
         {currentProduct.description && (
@@ -45,7 +47,7 @@ function App() {
           </>
         )}
       </div>
-      {/* <RelatedProducts id={id} setId={setId} /> */}
+      <RelatedProducts id={id} setId={setId} />
       <QnA id={id} product={currentProduct} />
       <RatingsAndReviews id={id} reviewList={reviewList} char={characteristics} />
     </div>

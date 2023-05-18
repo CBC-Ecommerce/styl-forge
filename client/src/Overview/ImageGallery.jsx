@@ -5,8 +5,7 @@ import SingleImage from './SingleImage.jsx';
 import ExpandedView from './ExpandedView.jsx';
 
 // image gallery renders image carousel from styles of selected product
-export default function ImageGallery({ selectedStyle }) {
-  const [activeImage, setActiveImage] = useState(0);
+export default function ImageGallery({ selectedStyle, zoomView, setZoomView, activeImage, setActiveImage }) {
   const [modal, setModal] = React.useState(false);
   let stylePhotos = [];
   let styleThumbs = [];
@@ -28,7 +27,6 @@ export default function ImageGallery({ selectedStyle }) {
       setActiveImage(activeImage + 1);
     }
   }
-  // check if this is active image
   function toggleModal() {
     setModal(!modal);
   }
@@ -64,6 +62,8 @@ export default function ImageGallery({ selectedStyle }) {
           toggleModal={toggleModal}
           handlePrevClick={handlePrevClick}
           handleNextClick={handleNextClick}
+          zoomView={zoomView}
+          setZoomView={setZoomView}
         />
       )}
     </div>
