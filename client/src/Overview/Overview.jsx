@@ -27,6 +27,7 @@ export default function Overview({ product, id, reviewList }) {
 
   // selected style click handler
   function styleSelectClickHandler(e) {
+    setActiveImage(0);
     // for (var i = 0; i < )
     for (let i = 0; i < styles.results.length; i += 1) {
       if (styles.results[i].style_id.toString() === e.target.id) {
@@ -60,6 +61,7 @@ export default function Overview({ product, id, reviewList }) {
               styles={styles}
               selectedStyle={selectedStyle}
               styleSelectClickHandler={styleSelectClickHandler}
+              setActiveImage={setActiveImage}
             />
           </div>
           <div className="add-to-cart-box">

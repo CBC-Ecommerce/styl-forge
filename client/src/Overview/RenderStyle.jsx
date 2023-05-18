@@ -17,14 +17,6 @@ export default function RenderStyle({ style, selectedStyle, styleSelectClickHand
         </button>
       )}
 
-        {/* <div className="checkmark">
-          {(selectedStyle.style_id.toString() === style.style_id.toString()) && (
-            <>
-              <i className="fa-solid fa-check" />
-              <i className="empty-circle" />
-            </>
-          )}
-        </div> */}
     </div>
   );
 }
