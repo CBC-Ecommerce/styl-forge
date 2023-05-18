@@ -5,3 +5,10 @@
   max-height: 50vh;
   overflow: scroll;
 }
+.show-more-button {
+  background: transparent;
+  font-size: 12px;
+  padding: 10px;
+  margin: 15px 0 0 10px;
+  cursor: pointer;
+}
