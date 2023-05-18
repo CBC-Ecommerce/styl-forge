@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Photos from './Photos.jsx';
+import './style/AnswerListEntry.css';
 
 function AnswerListEntry({ answer, grabQuestions }) {
-  const [ansHelpful, setAnsHelpful] = useState(false);
+  const [ansHelpful, setAnsHelpful] = useState(JSON.parse(localStorage.getItem(`${answer.id}`)));
   const [report, setReport] = useState(false);
 
   const date = new Date(answer.date);
@@ -14,7 +15,6 @@ function AnswerListEntry({ answer, grabQuestions }) {
     day: 'numeric',
 
   };
-  // console.log(answer);
 
   const formattedDate = date.toLocaleDateString('en-US', options);
 
@@ -23,6 +23,7 @@ function AnswerListEntry({ answer, grabQuestions }) {
     axios.put('/qa/answers/helpful', { answer_id: answer.id })
       .then((result) => {
         setAnsHelpful(!ansHelpful);
+        localStorage.setItem(`${answer.id}`, 'true');
       })
       .then(() => {
         grabQuestions();
@@ -47,7 +48,7 @@ function AnswerListEntry({ answer, grabQuestions }) {
   };
 
   return (
-    <div className="answer-individual">
+    <div className="answer-individual" data-testid="answer-individual-test">
       <div className="answer-body">{answer.body}</div>
       <div className="answer-photo-container">
         {answer.photos.map((photo) => (
