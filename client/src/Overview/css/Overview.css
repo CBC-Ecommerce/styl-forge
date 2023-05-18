@@ -110,21 +110,20 @@
   height: 75vh;
 }
 .image-gallery {
-  height: 100%;
   width: 100%;
-  display: inline-flex;
+  max-width: 800px;
+  height: 100%;
+  position: relative;
   overflow: hidden;
-  flex-direction: row;
-  align-items: flex-start;
 }
 
-.image-gallery img{
+/* .image-gallery img{
   object-fit: contain;
   height: 100%;
   width: 75%;
   margin: auto;
   display: grid;
-}
+} */
 
 .carousel {
   height: 100%;
@@ -143,10 +142,20 @@
 }
 
 .single-img {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  position: absolute;
+  transition: all 0.5s;
   display: flex;
-  inset: 0;
+  justify-content: center;
+}
 
-  transition: All 0.5s ease-in-out;
+.image{
+  transition: all 500ms ease-out;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .thumbnails {
@@ -154,6 +163,7 @@
   z-index: 2;
   overflow-y: scroll;
   height: 75%;
+  width: 8vw;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -162,9 +172,23 @@
   display: none;
 }
 
+.zoom-button {
+  position: absolute;
+  padding-top: 1vh;
+  padding-left: 48vw;
+  background: none;
+  border: none;
+}
+
+.thumbnail-image {
+  height: 100%;
+  width: 100%;
+}
+
 .single-thumbnail {
-  width: 32%;
-  padding-left: 0;
+  padding: 4px;
+  height: auto;
+  width: auto;
 }
 
 .single-thumbnail:hover {
@@ -174,13 +198,6 @@
 
 .thumbnail-underline {
   border-style: solid;
-}
-
-.single-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
 }
 
 .carousel-button {
@@ -280,17 +297,30 @@
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 10;
   height: 100vh;
   width: 100vw;
 }
 
 .expanded-view-modal {
-
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 
 .expanded-view-modal:hover {
   cursor: crosshair;
+}
+
+.expanded-view {
+  height: 100%;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.expanded {
+  position: absolute;
+  max-width: 100vw;
 }
 
 .zoom-view {
@@ -310,7 +340,6 @@
 
 .zoom-view:hover {
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="30" style="font-size: 20px;" color="white"><text y="15">-</text></svg>'), auto;
-
 }
 
 .expanded-button {
@@ -324,6 +353,7 @@
   right: 3rem;
   height: 36px;
   width: 36px;
+  z-index: 10;
 }
 
 .close-expanded-view:hover {
@@ -331,16 +361,19 @@
 }
 
 .zoomed-image{
-
+  height: 250vh;
+  width: auto;
 }
 
 .product-overview-box {
   display: grid;
   grid-template-columns: 1fr;
   position: relative;
-  height: 100%;
-  width: 100%;
+  height: auto;
+  width: 100vw;
   padding-top: 4px;
+  padding-left: 2rem;
+  border: solid 1px;
 }
 
 .product-overview {
@@ -353,13 +386,20 @@
   width: 100%;
   height: 150%;
   display: grid;
-  align-content: center;
+  grid-template-rows: 1fr 1fr 1fr;
+  align-content: space-between;
+}
+
+.product-slogan {
+
 }
 
 .features {
   padding-left: 8px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  transform: translate(10px, 16px);
 }
 
 .feature {

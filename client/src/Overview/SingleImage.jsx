@@ -1,25 +1,31 @@
 import React from 'react';
-import ExpandedView from '../Overview/ExpandedView.jsx';
 
-export default function SingleImage({ photoUrl, activeImage, index, handlePrevClick, handleNextClick }) {
-  const [modal, setModal] = React.useState(false);
-  // check if this is active image
-  function toggleModal() {
-    setModal(!modal);
-  }
-  if (activeImage === index) {
+export default function SingleImage({
+  photoUrl,
+  activeImage,
+  prevImage,
+  index,
+  toggleModal,
+  expanded
+}) {
+  if (expanded) {
     return (
-      <ul className="single-img" data-images>
-        <img src={photoUrl} alt="a description of the img" onClick={toggleModal} />
-        {modal && (
-          <ExpandedView
-            toggleModal={toggleModal}
-            img={photoUrl}
-            handlePrevClick={handlePrevClick}
-            handleNextClick={handleNextClick}
-          />
+      <ul className="single-img expanded-view" style={{ transform: `translateX(${100 * (index - activeImage)}%)` }}>
+        {(activeImage === index) ? (
+          <img className="image expanded" id="active-image" src={photoUrl} alt="a description of the img" style={{ display: "flex" }} onClick={toggleModal} />
+        ) : (
+          <img className="image expanded" src={photoUrl} alt="a description of the img" style={{ display: "none" }} onClick={toggleModal} />
         )}
       </ul>
     );
   }
+  return (
+    <ul className="single-img" style={{ transform: `translateX(${100 * (index - activeImage)}%)` }}>
+      {(activeImage === index) ? (
+        <img className="image" id="active-image" src={photoUrl} alt="a description of the img" style={{ display: "flex" }} onClick={toggleModal} />
+      ) : (
+        <img className="image" src={photoUrl} alt="a description of the img" style={{ display: "none" }} onClick={toggleModal} />
+      )}
+    </ul>
+  );
 }
