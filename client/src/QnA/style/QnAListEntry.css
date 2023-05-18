@@ -4,3 +4,9 @@
 .answer-list {
   margin-left: 5px;
 }
+.question {
+  padding: 0.5%;
+  border-style: groove;
+  border-width: 1px;
+  border-color: black;
+}

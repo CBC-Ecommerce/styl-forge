@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AnswerListEntry from './AnswerListEntry.jsx';
 import AddAnswer from './AddAnswer.jsx';
+import './style/QnAListEntry.css';
 
 function QnAListEntry({ quest, product, grabQuestions }) {
   // console.log('This is quest:', quest);
