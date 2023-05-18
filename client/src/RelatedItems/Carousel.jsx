@@ -33,15 +33,27 @@ function Carousel({
     const data = list?.map((productId) => axios.get(`products/?product_id=${productId}/styles`)
       ?.then((res) => {
         let index = 0;
+        let images = [];
+        let thumbnails = [];
         res.data.results?.forEach((el, i) => {
           if (el['default?']) {
             index = i;
+          }
+          if (el.photos[0]) {
+            images.push(el.photos[0].url);
+            thumbnails.push(el.photos[0].thumbnail_url)
+          }
+          if (el.photos[1]) {
+            images.push(el.photos[1].url);
+            thumbnails.push(el.photos[1].thumbnail_url)
           }
         });
         const updates = {
           original_price: res.data?.results[index].original_price,
           sale_price: res.data?.results[index].sale_price,
           photoURL: res.data?.results[index].photos[0].url,
+          images: images,
+          thumbnails: thumbnails,
         };
         return updates;
       }));
@@ -80,7 +92,7 @@ function Carousel({
     setStartIndex(startIndex => startIndex + 1);
     setEndIndex(endIndex => endIndex + 1);
   }
-  console.log(startIndex)
+
   return (
     <>
       {startIndex !== 0 && (
