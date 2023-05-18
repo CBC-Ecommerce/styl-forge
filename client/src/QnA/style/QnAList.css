@@ -2,9 +2,6 @@
   max-height: 50vh;
   overflow-x: scroll;
 }
-.QnAList-buttons {
-  display: flex;
-}
 .QnAList-buttons button {
   margin-right: 0.5%;
 }

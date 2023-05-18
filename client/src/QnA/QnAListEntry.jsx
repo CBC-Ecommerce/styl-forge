@@ -80,11 +80,13 @@ function QnAListEntry({ quest, product, grabQuestions }) {
 
     <div className="individual-question" data-testid="individual-question-test">
       <div className="question">
-        Q:
-        {' '}
-        {quest.question_body}
-        {' '}
-        <span className="question-buttons">
+        <div className="question-body">
+          Q:
+          {' '}
+          {quest.question_body}
+          {' '}
+        </div>
+        <div className="question-buttons">
           Helpful?
           {' '}
           <button className="helpful-question-button" onClick={questionHelpful} type="button" disabled={helpButton}>
@@ -103,11 +105,9 @@ function QnAListEntry({ quest, product, grabQuestions }) {
             quest={quest}
             product={product}
           />
-        </span>
+        </div>
       </div>
       <div className="answer">
-        A:
-        {' '}
         <div className="answer-list">
           {Object.keys(quest.answers).slice(0, ansEntry).map((key) => (
             <AnswerListEntry key={key} answer={quest.answers[key]} grabQuestions={grabQuestions} />

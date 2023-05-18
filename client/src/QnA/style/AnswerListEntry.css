@@ -1,3 +1,7 @@
+.answer {
+  display: flex;
+  justify-content: right;
+}
 .answer-info {
   display: flex;
 }
@@ -11,4 +15,7 @@
 }
 .answer-photo-container {
   display: flex;
+}
+.answer-individual {
+  border-style: groove;
 }

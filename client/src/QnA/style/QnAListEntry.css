@@ -1,12 +1,12 @@
-.answer {
-  display: flex;
-}
 .answer-list {
   margin-left: 5px;
 }
 .question {
-  padding: 0.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  /* padding: 0.5%; */
   border-style: groove;
-  border-width: 1px;
-  border-color: black;
+  /* border-width: 1px;
+  border-color: black; */
 }
