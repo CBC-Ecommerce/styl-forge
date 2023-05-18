@@ -9,11 +9,22 @@
   margin-bottom: 24px;
 }
 
+.container {
+  margin-left: 55px;
+}
+
 .cardContainer {
   display: flex;
   gap: 40px;
   position: relative;
   margin: 0 auto;
+}
+
+.outfitList {
+  display: flex;
+  gap: 40px;
+  margin: 0 auto;
+  align-items: flex-start;
 }
 /* *********** Card ********** */
 .card {
@@ -58,6 +69,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 373px;
 }
 
 /* **********  buttons  ********* */
@@ -89,10 +101,14 @@
   transform: translate(50%, -50%);
 }
 
+.right-arrow:hover, .left-arrow:hover {
+  color: 0 3.2px 6.4px rgba(0, 0, 0, 0.2);
+}
+
 .left-arrow {
   top: 50%;
   left: 0;
-  transform: translate(-50%, -50%);
+  transform: translate(-200%, -50%);
   z-index: 50;
 }
 
@@ -105,20 +121,36 @@
   font-size: 20px;
 
   position: absolute;
+  transition: all 0.3s;
+}
+
+.action-button:hover {
+  color: #e6ac26;
+  transform: scale(1.2);
 }
 
 .cross-btn {
   color: #000;
   font-weight: 700;
+  transition: all 0.3s;
+}
+
+.cross-btn:hover {
+  color: #fff;
 }
 
 /* action buttons */
 .addOutfit-btn {
-  font-size: 20px;
+  font-size: 18px;
   box-sizing: border-box;
   padding: 12px 16px;
   box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.addOutfit-btn:hover {
+  font-size: 19px;
 }
 
 /* close btn in modal */
@@ -126,6 +158,10 @@
   position: absolute;
   top: 8px;
   right: 12px;
+}
+
+.closeModal-btn:hover {
+  color: #92969a;
 }
 
 /* ********* Comparison modal *********** */

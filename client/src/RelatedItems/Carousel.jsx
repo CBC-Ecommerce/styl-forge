@@ -60,6 +60,11 @@ function Carousel({
     getPriceImage(idList);
   }, [idList]);
 
+  useEffect(() => {
+    setStartIndex(0);
+    setEndIndex(2);
+  }, [id]);
+
   function prevClickHandler() {
     if (startIndex <= 0) {
       return;
@@ -75,7 +80,7 @@ function Carousel({
     setStartIndex(startIndex => startIndex + 1);
     setEndIndex(endIndex => endIndex + 1);
   }
-
+  console.log(startIndex)
   return (
     <>
       {startIndex !== 0 && (
@@ -119,7 +124,9 @@ function Carousel({
       })}
       {(() => {
         if ((related && (endIndex === length - 2))
-        || (related === undefined && (endIndex === length - 1))) {
+        || (related === undefined && (endIndex >= length - 1))) {
+          return null;
+        } else if (length === 0) {
           return null;
         }
         return (
