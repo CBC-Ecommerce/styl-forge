@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './style/SearchQuestions.css';
 
 function SearchQuestions({ quests, filterQuestion }) {
   // const [filter, setFilter] = useState('');
@@ -17,9 +18,11 @@ function SearchQuestions({ quests, filterQuestion }) {
   // };
 
   return (
-    <div className="SearchQuestion" data-testid="SearchQuestionTest">
-      Filter Your Search!
-      <input type="text" placeholder="Search Questions" onChange={filterChanger} />
+    <div className="Search-Question">
+      {/* <div className="search-text" data-testid="SearchQuestionTest">
+        Filter Your Search!
+      </div> */}
+      <input className="Search-Bar"type="text" placeholder="Search Questions" onChange={filterChanger} />
     </div>
   );
 }

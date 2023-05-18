@@ -19,6 +19,9 @@ jest.mock('axios');
 // Before each test, I want to imitate an axios get request and set the response.
 
 describe('QnA Component', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  })
   test('The QnA Component Should Render', () => {
     render(<QnA id={40444} product={{}} />);
     const QnARender = screen.getByTestId('QnA Test');
@@ -65,6 +68,25 @@ describe('QnA Component', () => {
     const searchtest = await screen.getByTestId('SearchQuestionTest');
     expect(searchtest).toBeInTheDocument();
   });
+  // test('filterQuestion should set state of quests', async () => {
+  //   const input = 'tempore';
+  //   const quests = [
+  //     {
+  //       question_body: 'Tempore dolores quis molestiae.',
+  //     },
+  //     {
+  //       question_body: 'Sit veritatis temporibus.',
+  //     },
+  //   ];
+  //   const filtered = [
+  //     {
+  //       question_body: 'Tempore dolores quis molestiae.',
+  //     },
+  //   ];
+  //   render(<QnA id={40444} product={{}} />);
+  // Render the QnA, use a input value mock to mock the input of a typed filter
+  // Fire the event to filter and see where it goes. Will also need to mock axios.get and have a resolvedValue;
+  // });
   test('AddQuestion subcomponent should render', async () => {
     const grabQuestionsMock = jest.fn();
     const questModalClickerMock = jest.fn();
@@ -145,6 +167,18 @@ describe('QnA Component', () => {
     const qnaListRender = screen.getByTestId('QnAList Test');
     expect(qnaListRender).toBeInTheDocument();
   });
+  // test('grabQuestions sets state for quests', () => {
+  //   const grabQuestions = () => {
+  //     return
+  //   }
+  //   const setQuests = jest.fn();
+  //   const grabQuestionsSpy = jest.spyOn(React, 'useState');
+  //   grabQuestionsSpy.mockImplementationOnce((initState) => [initState, setQuests])
+  //   const id = 4;
+  //   render (<QnA id={id} product={{}} grabQuestions={grabQuestions} />);
+
+  //   expect(grabQuestionsSpy).toHaveBeenCalled();
+  // });
 
   describe('The QnAList Component', () => {
     test('QnAListEntry should render', async () => {

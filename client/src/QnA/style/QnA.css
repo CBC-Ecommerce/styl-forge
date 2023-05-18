@@ -1,0 +1,22 @@
+.QnA-Component {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.QnA-Widget-Title {
+  text-align: center;
+  font-size: 24pt;
+  margin-bottom: 2%;
+}
+.question {
+  border-style: groove;
+  margin-bottom: 1%;
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: 5px 5px rgba(104, 104, 104, 0.773);
+}
+.QnA-Options {
+  display: flex;
+}
+.QnA-or {
+  margin-right: 5px;
+}

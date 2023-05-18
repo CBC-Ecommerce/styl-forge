@@ -10,6 +10,7 @@ import Social from './Overview/Social.jsx';
 
 function App() {
   const [id, setId] = useState(40346); // Better product id for testing QnA.
+
   const [currentProduct, setCurrentProduct] = useState({});
   const [reviewList, setReviewList] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
