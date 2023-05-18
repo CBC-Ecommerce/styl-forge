@@ -4,6 +4,7 @@ import SingleImage from './SingleImage.jsx';
 export default function Carousel({ allPics, activeImage, setActiveImage }) {
 
   function handlePrevClick() {
+
     if (activeImage === 0) {
       setActiveImage(allPics.length - 1);
     } else {

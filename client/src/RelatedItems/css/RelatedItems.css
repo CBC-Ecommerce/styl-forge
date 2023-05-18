@@ -112,6 +112,31 @@
   z-index: 50;
 }
 
+.card-img{
+  position: relative;
+}
+
+.left-arrow-img, .right-arrow-img {
+  font-size: 16px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  background-color: rgba(241, 243, 245, 0.603);
+  z-index: 199;
+}
+
+.left-arrow-img {
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+}
+
+.right-arrow-img {
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+}
+
 /* action buttons */
 .action-button {
   position: absolute;
@@ -122,6 +147,7 @@
 
   position: absolute;
   transition: all 0.3s;
+  z-index: 100;
 }
 
 .action-button:hover {
