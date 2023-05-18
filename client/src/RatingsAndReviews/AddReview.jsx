@@ -11,11 +11,14 @@ export default function AddReview({id, toggleModal}) {
   const [prodCharac, setProdCharac] = useState([]);
   const [characObj, setCharacObj] = useState({});
   const [charExceed, setCharExceed] = useState(null);
+  const [characLimit, setCharacLimit] = useState('');
+  const [characLeft, setCharacLeft] = useState('');
   // states for form submission:
   const [overallRate, setOverallRate] = useState(0);
   const [recommendRes, setRecommendRes] = useState(false);
   const [characResults, setCharacResults] = useState({});
   const [summaryRes, setSummaryRes] = useState('');
+  const [bodyRes, setBodyRes] = useState('');
 
   useEffect(() => {
     if (overallRate === 1) {
@@ -70,6 +73,21 @@ export default function AddReview({id, toggleModal}) {
     }
   }
 
+  function handleAddBody(e) {
+    if (e.target.value.length < 50) {
+      setBodyRes(e.target.value);
+      setCharacLeft(`${e.target.value.length}/50 characters`);
+      setCharacLimit('');
+    } else if (e.target.value.length >= 50 && e.target.value.length <= 1000) {
+      setBodyRes(e.target.value);
+      setCharacLeft('Minimum reached');
+      setCharacLimit('');
+    } else {
+      setCharacLeft('');
+      setCharacLimit('Character Limit Exceeded');
+    }
+  }
+
   return (
     <div className="screen-overlay">
       <div className="modal-add-review">
@@ -117,7 +135,13 @@ export default function AddReview({id, toggleModal}) {
           <div className="add-rev-summary">
             <div className="rev-summary-label">Add a headline</div>
             <input className="rev-summary-input" type="text" placeholder="Example: Best purchase ever!" onChange={handleAddSummary} value={summaryRes} />
-            <span className="char-exceeded">{charExceed && charExceed}</span>
+            {charExceed && <span className="char-exceeded">{charExceed}</span>}
+          </div>
+          <div className="add-rev-body">
+            <div className="rev-body-label">Add a written review</div>
+            <textarea className="rev-body-input" type="text" placeholder="Why did you like the product or not?" value={bodyRes} onChange={handleAddBody} />
+            {characLeft && <span className="char-left">{characLeft}</span>}
+            {characLimit && <span className="char-exceeded">{characLimit}</span>}
           </div>
         </form>
       </div>
