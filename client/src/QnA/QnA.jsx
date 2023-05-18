@@ -3,6 +3,7 @@ import axios from 'axios';
 import QnAList from './QnAList.jsx';
 import AddQuestion from './AddQuestion.jsx';
 import SearchQuestions from './SearchQuestions.jsx';
+import './style/QnA.css';
 
 const { useState, useEffect } = React;
 
@@ -47,20 +48,23 @@ function QnA({ id, product }) {
 
   return (
 
-    <div className="QnA Component" data-testid="QnA Test">
+    <div className="QnA-Component" data-testid="QnA Test">
       <div className="QnA-Widget-Title">Questions and Answers</div>
-      <div className="QnA-Search-Questions">
-        <SearchQuestions quests={quests} filterQuestion={filterQuestion} />
-      </div>
-      <div className="QnA-Add-Question">
-        <button type="button" onClick={questModalClicker}>Add Question</button>
-        {questModal ? (
-          <AddQuestion
-            product={product}
-            grabQuestions={grabQuestions}
-            questModalClicker={questModalClicker}
-          />
-        ) : null }
+      <div className="QnA-Options">
+        <div className="QnA-Search-Questions">
+          <SearchQuestions quests={quests} filterQuestion={filterQuestion} />
+        </div>
+        <div>or</div>
+        <div className="QnA-Add-Question">
+          <button className="QnA-Add-Question-Button" type="button" onClick={questModalClicker}>Add Your Own Question</button>
+          {questModal ? (
+            <AddQuestion
+              product={product}
+              grabQuestions={grabQuestions}
+              questModalClicker={questModalClicker}
+            />
+          ) : null }
+        </div>
       </div>
       <div className="QnA-List">
         <QnAList quests={filtQuests} product={product} grabQuestions={grabQuestions} />

@@ -18,9 +18,9 @@ function QnAList({ quests, product, grabQuestions }) {
   };
 
   return (
-    <div className="QnA-List-map" data-testid="QnAList Test">
-      {quests.slice(0, numEntry)
-        .map((quest) => (
+    <div className="QnAList-Component">
+      <div className="QnA-List-map" data-testid="QnAList Test">
+        {quests.slice(0, numEntry).map((quest) => (
           <QnAListEntry
             quest={quest}
             key={quest.question_id}
@@ -28,11 +28,18 @@ function QnAList({ quests, product, grabQuestions }) {
             grabQuestions={grabQuestions}
           />
         ))}
-      <div className="question-buttons" data-testid="question-buttons">
+      </div>
+      <div className="QnAList-buttons" data-testid="question-buttons">
         {questButton ? null : (
-          <button type="button" onClick={moreQuestHandler}>Show More Answered Questions</button>
+          <button type="button" onClick={moreQuestHandler}>
+            Show More Answered Questions
+          </button>
         )}
-        {questButton ? null : (<button type="button" onClick={allQuestionHandler}>Show All Questions</button>)}
+        {questButton ? null : (
+          <button type="button" onClick={allQuestionHandler}>
+            Show All Questions
+          </button>
+        )}
       </div>
     </div>
   );

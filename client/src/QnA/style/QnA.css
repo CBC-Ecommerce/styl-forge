@@ -1,0 +1,17 @@
+.QnA-Component {
+  margin-left: 0.5%;
+}
+.QnA-Widget-Title {
+  text-align: center;
+  font-size: 24pt;
+  margin-bottom: 2%;
+}
+.QnA-Options {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5%;
+}
+
+.QnA-Options > div:not(:last-child) {
+  margin-right: 0.5%;
+}
