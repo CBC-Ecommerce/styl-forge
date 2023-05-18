@@ -7,7 +7,7 @@ import Stars from '../RatingsAndReviews/StaticStarList.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import AddToCart from './AddToCart.jsx';
-import './Overview.css';
+import './css/Overview.css';
 
 export default function Overview({ product, id, reviewList }) {
   const [styles, setStyles] = useState(0);
