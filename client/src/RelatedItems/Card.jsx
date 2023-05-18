@@ -7,7 +7,7 @@ function Card({
   productInfo, setId, related, id, crossClickHandler
 }) {
   const [showModal, setShowModal] = React.useState(false);
-  // console.log(productInfo)
+  const [comparedProId, setComparedProId] = React.useState(productInfo.id);
   function cardClickHandler() {
     setId(productInfo.id);
   }
@@ -16,8 +16,8 @@ function Card({
     setShowModal(true);
   }
 
-  function crossClick(productInfo) {
-    crossClickHandler(productInfo.id);
+  function crossClick() {
+    crossClickHandler(comparedProId);
   }
 
   return (
