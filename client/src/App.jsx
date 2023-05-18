@@ -9,7 +9,8 @@ import ProductOverview from './Overview/ProductOverview.jsx';
 import Social from './Overview/Social.jsx';
 
 function App() {
-  const [id, setId] = useState(40347);
+  const [id, setId] = useState(40346); // Better product id for testing QnA.
+
   const [currentProduct, setCurrentProduct] = useState({});
   const [reviewList, setReviewList] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
@@ -29,15 +30,22 @@ function App() {
       .then((results) => { setCharacteristics(results.data.characteristics); })
       .catch((err) => { throw err; });
   }, [id]);
-
   return (
     <div data-testid="app">
       <Overview product={currentProduct} id={id} reviewList={reviewList} />
       <div className="product-overview-box">
-        {currentProduct.description && <ProductOverview description={currentProduct.description} />}
-        <Social />
+        {currentProduct.description && (
+          <>
+            <ProductOverview
+              slogan={currentProduct.slogan}
+              description={currentProduct.description}
+              features={currentProduct.features}
+            />
+            <Social id={id} />
+          </>
+        )}
       </div>
-      <RelatedProducts id={id} setId={setId} />
+      {/* <RelatedProducts id={id} setId={setId} /> */}
       <QnA id={id} product={currentProduct} />
       <RatingsAndReviews id={id} reviewList={reviewList} char={characteristics} />
     </div>
