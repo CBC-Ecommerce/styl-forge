@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AnswerListEntry from './AnswerListEntry.jsx';
 import AddAnswer from './AddAnswer.jsx';
+import './style/QnAListEntry.css';
 
 function QnAListEntry({ quest, product, grabQuestions }) {
   // console.log('This is quest:', quest);
   const [ansEntry, setAnsEntry] = useState(2);
   const [anyMore, setAnyMore] = useState(true);
   const [showAdd, setShowAdd] = useState(false);
-  const [helpButton, setHelpButton] = useState(false);
+  const [helpButton, setHelpButton] = useState(JSON.parse(localStorage.getItem(`${quest.question_id}`)));
   const [reportQuest, setReportQuest] = useState(false);
 
   // const grabAnswers = () => {
@@ -49,6 +50,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
       .then((result) => {
         // console.log(result.data);
         setHelpButton(!helpButton);
+        localStorage.setItem(`${quest.question_id}`, 'true');
       })
       .then(() => {
         grabQuestions();
@@ -78,22 +80,28 @@ function QnAListEntry({ quest, product, grabQuestions }) {
 
     <div className="individual-question" data-testid="individual-question-test">
       <div className="question">
-        Q:
-        {' '}
-        {quest.question_body}
-        {' '}
-        <span className="question-buttons">
+        <div className="question-text">
+          <div className="big-Q">
+            Q:
+            {' '}
+          </div>
+          <div className="question-body">
+            {quest.question_body}
+            {' '}
+          </div>
+        </div>
+        <div className="question-buttons">
           Helpful?
           {' '}
-          <button className="helpful-question-button" onClick={questionHelpful} type="button" disabled={helpButton}>
+          <button className="button" onClick={questionHelpful} type="button" disabled={helpButton}>
             Yes
             {' '}
             (
             {quest.question_helpfulness}
             )
           </button>
-          <button onClick={questionReport} className="report-question-button" type="button" disabled={reportQuest}>Report</button>
-          <button className="add-answer-button" type="button" onClick={addAnswerClicker}>Add Answer</button>
+          <button onClick={questionReport} className="button" type="button" disabled={reportQuest}>Report</button>
+          <button data-testid="add-answer-test" className="button" type="button" onClick={addAnswerClicker}>Add Answer</button>
           <AddAnswer
             grabQuestions={grabQuestions}
             showAdd={showAdd}
@@ -101,11 +109,9 @@ function QnAListEntry({ quest, product, grabQuestions }) {
             quest={quest}
             product={product}
           />
-        </span>
+        </div>
       </div>
       <div className="answer">
-        A:
-        {' '}
         <div className="answer-list">
           {Object.keys(quest.answers).slice(0, ansEntry).map((key) => (
             <AnswerListEntry key={key} answer={quest.answers[key]} grabQuestions={grabQuestions} />
@@ -115,7 +121,7 @@ function QnAListEntry({ quest, product, grabQuestions }) {
 
       {anyMore ? (
         <form onSubmit={submitHandler}>
-          <input type="submit" value="See More Answers" />
+          <input className="more-answers" type="submit" value="See More Answers" />
         </form>
       ) : null}
     </div>

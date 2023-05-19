@@ -34,7 +34,7 @@ function AddQuestion({ product, grabQuestions, questModalClicker }) {
   };
 
   return (
-    <div className="qna-modal">
+    <div className="qna-modal" data-testid="question-modal-test">
       <div className="qna-modal-content">
         <div className="qna-modal-header">
           <h4 className="qna-modal-title">Ask Your Question!</h4>

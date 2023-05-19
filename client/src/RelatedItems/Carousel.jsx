@@ -33,15 +33,27 @@ function Carousel({
     const data = list?.map((productId) => axios.get(`products/?product_id=${productId}/styles`)
       ?.then((res) => {
         let index = 0;
+        let images = [];
+        let thumbnails = [];
         res.data.results?.forEach((el, i) => {
           if (el['default?']) {
             index = i;
+          }
+          if (el.photos[0]) {
+            images.push(el.photos[0].url);
+            thumbnails.push(el.photos[0].thumbnail_url)
+          }
+          if (el.photos[1]) {
+            images.push(el.photos[1].url);
+            thumbnails.push(el.photos[1].thumbnail_url)
           }
         });
         const updates = {
           original_price: res.data?.results[index].original_price,
           sale_price: res.data?.results[index].sale_price,
           photoURL: res.data?.results[index].photos[0].url,
+          images: images,
+          thumbnails: thumbnails,
         };
         return updates;
       }));
@@ -60,6 +72,11 @@ function Carousel({
     getPriceImage(idList);
   }, [idList]);
 
+  useEffect(() => {
+    setStartIndex(0);
+    setEndIndex(2);
+  }, [id]);
+
   function prevClickHandler() {
     if (startIndex <= 0) {
       return;
@@ -75,12 +92,12 @@ function Carousel({
     setStartIndex(startIndex => startIndex + 1);
     setEndIndex(endIndex => endIndex + 1);
   }
-
+  // console.log(startIndex)
   return (
     <>
       {startIndex !== 0 && (
       <span
-        className="btn arrow-btn left-arrow" data-testid="leftArrow"
+        className="arrow-btn left-arrow" data-testid="leftArrow"
         onClick={prevClickHandler}
       >
         &#60;
@@ -119,11 +136,13 @@ function Carousel({
       })}
       {(() => {
         if ((related && (endIndex === length - 2))
-        || (related === undefined && (endIndex === length - 1))) {
+        || (related === undefined && (endIndex >= length - 1))) {
+          return null;
+        } else if (length === 0) {
           return null;
         }
         return (
-          <span className="btn arrow-btn right-arrow"
+          <span className="arrow-btn right-arrow"
           data-testid="rightArrow"
           onClick={nextClickHandler}>
             &#62;

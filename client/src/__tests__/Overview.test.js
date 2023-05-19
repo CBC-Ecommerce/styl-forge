@@ -14,7 +14,7 @@ import Overview from '../Overview/Overview.jsx';
 import AddToCart from '../Overview/AddToCart.jsx';
 import Carousel from '../Overview/Carousel.jsx';
 
-afterEach(cleanup);
+afterEach(() => cleanup());
 jest.mock('axios');
 
 const mockProduct = {
@@ -56,7 +56,7 @@ const mockProduct = {
 //   ],
 // };
 
-describe('Overview Page', () => {
+describe.only('Overview Page', () => {
   // set mock result of axios request before each it and render Overview component
   beforeEach(async () => {
     axios.get = jest.fn().mockResolvedValueOnce({
@@ -83,7 +83,7 @@ describe('Overview Page', () => {
         ],
       },
     });
-    render(<Overview id={null} product={mockProduct} />);
+    render(<Overview id={null} product={mockProduct} reviewList={[0, 1]}/>);
   });
 
   it('should render to screen', async () => {
@@ -142,7 +142,7 @@ describe('Overview Page', () => {
   });
 });
 
-describe('Add to cart component', () => {
+describe.only('Add to cart component', () => {
   beforeEach(async () => {
     render(<AddToCart selectedStyle={{
       skus:
@@ -164,16 +164,20 @@ describe('Add to cart component', () => {
     });
   });
 
-  it('quantity defaults to 1 for selected size', async () => {
+  it('quantity defaults to 1 when size is selected', async () => {
+    let qtyDropdown = screen.getByTestId('qtyDrop');
+    expect(qtyDropdown.value).toEqual('-');
     const selectDropdown = screen.getByTestId('selectDrop');
     selectDropdown.value = 'XS';
     await userEvent.selectOptions(selectDropdown, 'XS');
-    const qtyDropdown = screen.getByTestId('qtyDrop');
+    qtyDropdown = screen.getByTestId('qtyDrop');
     expect(qtyDropdown.value).toEqual('1');
   });
+  // add tests to check if select size button functions as expected
+  // also add test for add to cart button functionality
 });
 
-describe('Image Carousel component', () => {
+describe.only('Image Carousel component', () => {
   beforeEach(async () => {
     render(<Carousel
       allPics={['https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
@@ -186,4 +190,6 @@ describe('Image Carousel component', () => {
   it('should render the carousel', async () => {
     expect(screen.getByTestId('carousel')).toBeInTheDocument();
   });
+  // add test for zoom in functionality
+  // add test for button functionality including prev, next, and thumbnails
 });
