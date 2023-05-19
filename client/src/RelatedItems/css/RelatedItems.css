@@ -179,10 +179,13 @@
   border-radius: 8px;
   transition: all 0.3s;
   cursor: pointer;
+  background-color: #2f4858;
+  color: #fff;
 }
 
 .addOutfit-btn:hover {
   font-size: 19px;
+  background-color: #596d79;
 }
 
 /* close btn in modal */
