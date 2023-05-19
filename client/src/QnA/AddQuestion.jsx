@@ -46,13 +46,13 @@ function AddQuestion({ product, grabQuestions, questModalClicker }) {
         </div>
         <div className="qna-modal-body">
           <form>
-            <input type="text" onChange={questBodyChanger} placeholder="Question" />
+            <textarea className="qna-text-box" type="text" onChange={questBodyChanger} placeholder="New Question..." />
             <input type="text" onChange={usernameChanger} placeholder="Username" />
             <input type="text" onChange={elecmailChanger} placeholder="Email" />
           </form>
         </div>
         <div className="qna-modal-footer">
-          <button type="button" onClick={questionSubmitter}>Submit Question</button>
+          <button className="button" type="button" onClick={questionSubmitter}>Submit Question</button>
           <button type="button" className="button" onClick={questModalClicker}>Close</button>
         </div>
       </div>
