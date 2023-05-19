@@ -1,6 +1,8 @@
 .related-products {
   max-width: 1200px;
   margin: 0 auto;
+  margin-bottom: 80px;
+  margin-top: 80px;
 }
 
 .related-heading {
@@ -74,7 +76,7 @@
 
 /* **********  buttons  ********* */
 .btn {
-  cursor: pointer;
+
 }
 
 /* carousel indicators */
@@ -93,6 +95,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .right-arrow {
@@ -123,6 +126,7 @@
   position: absolute;
   background-color: rgba(241, 243, 245, 0.603);
   z-index: 199;
+  cursor: pointer;
 }
 
 .left-arrow-img {
@@ -148,6 +152,7 @@
   position: absolute;
   transition: all 0.3s;
   z-index: 100;
+  cursor: pointer;
 }
 
 .action-button:hover {
@@ -173,6 +178,7 @@
   box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .addOutfit-btn:hover {
@@ -184,6 +190,7 @@
   position: absolute;
   top: 8px;
   right: 12px;
+  cursor: pointer;
 }
 
 .closeModal-btn:hover {

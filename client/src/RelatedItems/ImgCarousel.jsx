@@ -34,17 +34,17 @@ function ImgCarousel({productInfo}) {
     <div className="card-img" onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
       {currentIndex !== 0 && showArrow && (
       <span
-        className="btn arrow-btn left-arrow-img"
+        className="arrow-btn left-arrow-img"
         onClick={prevClickHandler}>&#60;</span>
       )}
       {productInfo.images?.map((img, i) => {
         if (i === currentIndex) {
-          return (<img className="card-img" src={img ? img : 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'} alt="related product" />);
+          return (<img className="card-img" src={img ? img : 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'} alt="related product" key={productInfo.id}/>);
         }
       })}
       {currentIndex !== (length - 1) && showArrow && (
       <span
-        className="btn arrow-btn right-arrow-img"
+        className="arrow-btn right-arrow-img"
         onClick={nextClickHandler}>&#62;</span>
       )}
     </div>
