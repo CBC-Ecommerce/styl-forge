@@ -74,7 +74,7 @@ function AddAnswer({
         <div className="qna-modal-body">
           <form id="answer-form" onSubmit={submitAnswer}>
             <textarea className="qna-text-box" type="text" onChange={answerChanger} placeholder="Answer..." value={answer} />
-            <input type="text" onChange={usernameChanger} placeholder="Username" value={username} />
+            <input className="qna-username-box" type="text" onChange={usernameChanger} placeholder="Username" value={username} />
             <input type="text" onChange={emailChanger} placeholder="email" value={email} />
             <input type="file" onChange={fileSelector} id="answer-image" accept=".html, .htm, image/jpeg, image/png" multiple />
           </form>

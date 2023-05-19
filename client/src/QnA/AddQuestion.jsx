@@ -47,7 +47,7 @@ function AddQuestion({ product, grabQuestions, questModalClicker }) {
         <div className="qna-modal-body">
           <form>
             <textarea className="qna-text-box" type="text" onChange={questBodyChanger} placeholder="New Question..." />
-            <input type="text" onChange={usernameChanger} placeholder="Username" />
+            <input className="qna-username-box" type="text" onChange={usernameChanger} placeholder="Username" />
             <input type="text" onChange={elecmailChanger} placeholder="Email" />
           </form>
         </div>

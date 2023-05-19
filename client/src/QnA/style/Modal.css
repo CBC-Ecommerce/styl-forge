@@ -22,6 +22,9 @@
 .qna-modal-header, .qna-modal-footer {
   padding: 10px;
 }
+.qna-username-box {
+  margin-right: 10px;
+}
 .qna-text-box {
 height: 100px;
 width: 100%;
