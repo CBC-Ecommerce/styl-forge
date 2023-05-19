@@ -3,6 +3,53 @@
   margin: 0;
   padding: 0;
 }
+
 html * {
   font-family: Nunito Sans, sans-serif;
+}
+
+/* #app {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Nunito Sans', sans-serif;
+} */
+
+/* ********** NAV BAR ************* */
+.ribbon {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid #adb5bd;
+  margin-bottom: 50px;
+}
+
+.nav-logo {
+  font-size: 36px;
+  font-weight: 800;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: #000;
+  color: #fff;
+  padding: 2px 12px;
+  border-radius: 8px;
+}
+
+.nav-container {
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-search {
+  border: none;
+  border-bottom: 2px solid #adb5bd;
+}
+
+.nav-searchIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
