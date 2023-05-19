@@ -9,18 +9,32 @@
   justify-content: center;
   align-items: center;
 }
-
 .qna-modal-content {
   width: 40%;
   background-color: #fff;
 }
-
+.qna-picture {
+  max-width: 150px;
+  max-height: 150px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
 .qna-modal-header, .qna-modal-footer {
   padding: 10px;
 }
-
-.qna-modal-title, .qna-modal-subtitle {
+.qna-text-box {
+height: 100px;
+width: 100%;
+padding: 0;
+}
+/* .qna-modal-title, .qna-modal-subtitle {
   margin: 0;
+} */
+.qna-modal-title {
+  font-size: 18pt;
+}
+.qna-modal-subtitle {
+  font-size: 16pt;
 }
 
 .qna-modal-body {
