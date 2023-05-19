@@ -47,16 +47,6 @@ function AddAnswer({
       const objectURL = URL.createObjectURL(currentFiles[i]);
       fileArray.push(objectURL);
     }
-    // Is promise.all required? It seems like it should do it synchronously.
-    // It seems like the promise is not necessary.
-    setPics(fileArray);
-    // Promise.all(fileArray)
-    //   .then((fileArray) => {
-    //     setPics(fileArray);
-    //   })
-    //   .catch((err) => {
-    //     console.log('Error creating array of urls', err);
-    //   });
   };
 
   return (

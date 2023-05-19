@@ -1,12 +1,21 @@
 #Overview {
   display: flex;
-  height: 75vh;
-  width: 100vw;
+  height: auto;
+  width: auto;
   position: relative;
+  padding-bottom: 50px;
+  margin: 1rem 1rem;
+  flex-direction: row;
 }
 
 .info-and-style-selector {
-  display: block;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
 }
 
 .style-selector {
@@ -76,6 +85,7 @@
 .style-name {
   margin: auto;
   padding-bottom: 8px;
+  padding-left: 1rem;
   white-space: nowrap;
 }
 
@@ -106,17 +116,28 @@
 }
 
 .image-gallery-box {
+  flex: 1;
   width: 50vw;
   height: 75vh;
-  padding-left: 2rem
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 8px;
+  background: rgb(190, 178, 167);
+  box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
 }
 .image-gallery {
-  width: 100%;
-  max-width: 800px;
+  flex: 1;
+  display: flex;
+  width: auto;
+  max-width: 1400px;
   height: 100%;
   position: relative;
   overflow: hidden;
+  background: rgb(190, 178, 167);
+  border-radius: 8px;
+  justify-content: center;
 }
+
 
 .carousel {
   height: 100%;
@@ -153,8 +174,11 @@
 
 .thumbnails {
   position: absolute;
+  top: 0%;
+  left: 0%;
   z-index: 2;
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 75%;
   width: 8vw;
   scrollbar-width: none;
@@ -162,7 +186,15 @@
 }
 
 .thumbnails::-webkit-scrollbar {
-  display: none;
+  width: 5px;
+  height: 8px;
+  background-color: rgba(147, 147, 147, 0.7);
+  border-radius: .25rem;
+}
+
+.thumbnails::-webkit-scrollbar-thumb {
+  background:rgba(0, 0, 0, 0.7);
+  border-radius: .25rem;
 }
 
 .zoom-button {
@@ -224,6 +256,11 @@
   display: block;
   height: 18vh;
   width: auto;
+  border-radius: 8px;
+  box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding-bottom: 20px;
+  position: relative;
 }
 
 .add-to-cart {
@@ -233,8 +270,15 @@
   grid-template-rows: 1fr 1fr;
   padding: 0.5rem;
   gap: 1rem;
-  border: 1px solid black;
-  height: 100%;
+  width: auto;
+}
+
+.add-to-cart-button {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
+  padding: 8px 16px;
+  grid-column: span 2;
 }
 
 .size-dropdn {
@@ -246,13 +290,15 @@
 }
 
 .dropdn-btn {
-  background: none;
-  text-decoration: none;
-  color: black;
-  font-family: inherit;
   cursor: pointer;
   padding: 0;
   width: auto;
+  border:none;
+  border-radius: 8px;
+  box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
+}
+.dropdn-btn option{
+  cursor: pointer;
 }
 
 .dropdn {
@@ -397,9 +443,10 @@
   position: relative;
   height: auto;
   width: auto;
-  padding-top: 4px;
-  padding-left: 2rem;
-  border: solid 1px;
+  padding: 4px 8px;
+  margin: 50px 5%;
+  border-radius: 8px;
+  box-shadow: 0 3.2px 6.4px rgba(0, 0, 0, 0.1);
 }
 
 .product-overview {
@@ -443,4 +490,60 @@
   font-size: 2rem;
   cursor: pointer;
   padding: 0 .5rem;
+}
+
+@media (max-width: 900px) {
+  #Overview {
+    height: 200vh;
+    width:100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .image-gallery-box {
+    width: 85vw;
+  }
+
+  .single-img {
+    width: 100%;
+    max-width: 800px;
+    height: 75%;
+    position: absolute;
+    transition: all 0.5s;
+    display: flex;
+    justify-content: center;
+  }
+
+  .style-selector {
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+
+  .thumbnails {
+    position: absolute;
+    display: inline-flex;
+    top: 75%;
+    left: 0%;
+    z-index: 2;
+    overflow-x: auto;
+    height: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex-direction: row;
+  }
+
+  .carousel-button {
+    position: absolute;
+    z-index: 3;
+    background: none;
+    border: none;
+    font-size: 4rem;
+    top: 38%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, .5);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    padding: 0 0.5rem;
+    background-color: rgba(0, 0, 0, .25);
+  }
 }
