@@ -10,7 +10,8 @@ function RelatedProducts({ id, setId }) {
   function getRelatedList(currentId) {
     axios.get(`products/?product_id=${currentId}/related`)
       ?.then((res) => {
-        setRelatedIdList(res.data);
+        const idSet = new Set(res.data);
+        if (idSet) setRelatedIdList([...idSet]);
       })
       .catch((err) => {
         throw new Error(err, 'Failed to get related product list');

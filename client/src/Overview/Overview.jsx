@@ -7,11 +7,14 @@ import Stars from '../RatingsAndReviews/StaticStarList.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import AddToCart from './AddToCart.jsx';
-import './Overview.css';
+import ZoomView from '../Overview/ZoomView.jsx';
+import './css/Overview.css';
 
 export default function Overview({ product, id, reviewList }) {
   const [styles, setStyles] = useState(0);
   const [selectedStyle, setSelectedStyle] = useState(0);
+  const [zoomView, setZoomView] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
   // get style information for selector
   useEffect(() => {
     axios.get(`products/?product_id=${id}/styles`)
@@ -24,6 +27,7 @@ export default function Overview({ product, id, reviewList }) {
 
   // selected style click handler
   function styleSelectClickHandler(e) {
+    setActiveImage(0);
     // for (var i = 0; i < )
     for (let i = 0; i < styles.results.length; i += 1) {
       if (styles.results[i].style_id.toString() === e.target.id) {
@@ -31,13 +35,16 @@ export default function Overview({ product, id, reviewList }) {
       }
     }
   }
-
+  // close zoomView
+  function closeZoomView() {
+    setZoomView(false);
+  }
   return (
     <div id="Overview" data-testid="Overview">
       {styles && (
       <>
       <div className="image-gallery-box">
-        <ImageGallery selectedStyle={selectedStyle} />
+        <ImageGallery selectedStyle={selectedStyle} zoomView={zoomView} setZoomView={setZoomView} activeImage={activeImage} setActiveImage={setActiveImage} />
       </div>
         <div className="info-and-style-selector">
           <div className="product-info-box">
@@ -54,12 +61,14 @@ export default function Overview({ product, id, reviewList }) {
               styles={styles}
               selectedStyle={selectedStyle}
               styleSelectClickHandler={styleSelectClickHandler}
+              setActiveImage={setActiveImage}
             />
           </div>
           <div className="add-to-cart-box">
             <AddToCart selectedStyle={selectedStyle} />
           </div>
         </div>
+        {zoomView && <ZoomView img={selectedStyle.photos[activeImage].url} closeZoomView={closeZoomView} />}
       </>
       )}
     </div>

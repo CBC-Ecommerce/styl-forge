@@ -20,7 +20,6 @@ export default function AddToCart({ selectedStyle }) {
     setSelectedSize(e.target.value);
     setSelectedQty(1);
     setSelectedSku(availableItemSkus[index]);
-
     quantity = (quantity > 15) ? 15 : quantity;
 
     for (let i = 1; i <= quantity; i++) {
@@ -53,9 +52,8 @@ export default function AddToCart({ selectedStyle }) {
         {availableItems.map((item, index) => {
           if (availableItems[index].quantity > 0) {
             return <option id={index}>{item.size}</option>;
-          } else {
-            return <option disabled>{item.size} Out of Stock</option>
           }
+          return <option disabled>{item.size} Out of Stock</option>;
         })}
       </select>
       <select className="dropdn-btn" data-testid="qtyDrop" value={selectedQty} onChange={(e) => setSelectedQty(e.target.value)}>

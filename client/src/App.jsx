@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Ribbon from './Ribbon.jsx';
 import RelatedProducts from './RelatedItems/RelatedProducts.jsx';
 import QnA from './QnA/QnA.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
@@ -9,7 +10,8 @@ import ProductOverview from './Overview/ProductOverview.jsx';
 import Social from './Overview/Social.jsx';
 
 function App() {
-  const [id, setId] = useState(40347);
+  const [id, setId] = useState(40346); // Better product id for testing QnA.
+
   const [currentProduct, setCurrentProduct] = useState({});
   const [reviewList, setReviewList] = useState([]);
   const [characteristics, setCharacteristics] = useState({});
@@ -29,13 +31,21 @@ function App() {
       .then((results) => { setCharacteristics(results.data.characteristics); })
       .catch((err) => { throw err; });
   }, [id]);
-
   return (
     <div data-testid="app">
+      <Ribbon />
       <Overview product={currentProduct} id={id} reviewList={reviewList} />
       <div className="product-overview-box">
-        {currentProduct.description && <ProductOverview description={currentProduct.description} />}
-        <Social />
+        {currentProduct.description && (
+          <>
+            <ProductOverview
+              slogan={currentProduct.slogan}
+              description={currentProduct.description}
+              features={currentProduct.features}
+            />
+            <Social id={id} />
+          </>
+        )}
       </div>
       <RelatedProducts id={id} setId={setId} />
       <QnA id={id} product={currentProduct} />
