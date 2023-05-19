@@ -42,6 +42,10 @@ function AddAnswer({
 
   const fileSelector = (e) => {
     const currentFiles = e.target.files;
+    if (currentFiles.length > 5) {
+      alert('Unable to upload more than 5 images');
+      return setPics([]);
+    }
     const fileArray = [];
     for (let i = 0; i < currentFiles.length; i++) {
       const objectURL = URL.createObjectURL(currentFiles[i]);
