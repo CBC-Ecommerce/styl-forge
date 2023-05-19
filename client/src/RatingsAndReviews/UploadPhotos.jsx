@@ -7,47 +7,38 @@ export default function UploadPhotos() {
   const [imgPreview, setImgPreview] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
 
-  function convertBase64(filesArray) {
-    Promise.all(filesArray.map((file) => (
-      new Promise((res, rej) => {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-
-        fileReader.onload = () => {
-          res(fileReader.result);
-        };
-
-        fileReader.onerror = (err) => {
-          rej(err);
-        };
+  function convertToURL(filesArr) {
+    const formData = new FormData();
+    filesArr.forEach((file) => {
+      formData.append('file', file);
+    });
+    formData.append('upload_preset', 'ge9rke5o');
+    axios.post('https://api.cloudinary.com/v1_1/dnr41r1lq/image/upload', formData)
+      .then((results) => {
+        console.log('RESULTS BACK FROM CLOUDINARY ARE ', results.data.secure_url);
+        setFiles(...files, results.data.secure_url);
       })
-    )))
-      .then((base64) => {
-        setImgPreview(...imgPreview, base64);
-        // map over each base64 file and for each file,
-          // send to cloudinary on the backend,
-          // then when that's done, with the result
-         // return the result.secure_url
-         // now we should have an array of public urls
-        console.log('IMG PREVIEW IS ', imgPreview);
-      });
+      .catch((err) => { console.log(err); });
   }
 
-  const handleFileChange = async (e) => {
+  const handleFileChange = (e) => {
     const uploaded = Array.from(e.target.files);
     if (uploaded.length > 5) {
       e.preventDefault();
       setErrorMsg('Cannot upload more than 5 photos');
     } else {
-      const conformedToURL = await convertBase64(uploaded);
-      setFiles(conformedToURL);
-      setErrorMsg('');
+      setImgPreview(e.target.files[0]);
+      // convertToURL(uploaded);
+      // setErrorMsg('');
     }
   };
 
-  function handleUpload() {
+  const handleUpload = async (e) => {
     // invoke a callback function to send the files we've conformed
     // back to the Add Review section as the results
+    e.preventDefault();
+    await files;
+    console.log('FILES TO SHIP SHOULD BE URL ARRAY ', files);
   }
 
   const style = {
