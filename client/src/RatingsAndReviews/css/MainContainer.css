@@ -55,6 +55,20 @@ body.active-modal {
     color: white;
   }
 
+  .add-review:hover,
+  .add-review-btn:hover {
+    background: #596d79;
+    color: white;
+    transform: scale(1.1);
+    transition: all 0.3s;
+  }
+  .more-reviews:hover {
+    background: #596d79;
+    color: white;
+    transform: scale(1.1);
+    transition: all 0.3s;
+  }
+
   .footer {
     height: 5%;
   }
