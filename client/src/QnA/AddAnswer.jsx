@@ -51,6 +51,7 @@ function AddAnswer({
       const objectURL = URL.createObjectURL(currentFiles[i]);
       fileArray.push(objectURL);
     }
+    setPics(fileArray);
   };
 
   return (
