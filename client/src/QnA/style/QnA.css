@@ -23,6 +23,9 @@
   padding: 10px;
   cursor: pointer;
   margin-right: 15px;
+  background-color: #2f4858;
+  color: white;
+  border-radius: 8px;
 }
 .QnA-OnlyPics {
   background: transparent;
@@ -30,6 +33,9 @@
   padding: 10px;
   cursor: pointer;
   margin-right: 15px;
+  background-color: #2f4858;
+  color: white;
+  border-radius: 8px;
 }
 .QnA-Buttons {
   display: flex;

@@ -4,6 +4,7 @@
 .QnAList-Component {
   max-height: 50vh;
   overflow: scroll;
+  overflow-x: hidden;
 }
 .QnAList-Component::-webkit-scrollbar {
   width: 5px;
@@ -16,8 +17,11 @@
   background: transparent;
   font-size: 12px;
   padding: 10px;
-  margin: 15px 0 0 10px;
+  margin: 10px 0 10px 10px;
   cursor: pointer;
+  background-color: #2f4858;
+  color: white;
+  border-radius: 8px;
 }
 
 .show-more-button:hover {
