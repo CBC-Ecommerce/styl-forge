@@ -54,9 +54,12 @@ function QnA({ id, product }) {
         <div className="QnA-Search-Questions">
           <SearchQuestions quests={quests} filterQuestion={filterQuestion} />
         </div>
-        <div className="QnA-or">or</div>
         <div className="QnA-Add-Question">
-          <button className="QnA-Add-Question-Button" type="button" onClick={questModalClicker}>Add Your Own Question</button>
+          <button className="QnA-Add-Question-Button" type="button" onClick={questModalClicker}>
+            Add Your Own Question
+            {' '}
+            <span id="plus-sign">+</span>
+          </button>
           {questModal ? (
             <AddQuestion
               product={product}

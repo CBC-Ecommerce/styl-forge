@@ -4,6 +4,7 @@
 .QnAList-Component {
   max-height: 50vh;
   overflow: scroll;
+  overflow-x: hidden;
 }
 .show-more-button {
   background: transparent;
