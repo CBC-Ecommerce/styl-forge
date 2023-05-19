@@ -5,6 +5,7 @@ import {
   render, cleanup, screen, act, container, fireEvent,
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 import QnA from '../QnA/QnA.jsx';
 import QnAList from '../QnA/QnAList.jsx';
 import QnAListEntry from '../QnA/QnAListEntry.jsx';
@@ -65,28 +66,69 @@ describe('QnA Component', () => {
     };
     const filterQuestionMock = jest.fn();
     render(<SearchQuestions quests={quests} filterQuestion={filterQuestionMock} />);
-    const searchtest = await screen.getByTestId('SearchQuestionTest');
+    const searchtest = await screen.getByTestId('search-bar');
     expect(searchtest).toBeInTheDocument();
   });
-  // test('filterQuestion should set state of quests', async () => {
-  //   const input = 'tempore';
-  //   const quests = [
-  //     {
-  //       question_body: 'Tempore dolores quis molestiae.',
-  //     },
-  //     {
-  //       question_body: 'Sit veritatis temporibus.',
-  //     },
-  //   ];
-  //   const filtered = [
-  //     {
-  //       question_body: 'Tempore dolores quis molestiae.',
-  //     },
-  //   ];
-  //   render(<QnA id={40444} product={{}} />);
+  test('filterQuestion should set state of quests', async () => {
+    axios.get = jest.fn().mockResolvedValue({
+      data: {
+        product_id: '40444',
+        results: [
+          {
+            question_id: 329973,
+            question_body: 'Et cum ut est itaque ullam natus molestiae dolores qui.',
+            question_date: '2021-06-10T00:00:00.000Z',
+            asker_name: 'Glenna.Watsica31',
+            question_helpfulness: 12,
+            reported: false,
+            answers: {
+              3082739: {
+                id: 3082739,
+                body: 'Illo quo in quia dolore consequatur non iste.',
+                date: '2021-05-27T00:00:00.000Z',
+                answerer_name: 'Constantin_Buckridge93',
+                helpfulness: 11,
+                photos: [],
+              },
+            },
+          },
+          {
+            question_id: 329974,
+            question_body: 'Temporebus.',
+            question_date: '2021-06-10T00:00:00.000Z',
+            asker_name: 'Glenna.Watsica31',
+            question_helpfulness: 12,
+            reported: false,
+            answers: {
+              3082739: {
+                id: 3082739,
+                body: 'Illo quo in quia dolore consequatur non iste.',
+                date: '2021-05-27T00:00:00.000Z',
+                answerer_name: 'Constantin_Buckridge93',
+                helpfulness: 11,
+                photos: [],
+              },
+            },
+          },
+        ],
+      },
+    });
+    const filtered = [
+      {
+        question_body: 'Tempore dolores quis molestiae.',
+      },
+    ];
+    const user = userEvent.setup();
+    render(<QnA id={40444} product={{}} />);
+    const typed = await screen.findByTestId('search-bar');
+    await user.type(typed, 'tempore');
+    debugger;
+    const expected = await screen.getAllByTestId('individual-question-test');
+    // const expected = await screen.getByTestId('QnAList Test');
+    expect(expected.length).toBe(1);
+  });
   // Render the QnA, use a input value mock to mock the input of a typed filter
   // Fire the event to filter and see where it goes. Will also need to mock axios.get and have a resolvedValue;
-  // });
   test('AddQuestion subcomponent should render', async () => {
     const grabQuestionsMock = jest.fn();
     const questModalClickerMock = jest.fn();

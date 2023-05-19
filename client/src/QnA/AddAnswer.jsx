@@ -42,6 +42,10 @@ function AddAnswer({
 
   const fileSelector = (e) => {
     const currentFiles = e.target.files;
+    if (currentFiles.length > 5) {
+      alert('Unable to upload more than 5 images');
+      return setPics([]);
+    }
     const fileArray = [];
     for (let i = 0; i < currentFiles.length; i++) {
       const objectURL = URL.createObjectURL(currentFiles[i]);
@@ -63,14 +67,19 @@ function AddAnswer({
         </div>
         <div className="qna-modal-body">
           <form id="answer-form" onSubmit={submitAnswer}>
-            <input type="text" onChange={answerChanger} placeholder="Answer..." value={answer} />
-            <input type="text" onChange={usernameChanger} placeholder="Username" value={username} />
+            <textarea className="qna-text-box" type="text" onChange={answerChanger} placeholder="Answer..." value={answer} />
+            <input className="qna-username-box" type="text" onChange={usernameChanger} placeholder="Username" value={username} />
             <input type="text" onChange={emailChanger} placeholder="email" value={email} />
-            <input type="file" onChange={fileSelector} id="answer-image" accept="image/*" multiple />
+            <input type="file" onChange={fileSelector} id="answer-image" accept=".html, .htm, image/jpeg, image/png" multiple />
           </form>
+          <img className="qna-picture" src={pics[0]} />
+          <img className="qna-picture" src={pics[1]} />
+          <img className="qna-picture" src={pics[2]} />
+          <img className="qna-picture" src={pics[3]} />
+          <img className="qna-picture" src={pics[4]} />
         </div>
         <div className="qna-modal-footer">
-          <button onClick={submitAnswer} type="button">Submit Answer</button>
+          <button className="button" onClick={submitAnswer} type="button">Submit Answer</button>
           <button type="button" className="button" onClick={closeClicker}>Close</button>
         </div>
       </div>
