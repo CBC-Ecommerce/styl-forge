@@ -1,8 +1,8 @@
 .related-products {
   max-width: 1200px;
   margin: 0 auto;
-  margin-bottom: 80px;
-  margin-top: 80px;
+  margin-bottom: 50px;
+  margin-top: 50px;
   font-family: 'Nunito Sans', sans-serif;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .card-text {
-  font-size: 14px;
+  font-size: 16px;
   margin-left: 12px;
   list-style-type: none;
   display: flex;
@@ -78,9 +78,6 @@
 }
 
 /* **********  buttons  ********* */
-.btn {
-
-}
 
 /* carousel indicators */
 .arrow-btn {
