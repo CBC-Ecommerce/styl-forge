@@ -105,6 +105,7 @@ export default function RatingsAndReviews({id, reviewList, char}) {
           </div>
         </div>
       </div>
+      <div className="footer" />
     </div>
   );
 }

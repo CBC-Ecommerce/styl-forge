@@ -15,7 +15,7 @@ export default function ReviewList({ currentList, listCount }) {
   }, [currentList]);
 
   return (
-    <div className="review-list">
+    <div className="review-list scrollbar">
       {renderList.length === 0 && <div>This product has no reviews yet</div>}
       {renderList.map((rev) => (
         <ReviewListCard review={rev} key={rev.review_id} />

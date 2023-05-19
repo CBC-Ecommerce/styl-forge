@@ -5,13 +5,14 @@ body.active-modal {
 .main-container {
   box-sizing: border-box;
   height: 100vh;
-  margin: 50px;
-  /* margin: 50px 250px; SAVE THIS FOR END PRODUCT*/
+  margin: 5% 15%;
 }
 
 .main-container h4 {
+  font-size: 18px;
+  text-transform: uppercase;
   margin-bottom: 20px;
-  color: #545454;
+  color: #2F4858;
 }
 
 .row {
@@ -49,4 +50,55 @@ body.active-modal {
     padding: 10px;
     margin: 15px 0 0 10px;
     cursor: pointer;
+    border-radius: 8px;
+    background: #2F4858;
+    color: white;
+  }
+
+  .add-review:hover,
+  .add-review-btn:hover {
+    background: #596d79;
+    color: white;
+    transform: scale(1.1);
+    transition: all 0.3s;
+  }
+  .more-reviews:hover {
+    background: #596d79;
+    color: white;
+    transform: scale(1.1);
+    transition: all 0.3s;
+  }
+
+  .footer {
+    height: 5%;
+  }
+
+  @media only screen and (max-width: 800px) {
+    .row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .modal-add-review {
+      max-width: 80vw;
+      max-height: 80vh;
+      background-color: white;
+      position: relative;
+      overflow: scroll;
+    }
+    .modal-add-review form {
+      display: flex;
+      flex-direction: column;
+      margin: 5% 10%;
+    }
+    .overall-stars {
+      padding: 7% 0;
+      border-bottom: 2px solid black;
+    }
+    .large-rating-number {
+      font-size: 64px;
+      margin-right: 12px;
+      margin-left: 10px;
+      color: #2F4858;
+    }
   }
