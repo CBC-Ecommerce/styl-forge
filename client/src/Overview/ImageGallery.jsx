@@ -44,7 +44,7 @@ export default function ImageGallery({ selectedStyle, zoomView, setZoomView, act
         />
       ))}
       <Carousel nameOfImageClass={'.single-image'} />
-      <div className="thumbnails">
+      <div className="thumbnails scrollbar">
         {styleThumbs.map((thumbNailUrl, index) => (
           <Thumbnails
             thumbNailUrl={thumbNailUrl}

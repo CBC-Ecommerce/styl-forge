@@ -184,7 +184,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-
+/*
 .thumbnails::-webkit-scrollbar {
   width: 5px;
   height: 8px;
@@ -195,7 +195,7 @@
 .thumbnails::-webkit-scrollbar-thumb {
   background:rgba(0, 0, 0, 0.7);
   border-radius: .25rem;
-}
+} */
 
 .zoom-button {
   position: absolute;
