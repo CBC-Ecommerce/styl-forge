@@ -44,17 +44,19 @@ export default function ImageGallery({ selectedStyle, zoomView, setZoomView, act
         />
       ))}
       <Carousel nameOfImageClass={'.single-image'} />
-      <div className="thumbnails scrollbar">
-        {styleThumbs.map((thumbNailUrl, index) => (
-          <Thumbnails
-            thumbNailUrl={thumbNailUrl}
-            index={index}
-            activeImage={activeImage}
-            setActiveImage={setActiveImage}
-            key={index}
-          />
-        ))}
-      </div>
+      {styleThumbs.length > 3 && (
+        <div className="thumbnails scrollbar">
+          {styleThumbs.map((thumbNailUrl, index) => (
+            <Thumbnails
+              thumbNailUrl={thumbNailUrl}
+              index={index}
+              activeImage={activeImage}
+              setActiveImage={setActiveImage}
+              key={index}
+            />
+          ))}
+        </div>
+      )}
       {modal && (
         <ExpandedView
           stylePhotos={stylePhotos}
