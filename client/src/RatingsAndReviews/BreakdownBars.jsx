@@ -21,8 +21,10 @@ export default function BreakdownBars({bar, rating, qty}) {
 
   return (
     <div className="rating-bar">
-      <div className="bar-label">{`${rating} stars`}</div>
-      <div className="rating-qty">{`(${qty})`}</div>
+      <div className="bar-label-container">
+        <div className="bar-label">{`${rating} stars`}</div>
+        <div className="rating-qty">{`(${qty})`}</div>
+      </div>
       <div className="bar-row">
         <div style={col1} />
         <div style={col2} />

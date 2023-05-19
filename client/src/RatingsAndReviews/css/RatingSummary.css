@@ -7,17 +7,22 @@
   font-size: 64px;
   margin-right: 12px;
   margin-left: 10px;
+  color: #2F4858;
 }
 
 .percent {
   font-size: 14px;
-  color: gray;
+  color: white;
+  background: #2F4858;
   margin-bottom: 20px;
   margin-left: 10px;
+  padding: 5%;
 }
 
 .all-rating-bars {
   padding: 10px;
+  font-size: 12px;
+  color: #2F4858;
 }
 
 .rating-bar {
@@ -25,9 +30,12 @@
   margin-bottom: 5px;
 }
 
-.bar-label {
+.bar-label-container {
   display: flex;
-  width: 60px;
+  width: 40%;
+}
+
+.bar-label {
   text-decoration: underline;
 }
 
@@ -44,7 +52,7 @@
 }
 
 .bar-col1 {
-  background-color: #525252;
+  background-color: #2F4858;
 }
 
 .bar-col2 {
@@ -63,11 +71,12 @@
   position: absolute;
   top: -10px;
   font-size: 20px;
+  color: #2F4858;
 }
 
 .factor-name {
-  font-size: 14px;
-  color: #808080;
+  font-size: 12px;
+  color: #2F4858;
   margin-bottom: 5px;
 }
 
@@ -77,6 +86,8 @@
   display: flex;
   flex-direction: column;
   background-color: #EBEBEB;
+  /* background-color: #2F4858; */
+  /* background-color: #F6AE2D; */
   height: 10px;
   margin-right: 3px;
 }
@@ -101,4 +112,26 @@
   flex-direction: column;
   font-size: 8px;
   color: #808080;
+}
+
+@media only screen and (max-width: 900px) {
+  .large-rating-number {
+    font-size: 40px;
+    margin-right: 12px;
+    margin-left: 10px;
+    color: #2F4858;
+  }
+  .bar-label-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+  }
+  .column1 {
+    width: 60%;
+  }
+  .bar-label-container {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+  }
 }

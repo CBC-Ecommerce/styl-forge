@@ -4,7 +4,8 @@
 .three-quarter-star {
   display: inline-block;
   position: relative;
-  color: #ABAEB5;
+  /* color: #ABAEB5; */
+  color: #2F4858;
   font-size: 0.75em;
   z-index: -1;
 }
@@ -17,7 +18,7 @@
   top: 0;
   width: 50%;
   overflow: hidden;
-  color: rgb(255, 191, 42);
+  color: #F6AE2D;
 }
 .quarter-star:after {
   font-family: FontAwesome;
@@ -27,7 +28,7 @@
   top: 0;
   width: 35%;
   overflow: hidden;
-  color: rgb(255, 191, 42);
+  color: #F6AE2D;
 }
 .three-quarter-star:after {
   font-family: FontAwesome;
@@ -37,9 +38,9 @@
   top: 0;
   width: 65%;
   overflow: hidden;
-  color: rgb(255, 191, 42);
+  color: #F6AE2D;
 }
 .whole-star {
-  color: rgb(255, 191, 42);
+  color: #F6AE2D;
   font-size: 0.75em;
 }
