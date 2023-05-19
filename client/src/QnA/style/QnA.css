@@ -34,6 +34,16 @@
   cursor: pointer;
   margin-right: 15px;
 }
+.QnA-OnlyPics {
+  background: transparent;
+  font-size: 12px;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+.QnA-Buttons {
+  display: flex;
+}
 /* #plus-sign {
   font-size: 12pt;
 } */
