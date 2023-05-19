@@ -29,7 +29,7 @@ function ComparisonModal({ productInfo, id, setShowModal }) {
     <div className="modalBox" data-testid="compModal">
       <div className="compModal">
         <h4>COMPARING</h4>
-        <span className="btn closeModal-btn" onClick={closeClickHandler}>&#10005;</span>
+        <span className="closeModal-btn" onClick={closeClickHandler}>&#10005;</span>
         <table className="comp-table">
           <thead>
             <tr>

@@ -92,12 +92,12 @@ function Carousel({
     setStartIndex(startIndex => startIndex + 1);
     setEndIndex(endIndex => endIndex + 1);
   }
-  console.log(startIndex)
+  // console.log(startIndex)
   return (
     <>
       {startIndex !== 0 && (
       <span
-        className="btn arrow-btn left-arrow" data-testid="leftArrow"
+        className="arrow-btn left-arrow" data-testid="leftArrow"
         onClick={prevClickHandler}
       >
         &#60;
@@ -142,7 +142,7 @@ function Carousel({
           return null;
         }
         return (
-          <span className="btn arrow-btn right-arrow"
+          <span className="arrow-btn right-arrow"
           data-testid="rightArrow"
           onClick={nextClickHandler}>
             &#62;

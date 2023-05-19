@@ -24,8 +24,8 @@ function Card({
 
   return (
     <div className="card" data-testid="card">
-      {related ? <span className="btn action-button" data-testid="star" onClick={starClickHandler}>&#9733;</span>
-        : <span className="btn action-button cross-btn" data-testid="cross" onClick={crossClick}>&#10005;</span>}
+      {related ? <span className="action-button" data-testid="star" onClick={starClickHandler}>&#9733;</span>
+        : <span className="action-button cross-btn" data-testid="cross" onClick={crossClick}>&#10005;</span>}
       <div>
         <ImgCarousel productInfo={productInfo} />
         <ul className="card-text" onClick={cardClickHandler}>
