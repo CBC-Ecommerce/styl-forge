@@ -4,7 +4,13 @@
 .QnAList-Component {
   max-height: 50vh;
   overflow: scroll;
-  overflow-x: hidden;
+}
+.QnAList-Component::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  /* scrollbar-color: #6969dd #e0e0e0;
+  scrollbar-width: thin;
+  background-color: #aaa; */
 }
 .show-more-button {
   background: transparent;
