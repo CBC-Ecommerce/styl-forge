@@ -18,7 +18,7 @@
   font-size: 10pt;
 }
 .question-body {
-  max-width: 500px;
+  width: 500px;
 }
 .more-answers {
   background: transparent;
