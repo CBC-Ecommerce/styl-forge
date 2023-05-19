@@ -101,7 +101,7 @@ export default function RatingsAndReviews({id, reviewList, char}) {
             >
               Add Review +
             </button>
-            {addRevModal && <AddReview id={id} toggleModal={triggerAddModal} />}
+            {addRevModal && <AddReview id={id} toggleModal={triggerAddModal} resetCount={resetCount} />}
           </div>
         </div>
       </div>

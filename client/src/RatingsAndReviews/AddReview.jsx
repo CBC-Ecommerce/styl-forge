@@ -6,7 +6,7 @@ import DynamicStarList from './DynamicStarList.jsx';
 import SelectCharacteristics from './SelectCharacteristics.jsx';
 import UploadPhotos from './UploadPhotos.jsx';
 
-export default function AddReview({id, toggleModal}) {
+export default function AddReview({id, toggleModal, resetCount }) {
   const [prodName, setProdName] = useState('');
   const [rateMsg, setRateMsg] = useState('');
   const [prodCharac, setProdCharac] = useState([]);
@@ -20,6 +20,9 @@ export default function AddReview({id, toggleModal}) {
   const [characResults, setCharacResults] = useState({});
   const [summaryRes, setSummaryRes] = useState('');
   const [bodyRes, setBodyRes] = useState('');
+  const [imgResults, setImgResults] = useState([]);
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     if (overallRate === 1) {
@@ -77,7 +80,7 @@ export default function AddReview({id, toggleModal}) {
   function handleAddBody(e) {
     if (e.target.value.length < 50) {
       setBodyRes(e.target.value);
-      setCharacLeft(`${e.target.value.length}/50 characters`);
+      setCharacLeft(`${e.target.value.length}/50 characters minimum`);
       setCharacLimit('');
     } else if (e.target.value.length >= 50 && e.target.value.length <= 1000) {
       setBodyRes(e.target.value);
@@ -89,6 +92,52 @@ export default function AddReview({id, toggleModal}) {
     }
   }
 
+  function sendImgURL(arrayOfURLS) {
+    if (arrayOfURLS.length > 0) {
+      setImgResults(arrayOfURLS);
+    }
+  }
+
+  function handleAddNickname(e) {
+    if (e.target.value.length > 60) {
+      setCharExceed('Character Limit Exceeded');
+    } else {
+      setCharExceed(null);
+      setNickname(e.target.value);
+    }
+  }
+
+  function handleAddEmail(e) {
+    if (e.target.value.length > 60) {
+      setCharExceed('Character Limit Exceeded');
+    } else {
+      setCharExceed(null);
+      setEmail(e.target.value);
+    }
+  }
+
+  function handleSubmitForm(e) {
+    e.preventDefault();
+    resetCount(2);
+    toggleModal();
+    const formData = {
+      product_id: id,
+      rating: overallRate,
+      summary: summaryRes,
+      body: bodyRes,
+      recommend: recommendRes,
+      name: nickname,
+      email: email,
+      photos: imgResults,
+      characteristics: characResults,
+    };
+    axios.post('/reviews', formData)
+      .then(() => {
+        console.log('Review Submitted');
+      })
+      .catch((err) => { console.log('Error in posting a new review ', err); });
+  }
+
   return (
     <div className="screen-overlay">
       <div className="modal-add-review">
@@ -97,7 +146,7 @@ export default function AddReview({id, toggleModal}) {
           <span>{`About the ${prodName}`}</span>
         </div>
         <button type="button" className="close-modal" onClick={toggleModal}>X</button>
-        <form type="submit">
+        <form type="submit" onSubmit={handleSubmitForm}>
           <div className="overall-stars">
             <div className="overall-label">Overall Rating</div>
             <DynamicStarList overallResults={overallResults} />
@@ -144,7 +193,18 @@ export default function AddReview({id, toggleModal}) {
             {characLeft && <span className="char-left">{characLeft}</span>}
             {characLimit && <span className="char-exceeded">{characLimit}</span>}
           </div>
-          <UploadPhotos />
+          <UploadPhotos callback={sendImgURL} />
+          <div className="add-rev-nickname">
+            <div className="rev-nickname-label">What is your nickname?</div>
+            <input className="rev-nickname-input" type="text" placeholder="Example: jackson11!" onChange={handleAddNickname} value={nickname} />
+            <span className="nickname-warning">For privacy reasons, do not use your full name or email address</span>
+          </div>
+          <div className="add-rev-email">
+            <div className="rev-email-label">Enter your email</div>
+            <input className="rev-email-input" type="text" placeholder="Example: jackson11@email.com" onChange={handleAddEmail} value={email} />
+            <span className="email-warning">For authentication reasons, you will not be emailed</span>
+          </div>
+          <button type="submit" className="add-review-btn">Submit Review</button>
         </form>
       </div>
 

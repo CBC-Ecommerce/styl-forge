@@ -42,7 +42,8 @@ body.active-modal {
   }
 
   .more-reviews,
-  .add-review {
+  .add-review,
+  .add-review-btn {
     background: transparent;
     font-size: 16px;
     padding: 10px;

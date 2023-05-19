@@ -61,7 +61,9 @@
 .characteristic-selection-container,
 .add-rev-summary,
 .add-rev-body,
-.upload-container {
+.upload-container,
+.add-rev-nickname,
+.add-rev-email {
   margin: 10px 75px;
   padding: 0 0 20px 0;
   border-bottom: 2px solid #A8A8A8;
@@ -127,7 +129,9 @@
 .characteristic-title,
 .rev-summary-label,
 .rev-body-label,
-.uplaod-label {
+.uplaod-label,
+.rev-nickname-label,
+.rev-email-label {
   margin: 10px 0;
 }
 
@@ -144,7 +148,9 @@
 .add-rev-body {
   padding: 5px 0 30px 0;
 }
-.rev-summary-input {
+.rev-summary-input,
+.rev-nickname-input,
+.rev-email-input {
   width: 100%;
   padding: 2px;
 }
@@ -173,4 +179,14 @@
 
 .upload-label {
   margin-bottom: 10px;
+}
+
+.nickname-warning,
+.email-warning {
+  font-size: 12px;
+}
+
+.add-review-btn {
+  position: absolute;
+  right: 11%;
 }
