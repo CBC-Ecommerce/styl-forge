@@ -19,3 +19,8 @@
   margin: 15px 0 0 10px;
   cursor: pointer;
 }
+
+.show-more-button:hover {
+  cursor: pointer;
+  color: #C7511F;
+}

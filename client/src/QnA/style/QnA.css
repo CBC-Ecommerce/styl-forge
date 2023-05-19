@@ -13,36 +13,34 @@
   font-size: 20pt;
   margin-bottom: 2%;
 }
-.question {
-  /* border-bottom: 2px;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 1px; */
-  border-style: groove;
-  margin-bottom: 1%;
-  padding: 10px;
-  box-shadow: 5px 5px rgba(104, 104, 104, 0.15);
-}
 .QnA-Options {
   display: flex;
   justify-content: space-between;
 }
 .QnA-Add-Question-Button {
   background: transparent;
-  font-size: 12px;
+  font-size: 14px;
   padding: 10px;
   cursor: pointer;
   margin-right: 15px;
 }
 .QnA-OnlyPics {
   background: transparent;
-  font-size: 12px;
+  font-size: 14px;
   padding: 10px;
   cursor: pointer;
   margin-right: 15px;
 }
 .QnA-Buttons {
   display: flex;
+}
+.QnA-OnlyPics:hover {
+  cursor: pointer;
+  color: #C7511F;
+}
+.QnA-Add-Question-Button:hover {
+  cursor: pointer;
+  color: #C7511F;
 }
 /* #plus-sign {
   font-size: 12pt;

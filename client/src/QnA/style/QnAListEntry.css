@@ -2,6 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* background-color: #F6AE2D; */
+  border-style: groove;
+  padding: 10px;
+  margin-bottom: 1%;
+  box-shadow: 5px 5px rgba(104, 104, 104, 0.15);
 }
 /* .question-body {
   max-width: 50%;
@@ -43,3 +48,7 @@
   cursor: pointer;
   color: #C7511F;
 }
+
+/* .answer-list {
+  background-color: #fbdfab;
+} */
