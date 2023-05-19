@@ -10,7 +10,9 @@ const { useState, useEffect } = React;
 function QnA({ id, product }) {
   const [quests, setQuests] = useState([]);
   const [filtQuests, setFiltQuests] = useState(quests);
+  const [picsOnly, setPicsOnly] = useState(filtQuests);
   const [questModal, setQuestModal] = useState(false);
+  const [picMode, SetPicMode] = useState(false);
 
   const grabQuestions = () => {
     // console.log('grabQuestions is invoked');
@@ -34,6 +36,29 @@ function QnA({ id, product }) {
     setFiltQuests(filtered);
   };
 
+  const filterObjectsWithDataContainingPhotos = (data) => {
+    if (!picMode) {
+      const filteredObjects = [];
+      data.forEach((result) => {
+        const answerKeys = Object.keys(result.answers);
+        const hasPhotos = answerKeys.some(
+          (key) => result.answers[key].photos.length > 0,
+        );
+        if (hasPhotos) {
+          filteredObjects.push(result);
+        }
+      });
+      setPicsOnly(filteredObjects);
+    } else {
+      setPicsOnly(filtQuests);
+    }
+  };
+
+  const picOnlyClicker = () => {
+    filterObjectsWithDataContainingPhotos(filtQuests);
+    SetPicMode(!picMode);
+  };
+
   // useEffect(() => {
   //   grabQuestions();
   // }, []);
@@ -46,6 +71,10 @@ function QnA({ id, product }) {
     setFiltQuests(quests);
   }, [quests]);
 
+  useEffect(() => {
+    setPicsOnly(filtQuests);
+  }, [filtQuests]);
+
   return (
 
     <div className="QnA-Component" data-testid="QnA Test">
@@ -54,20 +83,28 @@ function QnA({ id, product }) {
         <div className="QnA-Search-Questions">
           <SearchQuestions quests={quests} filterQuestion={filterQuestion} />
         </div>
-        <div className="QnA-or">or</div>
-        <div className="QnA-Add-Question">
-          <button className="QnA-Add-Question-Button" type="button" onClick={questModalClicker}>Add Your Own Question</button>
-          {questModal ? (
-            <AddQuestion
-              product={product}
-              grabQuestions={grabQuestions}
-              questModalClicker={questModalClicker}
-            />
-          ) : null }
+        <div className="QnA-Buttons">
+          <div className="QnA-Pic-Answers">
+            <button type="button" className="QnA-OnlyPics" onClick={picOnlyClicker}>{picMode ? 'Pic Mode Off' : 'OnlyPics'}</button>
+          </div>
+          <div className="QnA-Add-Question">
+            <button className="QnA-Add-Question-Button" type="button" onClick={questModalClicker}>
+              Add Your Own Question
+              {' '}
+              <span id="plus-sign">+</span>
+            </button>
+            {questModal ? (
+              <AddQuestion
+                product={product}
+                grabQuestions={grabQuestions}
+                questModalClicker={questModalClicker}
+              />
+            ) : null }
+          </div>
         </div>
       </div>
       <div className="QnA-List">
-        <QnAList quests={filtQuests} product={product} grabQuestions={grabQuestions} />
+        <QnAList quests={picsOnly} product={product} grabQuestions={grabQuestions} />
       </div>
     </div>
   );

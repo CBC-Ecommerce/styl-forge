@@ -118,9 +118,9 @@ function QnAListEntry({ quest, product, grabQuestions }) {
           ))}
         </div>
       </div>
-
       {anyMore ? (
         <form onSubmit={submitHandler}>
+          <i className="down-arrow">&#9660;</i>
           <input className="more-answers" type="submit" value="See More Answers" />
         </form>
       ) : null}

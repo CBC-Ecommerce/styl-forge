@@ -31,11 +31,14 @@
   background: rgba(0, 0, 0, 0.8);
 }
 
+/* Add review Modal */
+
 .modal-add-review {
-  height: 75vh;
-  width: 50vw;
+  max-height: 90vh;
+  max-width: 60vw;
   background-color: white;
   position: relative;
+  overflow: scroll;
 }
 
 .modal-heading {
@@ -54,9 +57,19 @@
   cursor: pointer;
   padding: 2px;
 }
-
+.overall-stars,
+.would-recommend,
+.characteristic-selection-container,
+.add-rev-summary,
+.add-rev-body,
+.upload-container,
+.add-rev-nickname,
+.add-rev-email {
+  margin: 10px 75px;
+  padding: 0 0 20px 0;
+  border-bottom: 2px solid #A8A8A8;
+}
 .overall-stars {
-  margin: 20px 75px;
   position: relative;
 }
 .overall-label {
@@ -64,23 +77,117 @@
 }
 .star-selected-msg {
   position: absolute;
-  top: 45%;
+  top: 60%;
   left: 25%;
   font-size: 12px;
   color: #A8A8A8;
 }
 
-.dividing-bar {
-  height: 2px;
-  width: 350px;
-  margin: 20px 0;
-  background-color: #A8A8A8;
-}
-
-.would-recommend {
-  margin: 20px 75px;
-}
-
-.recommend-label {
+.recommend-title {
   margin-bottom: 10px;
+}
+
+.recom-label {
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.recom-radio {
+  margin-right: 7px;
+  width: 10px;
+  height: 20x;
+}
+
+.recommend-label input {
+  margin-left: 5px;
+} */
+
+.characteristic-selection-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.char-meaning-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.single-characteristic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.char-meaning {
+  margin-bottom: 7px;
+  color: #A8A8A8;
+  font-size: 10px;
+}
+
+.characteristic-title,
+.rev-summary-label,
+.rev-body-label,
+.uplaod-label,
+.rev-nickname-label,
+.rev-email-label {
+  margin: 10px 0;
+}
+
+.single-characteristic label {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.single-characteristic input {
+  margin: 0 5px;
+}
+.add-rev-summary,
+.add-rev-body {
+  padding: 5px 0 30px 0;
+}
+.rev-summary-input,
+.rev-nickname-input,
+.rev-email-input {
+  width: 100%;
+  padding: 2px;
+}
+
+.char-exceeded,
+.files-exceeded {
+  display: flex;
+  margin-top: 3px;
+  color: red;
+  font-size: 14px;
+}
+
+.rev-body-input {
+  width: 100%;
+  height: 100px;
+}
+
+.char-left {
+  font-size: 14px;
+  color: #A8A8A8;
+}
+
+.img-preview-container {
+  margin-top: 15px;
+}
+
+.upload-label {
+  margin-bottom: 10px;
+}
+
+.nickname-warning,
+.email-warning {
+  font-size: 12px;
+}
+
+.add-review-btn {
+  position: absolute;
+  right: 11%;
 }

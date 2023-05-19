@@ -1,5 +1,6 @@
 .Search-Question {
   display: flex;
+  margin-top: 15px;
 }
 .search-text, .Search-Bar {
   margin-right: 5px;

@@ -6,10 +6,10 @@
 .answer-individual {
   margin-left: 3%;
   margin-bottom: 10px;
-  border-style: groove;
-  border-radius: 25px;
+  /* border-style: groove;
+  border-radius: 25px; */
   padding: 10px;
-  box-shadow: 5px 5px rgba(104, 104, 104, 0.773);
+  /* box-shadow: 5px 5px rgba(104, 104, 104, 0.773); */
   /* width: 200px;
   height: 150px; */
 }
@@ -33,6 +33,10 @@
   font-size: 10pt;
   text-decoration: underline;
 }
+.button:hover {
+  cursor: pointer;
+  color: #C7511F;
+}
 .answer-username {
   display: flex;
   color: #565959!important;
@@ -42,17 +46,18 @@
   margin-left: 10px;
 }
 .answerer-info {
-  margin-left: 35px;
+  margin-left: 30px;
 }
 .answer-first-line {
   display: flex;
   justify-content: space-between;
 }
 .big-A {
-  font-size: 24pt;
+  font-size: 16pt;
+  font-weight: bold;
   margin-right: 5px;
 }
 .answer-photo-container {
-  margin-left: 35px;
+  margin-left: 30px;
   display: flex;
 }
