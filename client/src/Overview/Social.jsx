@@ -14,8 +14,8 @@ export default function Social({ id }) {
   return (
     <div className="social-buttons">
       <div>Share this product:</div>
-      <button className="share-button" type="button" onClick={shareToTwitter}><i className="fa-brands fa-twitter"></i></button>
-      <button className="share-button" type="button" onClick={shareToFacebook}><i className="fa-brands fa-facebook"></i></button>
+      <button className="share-button" type="button" onClick={shareToTwitter} aria-abel="share to twitter"><i className="fa-brands fa-twitter"></i></button>
+      <button className="share-button" type="button" onClick={shareToFacebook} aria-abel="share to facebook"><i className="fa-brands fa-facebook"></i></button>
     </div>
   );
 }

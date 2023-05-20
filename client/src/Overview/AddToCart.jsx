@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Droption from './Droption.jsx';
 import axios from 'axios';
 
 export default function AddToCart({ selectedStyle }) {
@@ -51,7 +52,7 @@ export default function AddToCart({ selectedStyle }) {
         <option value="" defaultValue>Select Size</option>
         {availableItems.map((item, index) => {
           if (availableItems[index].quantity > 0) {
-            return <option id={index}>{item.size}</option>;
+            return <Droption item={item} index={index} key={index} />;
           }
           return <option disabled>{item.size} Out of Stock</option>;
         })}
@@ -64,7 +65,7 @@ export default function AddToCart({ selectedStyle }) {
             <option value="-" defaultValue>-</option>
         )}
       </select>
-      <button className="add-to-cart-button" type="button" data-testid="add2CartBtn" onClick={addToCartClicked}>Add to cart</button>
+      <button className="add-to-cart-button" type="button" data-testid="add2CartBtn" onClick={addToCartClicked} aria-label="Add to cart button">Add to cart</button>
     </div>
   );
 }

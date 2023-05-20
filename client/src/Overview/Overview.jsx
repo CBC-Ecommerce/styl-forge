@@ -21,6 +21,7 @@ export default function Overview({ product, id, reviewList }) {
       .then((result) => {
         setStyles(result.data);
         setSelectedStyle(result.data.results[0]);
+        setActiveImage(0);
       })
       .catch((err) => { throw err; });
   }, [id]);

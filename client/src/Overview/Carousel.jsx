@@ -21,8 +21,8 @@ export default function Carousel({ allPics, activeImage, setActiveImage }) {
 
   return (
     <div className="carousel" data-testid="carousel">
-      <button className="carousel-button prev" type="button" onClick={handlePrevClick}>&#8592;</button>
-      <button className="carousel-button next" type="button" onClick={handleNextClick}>&#8594;</button>
+      <button className="carousel-button prev" type="button" onClick={handlePrevClick} aria-abel="view previous image">&#8592;</button>
+      <button className="carousel-button next" type="button" onClick={handleNextClick} aria-abel="view next image">&#8594;</button>
       {allPics.map((photoUrl, index) => (
         <SingleImage
           photoUrl={photoUrl.url}
