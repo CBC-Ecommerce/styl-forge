@@ -28,10 +28,10 @@ export default function Helpfullness({ review_id, helpful }) {
     <>
       <div className="helpful">
         Helpful?
-        <button type="button" className="h-btn" onClick={() => { clickHandler(true); }}>{`Yes (${count})`}</button>
-        <button type="button" className="h-btn no-btn" onClick={() => { clickHandler(false); }}>No</button>
+        <button type="button" className="h-btn" aria-label="Mark Review Helpful" onClick={() => { clickHandler(true); }}>{`Yes (${count})`}</button>
+        <button type="button" className="h-btn no-btn" aria-label="Mark Review Not Helpful" onClick={() => { clickHandler(false); }}>No</button>
         {' | '}
-        <button type="button" className="h-btn">Report</button>
+        <button type="button" className="h-btn" aria-label="Report This Review">Report</button>
       </div>
       {clicked && <span className="ty-message">Thanks for the feedback!</span>}
     </>

@@ -6,7 +6,11 @@ export default function Characteristics({characteristics}) {
   return (
     <div className="characteristics-container">
       {charsAvailable.map((factor) => (
-        <ProductFactor factor={factor} avg={characteristics[factor].value} key={characteristics[factor].id} />
+        <ProductFactor
+          factor={factor}
+          avg={characteristics[factor].value}
+          key={characteristics[factor].id}
+        />
       ))}
     </div>
   );

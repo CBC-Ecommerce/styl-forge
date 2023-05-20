@@ -15,6 +15,7 @@ export default function ReviewCardBody({short, body}) {
       <button
         className="show-more-btn"
         type="button"
+        aria-label="Show More Review Text"
         onClick={(e) => { e.preventDefault(); setShowingMore(!showingMore); }}
       >
         {showingMore ? 'Show Less' : 'Show More'}
