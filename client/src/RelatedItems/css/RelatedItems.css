@@ -120,6 +120,8 @@
   position: relative;
 }
 
+/* img slider indicator */
+
 .left-arrow-img, .right-arrow-img {
   font-size: 16px;
   width: 24px;
@@ -171,7 +173,7 @@
   color: #fff;
 }
 
-/* action buttons */
+/* add to outfit buttons */
 .addOutfit-btn {
   font-size: 18px;
   box-sizing: border-box;
@@ -275,4 +277,67 @@ thead th:first-child {
 
 thead th:last-child {
   border-top-right-radius: 6px;
+}
+
+@media (max-width: 900px) {
+  .related-products {
+    max-width: 800px;
+    margin: 25px;
+  }
+  .container {
+    margin-left: 0px;
+  }
+
+  .card {
+    width: 160px;
+  }
+
+  .card-name {
+    font-size: 14px;
+  }
+
+  .card-text {
+    font-size: 12px;
+    margin-left: 8px;
+  }
+
+  .card-img {
+    width: 160px;
+    height: 180px;
+  }
+
+  .addOutfit-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .addOutfit-btn:hover {
+    font-size: 14px;
+  }
+
+  .addOutfit-card {
+    height: 280px;
+  }
+
+  .action-button {
+    top: 6px;
+    right: 8px;
+    font-size: 16px;
+  }
+
+  .left-arrow-img, .right-arrow-img {
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+
+  }
+
+  .left-arrow-img {
+    transform: translate(0, -50%);
+  }
+
+  .right-arrow-img {
+    transform: translate(0, -50%);
+  }
+
 }
