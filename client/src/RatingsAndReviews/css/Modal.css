@@ -191,3 +191,40 @@
   position: absolute;
   right: 11%;
 }
+
+@media only screen and (max-width: 700px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-add-review form {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  .add-review-btn {
+    position: inherit;
+  }
+  .overall-stars,
+  .would-recommend,
+  .characteristic-selection-container,
+  .add-rev-summary,
+  .add-rev-body,
+  .upload-container,
+  .add-rev-nickname,
+  .add-rev-email {
+    padding: 7% 0;
+    border-bottom: 2px solid black;
+    margin: 0 10%;
+  }
+  .large-rating-number {
+    font-size: 44px;
+    margin-right: 12px;
+    margin-left: 10px;
+    color: #2F4858;
+  }
+  .percent {
+    font-size: 12px;
+  }
+}
