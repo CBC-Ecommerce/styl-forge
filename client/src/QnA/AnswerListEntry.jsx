@@ -63,7 +63,7 @@ function AnswerListEntry({ answer, grabQuestions }) {
           <div className="helpful-text">
             Helpful?
             {' '}
-            <button id="underline-button" className="button" onClick={helpfulListener} type="button" disabled={ansHelpful}>
+            <button className="button" onClick={helpfulListener} type="button" disabled={ansHelpful}>
               Yes (
               {answer.helpfulness}
               )
