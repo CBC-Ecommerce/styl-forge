@@ -12,7 +12,7 @@
   max-width: 50%;
 } */
 .big-Q {
-  font-size: 16pt;
+  font-size: 21.3px;
   margin-right: 5px;
   font-weight: bold;
 }
@@ -21,7 +21,7 @@
   align-items: center;
 }
 .question-buttons {
-  font-size: 10pt;
+  font-size: 12px;
 }
 .question-body {
   width: 500px;

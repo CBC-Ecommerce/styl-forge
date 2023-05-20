@@ -33,7 +33,7 @@
   font-size: 16px;
   padding: 10px;
   cursor: pointer;
-  margin-right: 15px;
+  margin-right: 10px;
   background-color: #2f4858;
   color: white;
   border-radius: 8px;
@@ -43,13 +43,13 @@
   display: flex;
 }
 .QnA-OnlyPics:hover {
+  transform: scale(1.1);
   cursor: pointer;
-  font-size: 19px;
   background-color: #596d79;
 }
 .QnA-Add-Question-Button:hover {
   cursor: pointer;
-  font-size: 19px;
+  transform: scale(1.1);
   background-color: #596d79;
 }
 /* #plus-sign {

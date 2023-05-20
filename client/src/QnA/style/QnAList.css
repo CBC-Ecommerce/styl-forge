@@ -17,16 +17,23 @@
   background: transparent;
   font-size: 16px;
   padding: 10px;
-  margin: 10px 0 10px 10px;
+  margin: 15px 0 10px 10px;
   cursor: pointer;
   background-color: #2f4858;
   color: white;
   border-radius: 8px;
   transition: all 0.3s;
+
 }
 
 .show-more-button:hover {
   cursor: pointer;
-  font-size: 19pt;
   background-color: #596d79;
+  transform: scale(1.1);
+}
+
+.QnAList-buttons {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 10px;
 }
