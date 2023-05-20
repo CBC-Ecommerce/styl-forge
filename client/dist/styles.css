@@ -60,10 +60,15 @@ html * {
 .nav-search {
   border: none;
   border-bottom: 2px solid #adb5bd;
+  margin-left: 12px;
 }
 
 .nav-searchIcon {
   width: 24px;
   height: 24px;
   cursor: pointer;
+}
+
+.nav-container label {
+  font-size: 18px;
 }
