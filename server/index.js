@@ -1,11 +1,13 @@
 require('dotenv').config();
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const controllers = require('./controllers');
 
 // Create server and serve up client side folders to view in browser
 const app = express();
 app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(compression());
 
 // Middleware
 app.use(express.json());
