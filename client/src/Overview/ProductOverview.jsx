@@ -1,4 +1,5 @@
 import React from 'react';
+import Feature from './Feature.jsx';
 
 export default function ProductOverview({ slogan, description, features }) {
   return (
@@ -8,11 +9,8 @@ export default function ProductOverview({ slogan, description, features }) {
         <p>{description}</p>
       </div>
       <div className="features">
-        {features.map((feature, index) => (
-          <div className="feature">
-            <i className="fa-solid fa-check" />
-            <div>{feature.value}</div>
-          </div>
+        {features.map((feature) => (
+          <Feature feature={feature} key={feature.value} />
         ))}
       </div>
     </div>

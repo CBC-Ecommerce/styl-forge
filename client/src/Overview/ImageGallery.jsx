@@ -27,6 +27,11 @@ export default function ImageGallery({ selectedStyle, zoomView, setZoomView, act
       setActiveImage(activeImage + 1);
     }
   }
+  if (modal) {
+    document.body.classList.add('active-modal');
+  } else {
+    document.body.classList.remove('active-modal');
+  }
   function toggleModal() {
     setModal(!modal);
   }
