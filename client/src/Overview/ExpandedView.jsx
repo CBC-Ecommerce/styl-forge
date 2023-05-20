@@ -11,12 +11,12 @@ export default function ExpandedView({ stylePhotos, activeImage, toggleModal, ha
     <div className="screen-overlay" id="sreen-overlay">
       {zoomView === false && (
         <>
-          <button className="expanded-button carousel-button prev" type="button" onClick={handlePrevClick}>&#8592;</button>
-          <button className="expanded-button carousel-button next" type="button" onClick={handleNextClick}>&#8594;</button>
-          <button className="close-expanded-view" type="button" onClick={closeModal}>X</button>
+          <button className="expanded-button carousel-button prev" type="button" onClick={handlePrevClick} aria-abel="view previous expanded image">&#8592;</button>
+          <button className="expanded-button carousel-button next" type="button" onClick={handleNextClick} aria-abel="view next expanded image">&#8594;</button>
+          <button className="close-expanded-view" type="button" onClick={closeModal} aria-abel="close expanded view">X</button>
         </>
       )}
-      <div className="expanded-view-modal" onClick={() => {setZoomView(!zoomView)}}>
+      <div className="expanded-view-modal" onClick={() => {setZoomView(!zoomView)}} aria-abel="zoom in more">
         {stylePhotos.map((photoUrl, index) => (
           <SingleImage
             photoUrl={photoUrl.url}

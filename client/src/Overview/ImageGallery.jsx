@@ -37,8 +37,8 @@ export default function ImageGallery({ selectedStyle, zoomView, setZoomView, act
   }
   return (
     <div className="image-gallery" data-testid="imgGallery">
-      <button className="carousel-button prev" id="prev" type="button" onClick={handlePrevClick}>&#8592;</button>
-      <button className="carousel-button next" id="next" type="button" onClick={handleNextClick}>&#8594;</button>
+      <button className="carousel-button prev" id="prev" type="button" onClick={handlePrevClick} aria-abel="view previous image">&#8592;</button>
+      <button className="carousel-button next" id="next" type="button" onClick={handleNextClick} aria-abel="view next image">&#8594;</button>
       {stylePhotos.map((photoUrl, index) => (
         <SingleImage
           photoUrl={photoUrl.url}
