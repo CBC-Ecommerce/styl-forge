@@ -96,9 +96,18 @@ body.active-modal {
       border-bottom: 2px solid black;
     }
     .large-rating-number {
-      font-size: 64px;
+      font-size: 44px;
       margin-right: 12px;
       margin-left: 10px;
       color: #2F4858;
+    }
+    .percent {
+      font-size: 12px;
+    }
+    .helpful {
+      font-size: 14px;
+    }
+    .h-btn {
+      font-size: 14px;
     }
   }

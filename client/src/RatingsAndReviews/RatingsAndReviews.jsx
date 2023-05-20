@@ -90,6 +90,7 @@ export default function RatingsAndReviews({id, reviewList, char}) {
                 type="button"
                 className="more-reviews"
                 onClick={increaseReviewsSeen}
+                aria-label="Increase Number of Reviews Seen"
               >
                 More Reviews
               </button>
@@ -98,6 +99,7 @@ export default function RatingsAndReviews({id, reviewList, char}) {
               type="button"
               className="add-review"
               onClick={triggerAddModal}
+              aria-label="Open Add Review Popup"
             >
               Add Review +
             </button>
