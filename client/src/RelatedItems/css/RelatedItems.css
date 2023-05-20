@@ -53,6 +53,7 @@
 .card-img {
   width: 240px;
   height: 260px;
+  object-fit: cover;
   margin-bottom: 12px;
 }
 
