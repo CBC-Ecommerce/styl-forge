@@ -15,8 +15,7 @@ This repository contains the code for the Front-End Capstone project created by 
 * Authors and Contributors
 
 * Wins and Improvements
-
-* Making Readme Better
+* 
 
 ### Description
 This project is a webpage for an ecommerce site called 'Styl Forge' which allows users to see and select from a variety of clothing options, add items to a saved outfit list, add their items to their shopping cart, view related items, see questions and answers related to the current item, ask your own question, add an answer to a question, filter for answers that only include images, see the overall rating of an item, read user reviews for items, add your own reviews, and sort reviews by rating. 
@@ -32,7 +31,6 @@ Axios
 Express
 HTML
 CSS
-GitHub
 
 ### Installation and Running
 To install and run the project, you will need to have Node.js installed on your computer.
