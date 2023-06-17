@@ -1,4 +1,4 @@
-# Front-End Capstone
+# Styl Forge
 
 This repository contains the code for the Front-End Capstone project created by the Cherry Blossom Chasers team: Yanting Luo, Jack Martinuzzi, Rachel Miller, and Anthony Tzeng.
 
